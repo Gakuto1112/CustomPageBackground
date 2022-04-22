@@ -1,6 +1,20 @@
 body {
 	margin: 0;
 }
+.character_mark {
+	position: absolute;
+	width: 48px;
+	height: 48px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: 0;
+	font-size: xx-large;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 24px;
+	user-select: none;
+}
 #header {
 	display: flex;
 	align-items: center;
@@ -54,18 +68,22 @@ ul > li {
 	cursor: pointer;
 }
 #new_image > p {
-	position: absolute;
-	width: 48px;
-	height: 48px;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	margin: 0;
-	font-size: xx-large;
-	font-weight: bold;
-	text-align: center;
-	border-radius: 24px;
 	color: gray;
 	background-color: lightgray;
-	user-select: none;
+}
+.remove_hover {
+	filter: brightness(0.5);
+}
+.image_div {
+	position: relative;
+	cursor: pointer;
+}
+.image_div > img {
+	min-height: 180px;
+	max-height: 180px;
+}
+.x_mark {
+	color: white;
+	background-color: black;
+	opacity: 0.75;
 }

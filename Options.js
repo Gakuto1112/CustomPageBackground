@@ -11,9 +11,25 @@ document.getElementById("new_image").addEventListener("click", () => {
 		inputImages.forEach((image) => {
 			const reader = new FileReader();
 			reader.addEventListener("load", (event) => {
+				const imageDivElement = document.createElement("div");
+				imageDivElement.classList.add("image_div");
+				imageDivElement.style.width = 
+				imageDivElement.addEventListener("click", () => imageDivElement.remove());
+				imageDivElement.addEventListener("mouseover", () => {
+					imageElement.classList.add("remove_hover");
+					xMark.innerText = "x";
+					xMark.classList.add("character_mark", "x_mark");
+					imageDivElement.appendChild(xMark);
+				});
+				imageDivElement.addEventListener("mouseout", () => {
+					imageElement.classList.remove("remove_hover");
+					xMark.remove();
+				});
 				const imageElement = document.createElement("img");
 				imageElement.src = event.target.result;
-				document.getElementById("image_selector").appendChild(imageElement);
+				const xMark = document.createElement("p");
+				imageDivElement.appendChild(imageElement);
+				document.getElementById("image_selector").appendChild(imageDivElement);
 			});
 			reader.readAsDataURL(image);
 		});
