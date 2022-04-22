@@ -4,18 +4,19 @@ function drawPreviewElementSample() {
 	canvas.width = canvas.clientWidth;
 	canvas.height = canvas.clientHeight;
 	const context = canvas.getContext("2d");
+	context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 	context.strokeStyle = "black";
 	context.lineWidth = 1;
 	context.fillStyle = "white";
-	context.fillRect(20, 20, 200, 20);
-	context.strokeRect(20, 21, 200, 18);
+	context.fillRect(20, 20, Math.max(Math.min(canvas.clientWidth - 80, 250), 50), 20);
+	context.strokeRect(20, 21, Math.max(Math.min(canvas.clientWidth - 80, 250), 50), 18);
 	context.fillStyle = "royalblue";
-	context.fillRect(221, 20, 40, 20);
+	context.fillRect(Math.max(Math.min(canvas.clientWidth - 61, 231), 71), 20, 40, 20);
 	for(let i = 0; i < (canvas.clientHeight - 60) / 70; i++) {
 		context.fillStyle = "mediumblue";
-		context.fillRect(20, i * 70 + 60, 150, 10);
+		context.fillRect(20, i * 70 + 60, Math.max(Math.min(canvas.clientWidth - 40, 150), 90), 10);
 		context.fillStyle = "dimgray";
-		for(let j = 0; j < 3; j++) context.fillRect(20, i * 70 + j * 10 + 80, 120, 5);
+		for(let j = 0; j < 3; j++) context.fillRect(20, i * 70 + j * 10 + 80, Math.max(Math.min(canvas.clientWidth - 40, 120), 90), 5);
 	}
 }
 
@@ -57,5 +58,35 @@ document.getElementById("new_image").addEventListener("click", () => {
 	});
 	fileInputElement.click();
 });
+
+let previewFrameResizeEvent;
+const previewFrame = document.getElementById("preview_frame");
+const frameRight = document.getElementById("frame_right");
+let mouseX, frameWidth;
+frameRight.addEventListener("mousedown", (event) => {
+	frameWidth = previewFrame.clientWidth;
+	mouseX = event.screenX;
+	previewFrameResizeEvent = (event) => {
+		previewFrame.style.width = frameWidth - mouseX + event.screenX + "px";
+		drawPreviewElementSample();
+	};
+	frameRight.addEventListener("mousemove", previewFrameResizeEvent);
+});
+frameRight.addEventListener("mouseup", () => frameRight.removeEventListener("mousemove", previewFrameResizeEvent));
+frameRight.addEventListener("mouseout", () => frameRight.removeEventListener("mousemove", previewFrameResizeEvent));
+
+const frameBottom = document.getElementById("frame_bottom");
+let mouseY, frameHeight;
+frameBottom.addEventListener("mousedown", (event) => {
+	frameHeight = previewFrame.clientHeight;
+	mouseY = event.screenY;
+	previewFrameResizeEvent = (event) => {
+		previewFrame.style.height = frameHeight - mouseY + event.screenY + "px";
+		drawPreviewElementSample();
+	}
+	frameBottom.addEventListener("mousemove", previewFrameResizeEvent);
+});
+frameBottom.addEventListener("mouseup", () => frameBottom.removeEventListener("mousemove", previewFrameResizeEvent));
+frameBottom.addEventListener("mouseout", () => frameBottom.removeEventListener("mousemove", previewFrameResizeEvent));
 
 drawPreviewElementSample();

@@ -121,7 +121,6 @@ ul > li {
 #preview_area {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 }
 #preview_frame {
 	position: relative;
