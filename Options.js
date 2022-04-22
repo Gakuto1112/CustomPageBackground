@@ -26,6 +26,7 @@ document.getElementById("new_image").addEventListener("click", () => {
 	fileInputElement.accept = ".png, .jpg, .jpeg, .gif";
 	fileInputElement.multiple = true;
 	fileInputElement.addEventListener("change", () => {
+		const imageSelector = document.getElementById("image_selector");
 		const fileList = Array.from(fileInputElement.files);
 		const acceptFileType = ["png", "jpg", "jpeg", "gif"];
 		const inputImages = fileList.filter((file) => acceptFileType.indexOf(file.name.split(".").slice(-1)[0].toLowerCase()) >= 0);
@@ -51,16 +52,18 @@ document.getElementById("new_image").addEventListener("click", () => {
 				imageElement.src = event.target.result;
 				const xMark = document.createElement("p");
 				imageDivElement.appendChild(imageElement);
-				document.getElementById("image_selector").appendChild(imageDivElement);
+				imageSelector.appendChild(imageDivElement);
 			});
 			reader.readAsDataURL(image);
 		});
+		if(imageSelector.childElementCount >= 2) background.setImage(imageSelector.children.item(1).firstElementChild.src);
 	});
 	fileInputElement.click();
 });
 
 let previewFrameResizeEvent;
 const previewFrame = document.getElementById("preview_frame");
+const background = new BackgroundImageInjector(previewFrame, "", 0, 0.25, false);
 const frameRight = document.getElementById("frame_right");
 let mouseX, frameWidth;
 frameRight.addEventListener("mousedown", (event) => {

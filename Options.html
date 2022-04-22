@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>カスタム背景　設定画面</title>
+		<script defer src="BackgroundImageInjector.js"></script>
 		<script defer src="Options.js"></script>
+		<link rel="stylesheet" href="BackgroundImageInjector.css">
 		<link rel="stylesheet" href="Options.css">
 	</head>
 	<body>
@@ -30,7 +32,6 @@
 					<div id="preview_frame">
 						<div id="frame_right"></div>
 						<div id="frame_bottom"></div>
-						<div id="preview_background"></div>
 						<canvas id="preview_elements_sample"></canvas>
 					</div>
 					<div id="image_change">
@@ -40,14 +41,14 @@
 					</div>
 				</div>
 				<div id="style_settings">
-					<h2>揃え方</h2>
+					<h2>調整方法</h2>
 					<div>
-						<input type="radio" id="justify_method_short" name="justify_method" checked>
-						<label for="justify_method_short">短辺で揃える</label>
+						<input type="radio" id="justify_method_whole" name="justify_method" checked>
+						<label for="justify_method_whole">画像全体が移るように調整する</label>
 					</div>
 					<div>
 						<input type="radio" id="justify_method_long" name="justify_method">
-						<label for="justify_method_long">長辺で揃える</label>
+						<label for="justify_method_long">余白が表示されないように画像を拡大する</label>
 					</div>
 					<h2>透明度</h2>
 					<input type="range" id="background_opacity" min="0" max="1" step="0.01" value="0.5">
