@@ -25,6 +25,43 @@
 					<li>複数の画像を選択した場合、対象のページが表示されるたびにランダムで1枚表示されます。</li>
 				</ul>
 			<li>スタイルの設定</li>
+			<div id="style_area">
+				<div id="preview_area">
+					<div id="preview_frame">
+						<div id="frame_right"></div>
+						<div id="frame_bottom"></div>
+						<div id="preview_background"></div>
+						<canvas id="preview_elements_sample"></canvas>
+					</div>
+					<div id="image_change">
+						<p id="image_previous" class="button button_disabled">←</p>
+						<p id="image_position"><span id="image_position_now">0</span id="image_position_total">/<span>0</span></p>
+						<p id="image_next" class="button button_disabled">→</p>
+					</div>
+				</div>
+				<div id="style_settings">
+					<h2>揃え方</h2>
+					<div>
+						<input type="radio" id="justify_method_short" name="justify_method" checked>
+						<label for="justify_method_short">短辺で揃える</label>
+					</div>
+					<div>
+						<input type="radio" id="justify_method_long" name="justify_method">
+						<label for="justify_method_long">長辺で揃える</label>
+					</div>
+					<h2>透明度</h2>
+					<input type="range" id="background_opacity" min="0" max="1" step="0.01" value="0.5">
+					<h2>境界面</h2>
+					<div>
+						<input type="checkbox" id="blur_border">
+						<label for="blur_border">境界面をぼかす</label>
+					</div>
+				</div>
+			</div>
+			<ul>
+				<li>左側はプレビューです。</li>
+				<li>青枠部分をドラッグする事でプレビュー枠の大きさを変更出来ます。</li>
+			</ul>
 			<li>表示ページの設定</li>
 		</ol>
 	</body>
