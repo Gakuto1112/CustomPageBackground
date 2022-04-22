@@ -1,0 +1,26 @@
+body {
+	margin: 0;
+}
+#header {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px 0;
+	border-bottom: 1px solid darkgray;
+	box-shadow: 0 0 5px 5px #00000020;
+}
+#header > img {
+	/* アイコン未定なので仮のスタイル */
+	width: 30px;
+	height: 30px;
+	margin-left: 50px;
+	border: 1px dashed silver;
+	background-color: whitesmoke;
+}
+#header > h1 {
+	margin: 0 0 0 10px;
+	font-weight: lighter;
+}
