@@ -146,6 +146,10 @@ ul > li {
 	transform: translate(-12px, 12px);
 	cursor: ns-resize;
 }
+#preview_elements_sample {
+	width: 100%;
+	height: 100%;
+}
 #image_change {
 	display: flex;
 	min-width: fit-content;

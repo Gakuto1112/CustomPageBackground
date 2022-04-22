@@ -1,3 +1,24 @@
+function drawPreviewElementSample() {
+	//プレビュー枠のサンプルを描画する。
+	const canvas = document.getElementById("preview_elements_sample");
+	canvas.width = canvas.clientWidth;
+	canvas.height = canvas.clientHeight;
+	const context = canvas.getContext("2d");
+	context.strokeStyle = "black";
+	context.lineWidth = 1;
+	context.fillStyle = "white";
+	context.fillRect(20, 20, 200, 20);
+	context.strokeRect(20, 21, 200, 18);
+	context.fillStyle = "royalblue";
+	context.fillRect(221, 20, 40, 20);
+	for(let i = 0; i < (canvas.clientHeight - 60) / 70; i++) {
+		context.fillStyle = "mediumblue";
+		context.fillRect(20, i * 70 + 60, 150, 10);
+		context.fillStyle = "dimgray";
+		for(let j = 0; j < 3; j++) context.fillRect(20, i * 70 + j * 10 + 80, 120, 5);
+	}
+}
+
 document.getElementById("new_image").addEventListener("click", () => {
 	const fileInputElement = document.createElement("input");
 	fileInputElement.type = "file";
@@ -36,3 +57,5 @@ document.getElementById("new_image").addEventListener("click", () => {
 	});
 	fileInputElement.click();
 });
+
+drawPreviewElementSample();
