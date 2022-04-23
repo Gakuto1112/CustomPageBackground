@@ -20,13 +20,38 @@ function drawPreviewElementSample() {
 	}
 }
 
+const imageSelector = document.getElementById("image_selector");
+const imagePrevious = document.getElementById("image_previous");
+const imageNext = document.getElementById("image_next");
+const imagePositionNow = document.getElementById("image_position_now");
+function previewChange() {
+	//プレビューの画像変更ボタンの設定
+	document.getElementById("image_position_total").innerText = imageSelector.children.length - 1;
+	imagePrevious.classList.add("button_disabled");
+	if(imageSelector.childElementCount >= 3) imageNext.classList.remove("button_disabled");
+	else imageNext.classList.add("button_disabled");
+	if(imageSelector.children.length >= 2) {
+		imagePositionNow.innerText = 1;
+		background.setImage(imageSelector.children.item(1).firstElementChild.src);
+	}
+	else {
+		imagePositionNow.innerText = 0;
+		background.setImage("");
+	}
+}
+
+const imageSelectorObserver = new MutationObserver(previewChange);
+imageSelectorObserver.observe(imageSelector, {
+	childList: true
+});
+
+
 document.getElementById("new_image").addEventListener("click", () => {
 	const fileInputElement = document.createElement("input");
 	fileInputElement.type = "file";
 	fileInputElement.accept = ".png, .jpg, .jpeg, .gif";
 	fileInputElement.multiple = true;
 	fileInputElement.addEventListener("change", () => {
-		const imageSelector = document.getElementById("image_selector");
 		const fileList = Array.from(fileInputElement.files);
 		const acceptFileType = ["png", "jpg", "jpeg", "gif"];
 		const inputImages = fileList.filter((file) => acceptFileType.indexOf(file.name.split(".").slice(-1)[0].toLowerCase()) >= 0);
@@ -56,7 +81,6 @@ document.getElementById("new_image").addEventListener("click", () => {
 			});
 			reader.readAsDataURL(image);
 		});
-		if(imageSelector.childElementCount >= 2) background.setImage(imageSelector.children.item(1).firstElementChild.src);
 	});
 	fileInputElement.click();
 });
@@ -91,5 +115,25 @@ frameBottom.addEventListener("mousedown", (event) => {
 });
 frameBottom.addEventListener("mouseup", () => frameBottom.removeEventListener("mousemove", previewFrameResizeEvent));
 frameBottom.addEventListener("mouseout", () => frameBottom.removeEventListener("mousemove", previewFrameResizeEvent));
+
+imagePrevious.addEventListener("click", () => {
+	const currentPosition = Number(imagePositionNow.innerText);
+	if(currentPosition >= 2) {
+		imagePositionNow.innerText = currentPosition - 1;
+		if(currentPosition == 2) imagePrevious.classList.add("button_disabled");
+		imageNext.classList.remove("button_disabled");
+		background.setImage(imageSelector.children.item(currentPosition - 1).firstElementChild.src);
+	}
+});
+
+imageNext.addEventListener("click", () => {
+	const currentPosition = Number(imagePositionNow.innerText);
+	if(currentPosition <= imageSelector.childElementCount - 2) {
+		imagePositionNow.innerText = currentPosition + 1;
+		if(currentPosition == imageSelector.childElementCount - 2) imageNext.classList.add("button_disabled");
+		imagePrevious.classList.remove("button_disabled");
+		background.setImage(imageSelector.children.item(currentPosition + 1).firstElementChild.src);
+	}
+});
 
 drawPreviewElementSample();
