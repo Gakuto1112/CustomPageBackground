@@ -5,6 +5,9 @@ h2 {
 	margin: 2em 0 0.5em 0;
 	font-size: medium;
 }
+.hidden {
+	display: none !important;
+}
 .character_mark {
 	position: absolute;
 	width: 48px;
@@ -164,6 +167,10 @@ ul > li {
 #style_settings {
 	min-width: fit-content;
 	margin: -2em 0 0 40px;
+}
+#expand_align_grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 }
 #apply_site_list {
 	width: calc(100% - 60px);
