@@ -54,6 +54,7 @@ chrome.storage.local.get(["apply_sites"], (siteResult) => {
 			makeTransparentByClassName("HskPDe");
 			makeTransparentByClassName("Z7Mseb");
 			makeTransparentByClassName("SMWA9c");
+			makeTransparentByClassName("vZFyxc");
 		}
 		else if(location.href.startsWith("https://www.bing.com/search")) {
 			Array.from(document.getElementById("b_results").children).forEach((child) => child.style.backgroundColor = "transparent");
