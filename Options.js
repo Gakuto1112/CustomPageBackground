@@ -102,7 +102,7 @@ let previewFrameResizeEvent;
 const previewFrame = document.getElementById("preview_frame");
 const backgroundOpacity = document.getElementById("background_opacity");
 const blurBorder = document.getElementById("blur_border");
-const background = new BackgroundImageInjector(previewFrame, "", 0, backgroundOpacity.value, blurBorder.value);
+const background = new BackgroundImageInjector(previewFrame, "", 0, 4, backgroundOpacity.value, blurBorder.value);
 const justifyMethodExpand = document.getElementById("justify_method_expand");
 if(justifyMethodExpand.checked) background.setJustifyMethod(1);
 const frameRight = document.getElementById("frame_right");
@@ -154,12 +154,28 @@ imageNext.addEventListener("click", () => {
 });
 
 const justifyMethodWhole = document.getElementById("justify_method_whole");
+const expandAlignGrid = document.getElementById("expand_align_grid");
 justifyMethodWhole.addEventListener("change", () => {
-	if(justifyMethodWhole.checked) background.setJustifyMethod(0);
+	if(justifyMethodWhole.checked) {
+		background.setJustifyMethod(0);
+		expandAlignGrid.parentElement.classList.add("hidden");
+		document.getElementById("expand_align_cc").checked = true;
+		background.setImageAlign(4);
+	}
 });
 justifyMethodExpand.addEventListener("change", () => {
-	if(justifyMethodExpand.checked) background.setJustifyMethod(1);
+	if(justifyMethodExpand.checked) {
+		background.setJustifyMethod(1);
+		expandAlignGrid.parentElement.classList.remove("hidden");
+	}
 });
+
+const expandAlign = document.getElementsByName("expand_align");
+expandAlign.forEach((element) => element.addEventListener("change", () => {
+	expandAlign.forEach((subElement, i) => {
+		if(subElement.checked) background.setImageAlign(i);
+	});
+}));
 
 backgroundOpacity.addEventListener("change", () => background.setOpacity(backgroundOpacity.value));
 
@@ -173,13 +189,17 @@ saveButton.addEventListener("click", () => {
 		saving = true;
 		saveButton.classList.add("button_disabled");
 		const images = Array.from(imageSelector.children).slice(1).map((image) => image.firstElementChild.src);
-		let justifyMethodNumber;
-		if(justifyMethodWhole.checked) justifyMethodNumber = 0;
-		else justifyMethodNumber = 1
+		let justifyMethodNumber = 0;
+		if(justifyMethodExpand.checked) justifyMethodNumber = 1
+		let imageAlignNumber = 4;
+		expandAlign.forEach((element, i) => {
+			if(element.checked) imageAlignNumber = i;
+		});
 		chrome.storage.local.set({
 			images: images,
 			style: {
 				justify_method: justifyMethodNumber,
+				image_align: imageAlignNumber,
 				opacity: backgroundOpacity.value,
 				border_blur: blurBorder.value
 			},
@@ -192,7 +212,6 @@ saveButton.addEventListener("click", () => {
 	}
 });
 
-
 chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
 	result.images.forEach((image) => addImage(image));
 	switch(result.style.justify_method) {
@@ -201,9 +220,12 @@ chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
 			break;
 		case 1:
 			justifyMethodExpand.checked = true;
+			expandAlignGrid.parentElement.classList.remove("hidden");
 			break;
 	}
 	background.setJustifyMethod(result.style.justify_method);
+	expandAlign.item(result.style.image_align).checked = true;
+	background.setImageAlign(result.style.image_align);
 	backgroundOpacity.value = result.style.opacity;
 	background.setOpacity(result.style.opacity);
 	blurBorder.value = result.style.border_blur;

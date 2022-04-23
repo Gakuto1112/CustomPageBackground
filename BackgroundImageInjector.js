@@ -1,5 +1,5 @@
 class BackgroundImageInjector {
-	constructor(elementToInject, imageSrc, justifyMethod, opacity, blur) {
+	constructor(elementToInject, imageSrc, justifyMethod, imageAlign, opacity, blur) {
 		this.elementToInject = elementToInject;
 		this.justifyMethod = justifyMethod;
 		this.blur = blur;
@@ -8,10 +8,22 @@ class BackgroundImageInjector {
 		this.background = document.createElement("img");
 		this.background.src = imageSrc;
 		this.background.classList.add("background_image_injector_background");
+		switch(this.justifyMethod) {
+			case 0:
+				this.background.style.top = "50%";
+				this.background.style.left = "50%";
+				this.background.style.transform = "translate(-50%, -50%)";
+				break;
+			case 1:
+				this.background.style.top = Math.floor(imageAlign / 3) * 50 + "%";
+				this.background.style.left = imageAlign % 3 * 50 + "%";
+				this.background.style.transform = "translate(" + -1 * imageAlign % 3 * 50 + "%, "  + -1 * Math.floor(imageAlign / 3) * 50 + "%)";
+				break;
+		}
 		this.background.style.opacity = opacity;
 		this.backgroundArea.appendChild(this.background);
 		this.backgroundBorderBlur = document.createElement("div");
-		this.backgroundBorderBlur.classList.add("background_image_injector_background");
+		this.backgroundBorderBlur.classList.add("background_image_injector_background_blur");
 		this.backgroundArea.appendChild(this.backgroundBorderBlur);
 		let colorFromBackground;
 		if(this.elementToInject == "window") {
@@ -72,6 +84,21 @@ class BackgroundImageInjector {
 	setJustifyMethod(justifyMethod) {
 		this.justifyMethod = justifyMethod;
 		this.#resizeCall();
+	}
+
+	setImageAlign(imageAlign) {
+		switch(this.justifyMethod) {
+			case 0:
+				this.background.style.top = "50%";
+				this.background.style.left = "50%";
+				this.background.style.transform = "translate(-50%, -50%)";
+				break;
+			case 1:
+				this.background.style.top = Math.floor(imageAlign / 3) * 50 + "%";
+				this.background.style.left = imageAlign % 3 * 50 + "%";
+				this.background.style.transform = "translate(" + -1 * imageAlign % 3 * 50 + "%, "  + -1 * Math.floor(imageAlign / 3) * 50 + "%)";
+				break;
+		}
 	}
 
 	setOpacity(opacity) {
