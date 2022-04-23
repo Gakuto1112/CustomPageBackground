@@ -4,12 +4,26 @@
 	"version": "1.0.0",
 	"description": "Webページ（検索エンジン等）の背景にお好みの画像を挿入します。",
 	"permissions": [
-		"scripting",
 		"storage",
 		"unlimitedStorage"
 	],
+	"content_scripts": [
+		{
+			"js": [
+				"CustomPageBackground.js",
+				"BackgroundImageInjector.js"
+			],
+			"css": [
+				"BackgroundImageInjector.css"
+			],
+			"matches": [
+				"https://*/*",
+				"http://*/*"
+			]
+		}
+	],
 	"background": {
-		"service_worker": "Background.js"
+		"service_worker": "Initialization.js"
 	},
 	"options_page": "Options.html"
 }

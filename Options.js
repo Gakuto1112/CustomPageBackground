@@ -192,8 +192,12 @@ chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
 			justifyMethodExpand.checked = true;
 			break;
 	}
+	background.setJustifyMethod(result.style.justify_method);
 	backgroundOpacity.value = result.style.opacity;
+	background.setOpacity(result.style.opacity);
 	blurBorder.value = result.style.border_blur;
+	background.setBlur(result.style.border_blur);
 	applySiteList.value = result.apply_sites.join("\n");
 });
+
 drawPreviewElementSample();

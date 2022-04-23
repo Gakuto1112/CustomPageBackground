@@ -16,7 +16,6 @@ class BackgroundImageInjector {
 		if(this.elementToInject == "window") {
 			this.backgroundArea.style.position = "fixed";
 			window.addEventListener("resize", () => this.#resize(document.documentElement.clientWidth, document.documentElement.clientHeight));
-			document.body.firstElementChild.before(this.backgroundArea);
 			if(document.body.style.backgroundColor) this.backgroundColor = document.body.style.backgroundColor;
 			else this.backgroundColor = "white";
 			this.backgroundBorderBlur.style.boxShadow = "0px 0px " + this.blur + "px " + this.blur + "px " + this.backgroundColor + " inset";
@@ -27,6 +26,10 @@ class BackgroundImageInjector {
 			backgroundColorObserver.observe(document.body, {
 				attributes: true,
 				attributeFilter: ["style"]
+			});
+			document.body.firstElementChild.before(this.backgroundArea);
+			this.background.addEventListener("load", () => this.#resize(document.documentElement.clientWidth, document.documentElement.clientHeight), {
+				once: true
 			});
 		}
 		else {
@@ -44,6 +47,9 @@ class BackgroundImageInjector {
 				attributeFilter: ["style"]
 			});
 			this.elementToInject.firstElementChild.before(this.backgroundArea);
+			this.background.addEventListener("load", () => this.#resize(this.elementToInject.clientWidth, this.elementToInject.clientHeight), {
+				once: true
+			});
 		}
 	}
 
@@ -69,7 +75,6 @@ class BackgroundImageInjector {
 
 	setBlur(blur) {
 		this.blur = blur;
-		console.log("0px 0px" + this.blur + "px " + this.blur + "px " + this.backgroundColor + " inset")
 		this.backgroundBorderBlur.style.boxShadow = "0px 0px " + this.blur + "px " + this.blur + "px " + this.backgroundColor + " inset";
 	}
 
