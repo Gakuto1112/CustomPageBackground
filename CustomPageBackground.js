@@ -1,11 +1,15 @@
-function makeTransparentById(id) {
-	const targetElement = document.getElementById(id);
-	if(targetElement) targetElement.style.backgroundColor = "transparent";
+function makeTransparentById(idArray) {
+	idArray.forEach((id) => {
+		const targetElement = document.getElementById(id);
+		if(targetElement) targetElement.style.backgroundColor = "transparent";
+	});
 }
 
-function makeTransparentByClassName(className) {
-	const array = Array.from(document.getElementsByClassName(className));
-	if(array.length >= 1) Array.from(document.getElementsByClassName(className)).forEach((element) => element.style.backgroundColor = "transparent");
+function makeTransparentByClassName(classNameArray) {
+	classNameArray.forEach((className) => {
+		const array = Array.from(document.getElementsByClassName(className));
+		if(array.length >= 1) Array.from(document.getElementsByClassName(className)).forEach((element) => element.style.backgroundColor = "transparent");
+	});
 }
 
 chrome.storage.local.get(["apply_sites"], (siteResult) => {
@@ -13,6 +17,8 @@ chrome.storage.local.get(["apply_sites"], (siteResult) => {
 		chrome.storage.local.get(["images", "style"], (backgroundResult) => {
 			if(backgroundResult.images.length != 0) new BackgroundImageInjector("window", backgroundResult.images[Math.floor(Math.random() * backgroundResult.images.length)], backgroundResult.style.justify_method, backgroundResult.style.image_align, backgroundResult.style.opacity, backgroundResult.style.border_blur);
 		});
+		let transparentId = [];
+		let transparentClassName = [];
 		if(location.href.startsWith("https://www.google.com/search")) {
 			const header = Array.from(document.getElementsByClassName("sfbg"));
 			const searchForm = document.getElementById("searchform");
@@ -37,42 +43,22 @@ chrome.storage.local.get(["apply_sites"], (siteResult) => {
 					attributeFilter: ["class"]
 				});
 			}
-			makeTransparentByClassName("sfbg");
-			makeTransparentByClassName("s8GCU");
-			makeTransparentByClassName("jZWadf")
-			makeTransparentById("kO001e");
-			makeTransparentById("pTwnEc");
-			makeTransparentById("appbar");
-			makeTransparentByClassName("dG2XIf");
-			makeTransparentByClassName("yyjhs");
-			makeTransparentByClassName("GHDvEf");
-			makeTransparentByClassName("f6F9Be");
-			makeTransparentByClassName("FalWJb");
-			makeTransparentById("tw-target");
-			makeTransparentByClassName("irmCpc");
-			makeTransparentByClassName("XKnPEd");
-			makeTransparentByClassName("HskPDe");
-			makeTransparentByClassName("Z7Mseb");
-			makeTransparentByClassName("SMWA9c");
-			makeTransparentByClassName("vZFyxc");
+			transparentId = ["kO001e", "pTwnEc", "appbar", "tw-target"];
+			transparentClassName = ["sfbg", "s8GCU", "jZWadf", "dG2XIf", "yyjhs", "GHDvEf", "f6F9Be", "FalWJb", "irmCpc", "XKnPEd", "HskPDe", "Z7Mseb", "SMWA9c", "vZFyxc"];
 		}
 		else if(location.href.startsWith("https://www.bing.com/search")) {
+			transparentId = ["dc_topSection", "tta_output_ta"];
+			transparentClassName = ["b_footer", "rel_ent_w", "dcont", "tta_incell", "tta_outcell"];
 			Array.from(document.getElementById("b_results").children).forEach((child) => child.style.backgroundColor = "transparent");
-			makeTransparentByClassName("b_footer");
-			makeTransparentByClassName("rel_ent_w");
-			makeTransparentById("dc_topSection");
-			makeTransparentByClassName("dcont");
-			makeTransparentByClassName("tta_incell");
-			makeTransparentByClassName("tta_outcell");
-			makeTransparentById("tta_output_ta");
+
 		}
 		else if(location.href.startsWith("https://search.yahoo.co.jp/search")) {
-			makeTransparentById("header");
-			makeTransparentById("contents");
-			makeTransparentByClassName("sw-Expand__button");
+			transparentId = ["header", "contents"];
+			transparentClassName = ["sw-Expand__button", "Footer", "Footer__space"];
+			makeTransparentByClassName();
 			Array.from(document.getElementsByClassName("Contents__innerGroupBody").item(0).children).forEach((child) => child.style.backgroundColor = "transparent");
-			makeTransparentByClassName("Footer");
-			makeTransparentByClassName("Footer__space");
 		}
+		makeTransparentById(transparentId);
+		makeTransparentByClassName(transparentClassName);
 	}
 });
