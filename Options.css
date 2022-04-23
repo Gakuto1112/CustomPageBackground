@@ -1,5 +1,5 @@
 body {
-	margin-top: 100px;
+	margin: 100px 0 80px 0;
 }
 h2 {
 	margin: 2em 0 0.5em 0;
@@ -165,4 +165,19 @@ ul > li {
 	width: calc(100% - 60px);
 	height: 360px;
 	font-size: large;
+}
+#footer {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: calc(100% - 100px);
+	height: 30px;
+	bottom: 0;
+	left: 0;
+	padding: 10px 50px;
+	border-top: 1px solid darkgray;
+	background-color: white;
+	box-shadow: 0 0 5px 5px #00000020;
+	z-index: 1;
 }
