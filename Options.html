@@ -44,19 +44,16 @@
 					<h2>調整方法</h2>
 					<div>
 						<input type="radio" id="justify_method_whole" name="justify_method" checked>
-						<label for="justify_method_whole">画像全体が移るように調整する</label>
+						<label for="justify_method_whole">画像全体が映るように調整する</label>
 					</div>
 					<div>
-						<input type="radio" id="justify_method_long" name="justify_method">
-						<label for="justify_method_long">余白が表示されないように画像を拡大する</label>
+						<input type="radio" id="justify_method_expand" name="justify_method">
+						<label for="justify_method_expand">余白が表示されないように画像を拡大する</label>
 					</div>
 					<h2>透明度</h2>
 					<input type="range" id="background_opacity" min="0" max="1" step="0.01" value="0.5">
-					<h2>境界面</h2>
-					<div>
-						<input type="checkbox" id="blur_border">
-						<label for="blur_border">境界面をぼかす</label>
-					</div>
+					<h2>ぼかしの大きさ</h2>
+					<input type="range" id="blur_border" min="0" max="50" step="1" value="0">
 				</div>
 			</div>
 			<ul>

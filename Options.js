@@ -45,7 +45,6 @@ imageSelectorObserver.observe(imageSelector, {
 	childList: true
 });
 
-
 document.getElementById("new_image").addEventListener("click", () => {
 	const fileInputElement = document.createElement("input");
 	fileInputElement.type = "file";
@@ -87,7 +86,7 @@ document.getElementById("new_image").addEventListener("click", () => {
 
 let previewFrameResizeEvent;
 const previewFrame = document.getElementById("preview_frame");
-const background = new BackgroundImageInjector(previewFrame, "", 0, 0.25, false);
+const background = new BackgroundImageInjector(previewFrame, "", 0, 0.5, 0);
 const frameRight = document.getElementById("frame_right");
 let mouseX, frameWidth;
 frameRight.addEventListener("mousedown", (event) => {
@@ -135,5 +134,14 @@ imageNext.addEventListener("click", () => {
 		background.setImage(imageSelector.children.item(currentPosition + 1).firstElementChild.src);
 	}
 });
+
+document.getElementById("justify_method_whole").addEventListener("click", () => background.setJustifyMethod(0));
+document.getElementById("justify_method_expand").addEventListener("click", () => background.setJustifyMethod(1));
+
+const backgroundOpacity = document.getElementById("background_opacity");
+backgroundOpacity.addEventListener("change", () => background.setOpacity(backgroundOpacity.value));
+
+const blurBorder = document.getElementById("blur_border");
+blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value));
 
 drawPreviewElementSample();
