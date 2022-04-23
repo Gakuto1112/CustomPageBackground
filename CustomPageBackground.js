@@ -47,10 +47,18 @@ chrome.storage.local.get(["apply_sites"], (siteResult) => {
 			makeTransparentByClassName("yyjhs");
 			makeTransparentByClassName("GHDvEf");
 			makeTransparentByClassName("f6F9Be");
+			makeTransparentByClassName("FalWJb");
+			makeTransparentById("tw-target");
 		}
 		else if(location.href.startsWith("https://www.bing.com/search")) {
 			Array.from(document.getElementById("b_results").children).forEach((child) => child.style.backgroundColor = "transparent");
 			makeTransparentByClassName("b_footer");
+			makeTransparentByClassName("rel_ent_w");
+			makeTransparentById("dc_topSection");
+			makeTransparentByClassName("dcont");
+			makeTransparentByClassName("tta_incell");
+			makeTransparentByClassName("tta_outcell");
+			makeTransparentById("tta_output_ta");
 		}
 		else if(location.href.startsWith("https://search.yahoo.co.jp/search")) {
 			makeTransparentById("header");
