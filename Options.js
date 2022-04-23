@@ -46,6 +46,7 @@ function drawPreviewElementSample() {
 const imagePrevious = document.getElementById("image_previous");
 const imageNext = document.getElementById("image_next");
 const imagePositionNow = document.getElementById("image_position_now");
+const imageAllClearButton = document.getElementById("image_all_clear_button");
 function previewChange() {
 	//プレビューの画像変更ボタンの設定
 	document.getElementById("image_position_total").innerText = imageSelector.children.length - 1;
@@ -60,6 +61,8 @@ function previewChange() {
 		imagePositionNow.innerText = 0;
 		background.setImage("");
 	}
+	if(imageSelector.childElementCount >= 2) imageAllClearButton.classList.remove("button_disabled");
+	else imageAllClearButton.classList.add("button_disabled");
 }
 
 const imageSelectorObserver = new MutationObserver(previewChange);
@@ -84,6 +87,15 @@ document.getElementById("new_image").addEventListener("click", () => {
 		});
 	});
 	fileInputElement.click();
+});
+
+imageAllClearButton.addEventListener("click", () => {
+	if(imageSelector.childElementCount >= 2) {
+		if(confirm("「画像の一括削除」ボタンが押されました。保存してある画像を全て削除します。宜しいですか？")) {
+			while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
+			imageAllClearButton.classList.add("button_disabled");
+		}
+	}
 });
 
 let previewFrameResizeEvent;

@@ -115,6 +115,10 @@ ul > li {
 	background-color: black;
 	opacity: 0.75;
 }
+#image_all_clear_button {
+	width: fit-content;
+	margin: 1em 0 0 20px;
+}
 #style_area {
 	display: flex;
 }
@@ -164,7 +168,6 @@ ul > li {
 #apply_site_list {
 	width: calc(100% - 60px);
 	height: 360px;
-	font-size: large;
 }
 #footer {
 	position: fixed;
