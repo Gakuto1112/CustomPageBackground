@@ -182,7 +182,6 @@ saveButton.addEventListener("click", () => {
 
 
 chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
-	console.log(result);
 	result.images.forEach((image) => addImage(image));
 	switch(result.style.justify_method) {
 		case 0:

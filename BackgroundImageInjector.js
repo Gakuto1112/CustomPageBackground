@@ -13,14 +13,17 @@ class BackgroundImageInjector {
 		this.backgroundBorderBlur = document.createElement("div");
 		this.backgroundBorderBlur.classList.add("background_image_injector_background");
 		this.backgroundArea.appendChild(this.backgroundBorderBlur);
+		let colorFromBackground;
 		if(this.elementToInject == "window") {
 			this.backgroundArea.style.position = "fixed";
 			window.addEventListener("resize", () => this.#resize(document.documentElement.clientWidth, document.documentElement.clientHeight));
-			if(document.body.style.backgroundColor) this.backgroundColor = document.body.style.backgroundColor;
+			colorFromBackground = window.getComputedStyle(document.body).backgroundColor;
+			if(colorFromBackground != "rgba(0, 0, 0, 0)") this.backgroundColor = colorFromBackground;
 			else this.backgroundColor = "white";
 			this.backgroundBorderBlur.style.boxShadow = "0px 0px " + this.blur + "px " + this.blur + "px " + this.backgroundColor + " inset";
 			const backgroundColorObserver = new MutationObserver(() => {
-				if(document.body.style.backgroundColor) this.backgroundColor = document.body.style.backgroundColor;
+				colorFromBackground = window.getComputedStyle(document.body).backgroundColor;
+				if(colorFromBackground != "rgba(0, 0, 0, 0)") this.backgroundColor = colorFromBackground;
 				else this.backgroundColor = "white";
 			});
 			backgroundColorObserver.observe(document.body, {
@@ -34,12 +37,14 @@ class BackgroundImageInjector {
 		}
 		else {
 			this.backgroundArea.style.position = "absolute";
-			if(this.elementToInject.style.backgroundColor) this.backgroundColor = this.elementToInject.style.backgroundColor;
+			colorFromBackground = window.getComputedStyle(elementToInject).backgroundColor;
+			if(colorFromBackground != "rgba(0, 0, 0, 0)") this.backgroundColor = colorFromBackground;
 			else this.backgroundColor = "white";
 			this.backgroundBorderBlur.style.boxShadow = "0px 0px " + this.blur + "px " + this.blur + "px " + this.backgroundColor + " inset";
 			const observer = new MutationObserver(() => {
 				this.#resize(this.elementToInject.clientWidth, this.elementToInject.clientHeight);
-				if(this.elementToInject.style.backgroundColor) this.backgroundColor = this.elementToInject.style.backgroundColor;
+				colorFromBackground = window.getComputedStyle(elementToInject).backgroundColor;
+				if(colorFromBackground != "rgba(0, 0, 0, 0)") this.backgroundColor = colorFromBackground;
 				else this.backgroundColor = "white";
 			});
 			observer.observe(this.elementToInject, {
