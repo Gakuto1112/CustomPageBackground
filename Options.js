@@ -1,3 +1,26 @@
+const imageSelector = document.getElementById("image_selector");
+function addImage(imageSrc) {
+	//image_selectorに画像追加
+	const imageDivElement = document.createElement("div");
+	imageDivElement.classList.add("image_div");
+	imageDivElement.addEventListener("click", () => imageDivElement.remove());
+	imageDivElement.addEventListener("mouseover", () => {
+		imageElement.classList.add("remove_hover");
+		xMark.innerText = "x";
+		xMark.classList.add("character_mark", "x_mark");
+		imageDivElement.appendChild(xMark);
+	});
+	imageDivElement.addEventListener("mouseout", () => {
+		imageElement.classList.remove("remove_hover");
+		xMark.remove();
+	});
+	const imageElement = document.createElement("img");
+	imageElement.src = imageSrc;
+	const xMark = document.createElement("p");
+	imageDivElement.appendChild(imageElement);
+	imageSelector.appendChild(imageDivElement);
+}
+
 function drawPreviewElementSample() {
 	//プレビュー枠のサンプルを描画する。
 	const canvas = document.getElementById("preview_elements_sample");
@@ -20,7 +43,6 @@ function drawPreviewElementSample() {
 	}
 }
 
-const imageSelector = document.getElementById("image_selector");
 const imagePrevious = document.getElementById("image_previous");
 const imageNext = document.getElementById("image_next");
 const imagePositionNow = document.getElementById("image_position_now");
@@ -57,27 +79,7 @@ document.getElementById("new_image").addEventListener("click", () => {
 		if(fileList.length != inputImages.length) alert("対応していない拡張子のファイルが選択されています。これらのファイルは無視されます。\n\n使用出来る拡張子は " + acceptFileType.join(", ") + " です。");
 		inputImages.forEach((image) => {
 			const reader = new FileReader();
-			reader.addEventListener("load", (event) => {
-				const imageDivElement = document.createElement("div");
-				imageDivElement.classList.add("image_div");
-				imageDivElement.style.width = 
-				imageDivElement.addEventListener("click", () => imageDivElement.remove());
-				imageDivElement.addEventListener("mouseover", () => {
-					imageElement.classList.add("remove_hover");
-					xMark.innerText = "x";
-					xMark.classList.add("character_mark", "x_mark");
-					imageDivElement.appendChild(xMark);
-				});
-				imageDivElement.addEventListener("mouseout", () => {
-					imageElement.classList.remove("remove_hover");
-					xMark.remove();
-				});
-				const imageElement = document.createElement("img");
-				imageElement.src = event.target.result;
-				const xMark = document.createElement("p");
-				imageDivElement.appendChild(imageElement);
-				imageSelector.appendChild(imageDivElement);
-			});
+			reader.addEventListener("load", (event) => addImage(event.target.result));
 			reader.readAsDataURL(image);
 		});
 	});
@@ -86,7 +88,11 @@ document.getElementById("new_image").addEventListener("click", () => {
 
 let previewFrameResizeEvent;
 const previewFrame = document.getElementById("preview_frame");
-const background = new BackgroundImageInjector(previewFrame, "", 0, 0.5, 0);
+const backgroundOpacity = document.getElementById("background_opacity");
+const blurBorder = document.getElementById("blur_border");
+const background = new BackgroundImageInjector(previewFrame, "", 0, backgroundOpacity.value, blurBorder.value);
+const justifyMethodExpand = document.getElementById("justify_method_expand");
+if(justifyMethodExpand.checked) background.setJustifyMethod(1);
 const frameRight = document.getElementById("frame_right");
 let mouseX, frameWidth;
 frameRight.addEventListener("mousedown", (event) => {
@@ -135,13 +141,30 @@ imageNext.addEventListener("click", () => {
 	}
 });
 
-document.getElementById("justify_method_whole").addEventListener("click", () => background.setJustifyMethod(0));
-document.getElementById("justify_method_expand").addEventListener("click", () => background.setJustifyMethod(1));
+const justifyMethodWhole = document.getElementById("justify_method_whole");
+justifyMethodWhole.addEventListener("change", () => {
+	if(justifyMethodWhole.checked) background.setJustifyMethod(0);
+});
+justifyMethodExpand.addEventListener("change", () => {
+	if(justifyMethodExpand.checked) background.setJustifyMethod(1);
+});
 
-const backgroundOpacity = document.getElementById("background_opacity");
 backgroundOpacity.addEventListener("change", () => background.setOpacity(backgroundOpacity.value));
 
-const blurBorder = document.getElementById("blur_border");
 blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value));
 
+chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
+	result.images.forEach((image) => addImage(image));
+	switch(result.style.justify_method) {
+		case 0:
+			justifyMethodWhole.checked = true;
+			break;
+		case 1:
+			justifyMethodExpand.checked = true;
+			break;
+	}
+	backgroundOpacity.value = result.style.opacity;
+	blurBorder.value = result.style.border_blur;
+	document.getElementById("apply_site_list").value = result.apply_sites.join("\n");
+});
 drawPreviewElementSample();
