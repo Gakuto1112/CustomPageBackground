@@ -161,3 +161,8 @@ ul > li {
 	min-width: fit-content;
 	margin: -2em 0 0 40px;
 }
+#apply_site_list {
+	width: calc(100% - 60px);
+	height: 360px;
+	font-size: large;
+}
