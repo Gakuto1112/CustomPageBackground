@@ -153,7 +153,36 @@ backgroundOpacity.addEventListener("change", () => background.setOpacity(backgro
 
 blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value));
 
+const applySiteList = document.getElementById("apply_site_list");
+const saveButton = document.getElementById("save_button");
+let saving = false;
+saveButton.addEventListener("click", () => {
+	if(!saving) {
+		saving = true;
+		saveButton.classList.add("button_disabled");
+		const images = Array.from(imageSelector.children).slice(1).map((image) => image.firstElementChild.src);
+		let justifyMethodNumber;
+		if(justifyMethodWhole.checked) justifyMethodNumber = 0;
+		else justifyMethodNumber = 1
+		chrome.storage.local.set({
+			images: images,
+			style: {
+				justify_method: justifyMethodNumber,
+				opacity: backgroundOpacity.value,
+				border_blur: blurBorder.value
+			},
+			apply_sites: applySiteList.value.split("\n")
+		}, () => {
+			alert("保存しました。");
+			saveButton.classList.remove("button_disabled");
+			saving = false;
+		});
+	}
+});
+
+
 chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
+	console.log(result);
 	result.images.forEach((image) => addImage(image));
 	switch(result.style.justify_method) {
 		case 0:
@@ -165,6 +194,6 @@ chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
 	}
 	backgroundOpacity.value = result.style.opacity;
 	blurBorder.value = result.style.border_blur;
-	document.getElementById("apply_site_list").value = result.apply_sites.join("\n");
+	applySiteList.value = result.apply_sites.join("\n");
 });
 drawPreviewElementSample();
