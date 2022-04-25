@@ -55,7 +55,6 @@ chrome.storage.local.get(["apply_sites"], (siteResult) => {
 		else if(location.href.startsWith("https://search.yahoo.co.jp/search")) {
 			transparentId = ["header", "contents"];
 			transparentClassName = ["sw-Expand__button", "Footer", "Footer__space"];
-			makeTransparentByClassName();
 			Array.from(document.getElementsByClassName("Contents__innerGroupBody").item(0).children).forEach((child) => child.style.backgroundColor = "transparent");
 		}
 		makeTransparentById(transparentId);
