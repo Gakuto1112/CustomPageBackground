@@ -1,5 +1,5 @@
 # カスタム背景
-**Chrome Webストア**：準備中
+**Chrome Webストア**：https://chrome.google.com/webstore/detail/%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E8%83%8C%E6%99%AF/piongplbpdlejkclhmphdcpfbhiimcao
 
 Webページ（検索エンジン等）の背景にお好みの画像を挿入するChrome拡張機能です。設定したページに対して、予め選択した画像（の中からランダムで1枚）を背景として表示します。
 
