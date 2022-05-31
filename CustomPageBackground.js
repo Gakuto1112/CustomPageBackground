@@ -44,7 +44,7 @@ chrome.storage.local.get(["apply_sites"], (siteResult) => {
 				});
 			}
 			transparentId = ["kO001e", "pTwnEc", "appbar", "tw-target"];
-			transparentClassName = ["sfbg", "s8GCU", "jZWadf", "dG2XIf", "yyjhs", "GHDvEf", "f6F9Be", "FalWJb", "irmCpc", "XKnPEd", "HskPDe", "Z7Mseb", "SMWA9c", "vZFyxc"];
+			transparentClassName = ["g-blk", "sfbg", "s8GCU", "jZWadf", "dG2XIf", "yyjhs", "GHDvEf", "f6F9Be", "FalWJb", "irmCpc", "XKnPEd", "HskPDe", "Z7Mseb", "SMWA9c", "vZFyxc"];
 		}
 		else if(location.href.startsWith("https://www.bing.com/search")) {
 			transparentId = ["dc_topSection", "tta_output_ta"];
