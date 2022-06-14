@@ -48,9 +48,9 @@ chrome.storage.local.get(["apply_sites"], (siteResult) => {
 		}
 		else if(location.href.startsWith("https://www.bing.com/search")) {
 			transparentId = ["dc_topSection", "tta_output_ta"];
-			transparentClassName = ["b_footer", "rel_ent_w", "dcont", "tta_incell", "tta_outcell"];
-			Array.from(document.getElementById("b_results").children).forEach((child) => child.style.backgroundColor = "transparent");
-
+			transparentClassName = ["b_footer", "rel_ent_w", "dcont", "tta_incell", "tta_outcell", "b_algo", "b_ans", "b_wpTabsWrapper", "b_msg", "lite-entcard-blk", "mc_vtvc", "ent-dtab-content", "ent-dtab-style-content", "ent-dtab-ovr ent-dtab-ovr-nl", "b_imagePair", "video_metadata", "b_rrsr", "b_cards", "rel_ent_tw"];
+			const className1 = document.getElementsByClassName("ent-dtab-ovr");
+			if(className1.item(0)) className1.item(0).style.border = "none";
 		}
 		else if(location.href.startsWith("https://search.yahoo.co.jp")) {
 			transparentId = ["header", "contents", "msthdtp"];

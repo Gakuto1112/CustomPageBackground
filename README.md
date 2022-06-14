@@ -6,7 +6,7 @@ Webページ（検索エンジン等）の背景にお好みの画像を挿入�
 初期状態では以下のページで適用されるように設定してあります。
 - https://www.google.com/search （Google検索）
 - https://www.bing.com/search （Bing検索）
-- https://search.yahoo.co.jp/search （Yahoo! Japan検索）
+- https://search.yahoo.co.jp （Yahoo! Japan検索）
 
 ![サンプル画像](README_Images/サンプル.jpg)
 - 上記画像はサンプルです。
