@@ -11,7 +11,7 @@ chrome.runtime.onInstalled.addListener((details) => {
 			apply_sites: [
 				"https://www.google.com/search",
 				"https://www.bing.com/search",
-				"https://search.yahoo.co.jp/search"
+				"https://search.yahoo.co.jp"
 			]
 		});
 	}

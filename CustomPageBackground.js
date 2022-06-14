@@ -30,7 +30,7 @@ chrome.storage.local.get(["apply_sites"], (siteResult) => {
 				observer.observe(searchForm, {
 					attributes: true,
 					attributeFilter: ["class"]
-				});				
+				});
 			}
 			const kO001e = document.getElementById("kO001e");
 			if(kO001e) {
@@ -52,10 +52,9 @@ chrome.storage.local.get(["apply_sites"], (siteResult) => {
 			Array.from(document.getElementById("b_results").children).forEach((child) => child.style.backgroundColor = "transparent");
 
 		}
-		else if(location.href.startsWith("https://search.yahoo.co.jp/search")) {
-			transparentId = ["header", "contents"];
-			transparentClassName = ["sw-Expand__button", "Footer", "Footer__space"];
-			Array.from(document.getElementsByClassName("Contents__innerGroupBody").item(0).children).forEach((child) => child.style.backgroundColor = "transparent");
+		else if(location.href.startsWith("https://search.yahoo.co.jp")) {
+			transparentId = ["header", "contents", "msthdtp"];
+			transparentClassName = ["sw-Expand__button", "Footer", "Footer__space", "sw-Carousel__listItem", "sw-CardBase", "p"];
 		}
 		makeTransparentById(transparentId);
 		makeTransparentByClassName(transparentClassName);
