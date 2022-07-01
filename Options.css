@@ -173,6 +173,12 @@ ul > li {
 	width: calc(100% - 60px);
 	height: 360px;
 }
+#url_examples {
+	width: calc(100% - 60px);
+	margin-bottom: 20px;
+	text-indent: 2em;
+	border: solid 1px darkgray;
+}
 #footer {
 	position: fixed;
 	display: flex;
