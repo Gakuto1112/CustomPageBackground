@@ -1,5 +1,5 @@
 const imageSelector = document.getElementById("image_selector");
-function addImage(imageSrc) {
+function addImage(imageSrc, drawSample) {
 	//image_selectorに画像追加
 	const imageDivElement = document.createElement("div");
 	imageDivElement.classList.add("image_div");
@@ -16,6 +16,7 @@ function addImage(imageSrc) {
 	});
 	const imageElement = document.createElement("img");
 	imageElement.src = imageSrc;
+	if(drawSample) imageElement.addEventListener("load", () => drawPreviewElementSample(), {once: true});
 	const xMark = document.createElement("p");
 	imageDivElement.appendChild(imageElement);
 	imageSelector.appendChild(imageDivElement);
@@ -82,7 +83,7 @@ document.getElementById("new_image").addEventListener("click", () => {
 		if(fileList.length != inputImages.length) alert("対応していない拡張子のファイルが選択されています。これらのファイルは無視されます。\n\n使用出来る拡張子は " + acceptFileType.join(", ") + " です。");
 		inputImages.forEach((image) => {
 			const reader = new FileReader();
-			reader.addEventListener("load", (event) => addImage(event.target.result));
+			reader.addEventListener("load", (event) => addImage(event.target.result, false));
 			reader.readAsDataURL(image);
 		});
 	});
@@ -213,7 +214,7 @@ saveButton.addEventListener("click", () => {
 });
 
 chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
-	result.images.forEach((image) => addImage(image));
+	result.images.forEach((image, index) => addImage(image, index == 0));
 	switch(result.style.justify_method) {
 		case 0:
 			justifyMethodWhole.checked = true;
@@ -232,5 +233,3 @@ chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
 	background.setBlur(result.style.border_blur);
 	applySiteList.value = result.apply_sites.join("\n");
 });
-
-drawPreviewElementSample();
