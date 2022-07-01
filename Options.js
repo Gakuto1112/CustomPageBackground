@@ -232,6 +232,7 @@ saveButton.addEventListener("click", () => {
 			},
 			apply_sites: applySiteList.value.split("\n")
 		}, () => {
+			chrome.runtime.sendMessage({message: "reload"});
 			alert("保存しました。");
 			slideOutFooter();
 			saveButton.classList.remove("button_disabled");

@@ -1,4 +1,9 @@
 let applySites = [];
+function loadApplySites() {
+	chrome.storage.local.get(["apply_sites"], (result) => {
+		applySites = result.apply_sites;
+	});
+}
 
 chrome.runtime.onInstalled.addListener((details) => {
 	if(details.reason == "install") {
@@ -20,12 +25,15 @@ chrome.tabs.onUpdated.addListener((tabId, object, tab) => {
 });
 
 chrome.runtime.onMessage.addListener((message, sender) => {
-	if(message.message == "inject") {
-		chrome.scripting.executeScript({files: ["CustomPageBackground.js", "BackgroundImageInjector.js"], target: {tabId: sender.tab.id}});
-		chrome.scripting.insertCSS({files: ["AllTransparent.css", "BackgroundImageInjector.css"], target: {tabId: sender.tab.id}});
+	switch(message.message) {
+		case "inject":
+			chrome.scripting.executeScript({files: ["CustomPageBackground.js", "BackgroundImageInjector.js"], target: {tabId: sender.tab.id}});
+			chrome.scripting.insertCSS({files: ["AllTransparent.css", "BackgroundImageInjector.css"], target: {tabId: sender.tab.id}});
+			break;
+		case "reload":
+			loadApplySites();
+			break;
 	}
 });
 
-chrome.storage.local.get(["apply_sites"], (result) => {
-	applySites = result.apply_sites;
-});
+loadApplySites();
