@@ -263,3 +263,4 @@ chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
 });
 
 document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));
+applySiteList.addEventListener("input", () => slideInFooter());
