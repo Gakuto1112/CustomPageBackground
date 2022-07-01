@@ -85,7 +85,10 @@ function slideOutFooter() {
 	if(!footer.classList.contains("hidden")) {
 		footer.classList.remove("footer_slide_in");
 		footer.classList.add("footer_slide_out");
-		footer.addEventListener("animationend", () => footer.classList.add("hidden"), {once: true});
+		footer.addEventListener("animationend", () => {
+			footer.classList.remove("footer_slide_out");
+			footer.classList.add("hidden")
+		}, {once: true});
 	}
 }
 
