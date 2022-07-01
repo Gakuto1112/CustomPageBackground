@@ -194,3 +194,33 @@ ul > li {
 	box-shadow: 0 0 5px 5px #00000020;
 	z-index: 1;
 }
+.footer_slide_in {
+	animation: footer-slide-in 0.9s;
+}
+.footer_slide_out {
+	animation: footer-slide-out 0.3s;
+}
+
+@keyframes footer-slide-in {
+	0% {
+		transform: translateY(125%);
+	}
+	25% {
+		transform: translateY(0%);
+		background-color: white;
+	}
+	63% {
+		background-color: gold;
+	}
+	100% {
+		background-color: white;
+	}
+}
+@keyframes footer-slide-out {
+	from {
+		transform: translateY(0%);
+	}
+	to {
+		transform: translateY(125%);
+	}
+}

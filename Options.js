@@ -1,9 +1,12 @@
 const imageSelector = document.getElementById("image_selector");
-function addImage(imageSrc, drawSample) {
+function addImage(imageSrc, drawSample, showFooter) {
 	//image_selectorに画像追加
 	const imageDivElement = document.createElement("div");
 	imageDivElement.classList.add("image_div");
-	imageDivElement.addEventListener("click", () => imageDivElement.remove());
+	imageDivElement.addEventListener("click", () => {
+		imageDivElement.remove();
+		slideInFooter();
+	});
 	imageDivElement.addEventListener("mouseover", () => {
 		imageElement.classList.add("remove_hover");
 		xMark.innerText = "x";
@@ -20,6 +23,7 @@ function addImage(imageSrc, drawSample) {
 	const xMark = document.createElement("p");
 	imageDivElement.appendChild(imageElement);
 	imageSelector.appendChild(imageDivElement);
+	if(showFooter) slideInFooter();
 }
 
 function drawPreviewElementSample() {
@@ -66,6 +70,25 @@ function previewChange() {
 	else imageAllClearButton.classList.add("button_disabled");
 }
 
+const footer = document.getElementById("footer");
+function slideInFooter() {
+	//フッターのスライドイン
+	if(footer.classList.contains("hidden")) {
+		footer.classList.remove("hidden");
+		footer.classList.add("footer_slide_in");
+		footer.addEventListener("animationend", () => footer.classList.remove("footer_slide_in"), {once: true});
+	}
+}
+
+function slideOutFooter() {
+	//フッターのスライドアウト
+	if(!footer.classList.contains("hidden")) {
+		footer.classList.remove("footer_slide_in");
+		footer.classList.add("footer_slide_out");
+		footer.addEventListener("animationend", () => footer.classList.add("hidden"), {once: true});
+	}
+}
+
 const imageSelectorObserver = new MutationObserver(previewChange);
 imageSelectorObserver.observe(imageSelector, {
 	childList: true
@@ -83,7 +106,7 @@ document.getElementById("new_image").addEventListener("click", () => {
 		if(fileList.length != inputImages.length) alert("対応していない拡張子のファイルが選択されています。これらのファイルは無視されます。\n\n使用出来る拡張子は " + acceptFileType.join(", ") + " です。");
 		inputImages.forEach((image) => {
 			const reader = new FileReader();
-			reader.addEventListener("load", (event) => addImage(event.target.result, false));
+			reader.addEventListener("load", (event) => addImage(event.target.result, false, true));
 			reader.readAsDataURL(image);
 		});
 	});
@@ -207,6 +230,7 @@ saveButton.addEventListener("click", () => {
 			apply_sites: applySiteList.value.split("\n")
 		}, () => {
 			alert("保存しました。");
+			slideOutFooter();
 			saveButton.classList.remove("button_disabled");
 			saving = false;
 		});
@@ -214,7 +238,7 @@ saveButton.addEventListener("click", () => {
 });
 
 chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
-	result.images.forEach((image, index) => addImage(image, index == 0));
+	result.images.forEach((image, index) => addImage(image, index == 0, false));
 	switch(result.style.justify_method) {
 		case 0:
 			justifyMethodWhole.checked = true;
@@ -233,3 +257,5 @@ chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
 	background.setBlur(result.style.border_blur);
 	applySiteList.value = result.apply_sites.join("\n");
 });
+
+document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));

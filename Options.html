@@ -46,11 +46,11 @@
 				<div id="style_settings">
 					<h2>調整方法</h2>
 					<div>
-						<input type="radio" id="justify_method_whole" name="justify_method" checked>
+						<input type="radio" id="justify_method_whole" name="justify_method" class="modify" checked>
 						<label for="justify_method_whole">画像全体が映るように調整する</label>
 					</div>
 					<div>
-						<input type="radio" id="justify_method_expand" name="justify_method">
+						<input type="radio" id="justify_method_expand" name="justify_method" class="modify">
 						<label for="justify_method_expand">余白が表示されないように画像を拡大する</label>
 					</div>
 					<div class="hidden">
@@ -58,47 +58,47 @@
 						<p>画像を拡大した場合、どこを中心に拡大するか選んでください。</p>
 						<div id="expand_align_grid">
 							<div>
-								<input type="radio" id="expand_align_ul" name="expand_align">
+								<input type="radio" id="expand_align_ul" name="expand_align" class="modify">
 								<label for="expand_align_ul">左上</label>
 							</div>
 							<div>
-								<input type="radio" id="expand_align_uc" name="expand_align">
+								<input type="radio" id="expand_align_uc" name="expand_align" class="modify">
 								<label for="expand_align_uc">上</label>
 							</div>
 							<div>
-								<input type="radio" id="expand_align_ur" name="expand_align">
+								<input type="radio" id="expand_align_ur" name="expand_align" class="modify">
 								<label for="expand_align_ur">右上</label>
 							</div>
 							<div>
-								<input type="radio" id="expand_align_cl" name="expand_align">
+								<input type="radio" id="expand_align_cl" name="expand_align" class="modify">
 								<label for="expand_align_cl">左</label>
 							</div>
 							<div>
-								<input type="radio" id="expand_align_cc" name="expand_align" checked>
+								<input type="radio" id="expand_align_cc" name="expand_align" class="modify" checked>
 								<label for="expand_align_cc">中央</label>
 							</div>
 							<div>
-								<input type="radio" id="expand_align_cr" name="expand_align">
+								<input type="radio" id="expand_align_cr" name="expand_align" class="modify">
 								<label for="expand_align_cr">右</label>
 							</div>
 							<div>
-								<input type="radio" id="expand_align_bl" name="expand_align">
+								<input type="radio" id="expand_align_bl" name="expand_align" class="modify">
 								<label for="expand_align_bl">左下</label>
 							</div>
 							<div>
-								<input type="radio" id="expand_align_bc" name="expand_align">
+								<input type="radio" id="expand_align_bc" name="expand_align" class="modify">
 								<label for="expand_align_bc">下</label>
 							</div>
 							<div>
-								<input type="radio" id="expand_align_ur" name="expand_align">
+								<input type="radio" id="expand_align_ur" name="expand_align" class="modify">
 								<label for="expand_align_br">右下</label>
 							</div>
 						</div>
 					</div>
 					<h2>透明度</h2>
-					<input type="range" id="background_opacity" min="0" max="1" step="0.01" value="0.5">
+					<input type="range" id="background_opacity" class="modify" min="0" max="1" step="0.01" value="0.5">
 					<h2>ぼかしの大きさ</h2>
-					<input type="range" id="blur_border" min="0" max="50" step="1" value="10">
+					<input type="range" id="blur_border" class="modify" min="0" max="50" step="1" value="10">
 				</div>
 			</div>
 			<ul>
@@ -108,7 +108,7 @@
 				<li>背景が変化してもWebページが見えやすいように透明度等を調整して下さい。</li>
 			</ul>
 			<li>表示ページの設定</li>
-			<textarea id="apply_site_list"></textarea>
+			<textarea id="apply_site_list" class="modify"></textarea>
 			<h3>入力例</h3>
 			<div id="url_examples">
 				<p>https://www.google.com/search</p>
@@ -123,7 +123,7 @@
 				<li>上のテキストエリアの右下をドラッグするとサイズを変更出来ます。</li>
 			</ul>
 		</ol>
-		<div id="footer">
+		<div id="footer" class="hidden">
 			<p>変更内容を保存するには、右側の「保存」を押して下さい。</p>
 			<p id="save_button" class="button">保存</p>
 		</div>
