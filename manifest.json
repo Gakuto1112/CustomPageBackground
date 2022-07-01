@@ -10,25 +10,16 @@
 	},
 	"permissions": [
 		"storage",
-		"unlimitedStorage"
+		"unlimitedStorage",
+		"tabs",
+		"scripting"
 	],
-	"content_scripts": [
-		{
-			"js": [
-				"CustomPageBackground.js",
-				"BackgroundImageInjector.js"
-			],
-			"css": [
-				"BackgroundImageInjector.css"
-			],
-			"matches": [
-				"https://*/*",
-				"http://*/*"
-			]
-		}
+	"host_permissions": [
+		"https://*/",
+		"http://*/"
 	],
 	"background": {
-		"service_worker": "Initialization.js"
+		"service_worker": "ServiceWorker.js"
 	},
 	"options_page": "Options.html"
 }
