@@ -1,5 +1,4 @@
 let applySites = [];
-let lastURL = "";
 
 chrome.runtime.onInstalled.addListener((details) => {
 	if(details.reason == "install") {
@@ -17,12 +16,13 @@ chrome.runtime.onInstalled.addListener((details) => {
 });
 
 chrome.tabs.onUpdated.addListener((tabId, object, tab) => {
-	if(tab.url != lastURL) {
-		if(applySites.find((site) => tab.url.startsWith(site))) {
-			chrome.scripting.executeScript({files: ["CustomPageBackground.js", "BackgroundImageInjector.js"], target: {tabId: tabId}});
-			chrome.scripting.insertCSS({files: ["AllTransparent.css", "BackgroundImageInjector.css"], target: {tabId: tabId}});
-		}
-		lastURL = tab.url;
+	if(applySites.find((site) => tab.url.startsWith(site)) && object.status == "complete") chrome.scripting.executeScript({files: ["CustomPageBackgroundChecker.js"], target: {tabId: tabId}});
+});
+
+chrome.runtime.onMessage.addListener((message, sender) => {
+	if(message.message == "inject") {
+		chrome.scripting.executeScript({files: ["CustomPageBackground.js", "BackgroundImageInjector.js"], target: {tabId: sender.tab.id}});
+		chrome.scripting.insertCSS({files: ["AllTransparent.css", "BackgroundImageInjector.css"], target: {tabId: sender.tab.id}});
 	}
 });
 

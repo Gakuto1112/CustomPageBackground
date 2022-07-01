@@ -1,0 +1,1 @@
+if(typeof(BackgroundImageInjector) == "undefined") chrome.runtime.sendMessage({message: "inject"});
