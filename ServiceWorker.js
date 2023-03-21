@@ -27,7 +27,7 @@ chrome.tabs.onUpdated.addListener((tabId, object, tab) => {
 chrome.runtime.onMessage.addListener((message, sender) => {
 	switch(message.message) {
 		case "inject":
-			chrome.scripting.executeScript({files: ["CustomPageBackground.js", "BackgroundImageInjector.js"], target: {tabId: sender.tab.id}});
+			chrome.scripting.executeScript({files: ["CustomPageBackground.js"], target: {tabId: sender.tab.id}});
 			chrome.scripting.insertCSS({files: ["AllTransparent.css", "BackgroundImageInjector.css"], target: {tabId: sender.tab.id}});
 			break;
 		case "reload":

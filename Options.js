@@ -1,3 +1,5 @@
+import { BackgroundImageInjector } from "./BackgroundImageInjector.js"
+
 const imageSelector = document.getElementById("image_selector");
 function addImage(imageSrc, drawSample, showFooter) {
 	//image_selectorに画像追加
