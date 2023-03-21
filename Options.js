@@ -210,7 +210,6 @@ backgroundOpacity.addEventListener("change", () => background.setOpacity(backgro
 
 blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value));
 
-const applySiteList = document.getElementById("apply_site_list");
 const saveButton = document.getElementById("save_button");
 let saving = false;
 saveButton.addEventListener("click", () => {
@@ -231,8 +230,7 @@ saveButton.addEventListener("click", () => {
 				image_align: imageAlignNumber,
 				opacity: backgroundOpacity.value,
 				border_blur: blurBorder.value
-			},
-			apply_sites: applySiteList.value.split("\n")
+			}
 		}, () => {
 			chrome.runtime.sendMessage({message: "reload"});
 			alert("保存しました。");
@@ -243,7 +241,7 @@ saveButton.addEventListener("click", () => {
 	}
 });
 
-chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
+chrome.storage.local.get(["images", "style"], (result) => {
 	result.images.forEach((image, index) => addImage(image, index == 0, false));
 	switch(result.style.justify_method) {
 		case 0:
@@ -261,8 +259,6 @@ chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
 	background.setOpacity(result.style.opacity);
 	blurBorder.value = result.style.border_blur;
 	background.setBlur(result.style.border_blur);
-	applySiteList.value = result.apply_sites.join("\n");
 });
 
 document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));
-applySiteList.addEventListener("input", () => slideInFooter());
