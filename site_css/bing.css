@@ -1,0 +1,116 @@
+/* バナー */
+.b_wpTabsWrapper,.ent-dtab-content,.ent-dtab-style-content {
+	background-color: transparent !important;
+}
+/* バナータイトル */
+.ent-dtab-ovr {
+	background-color: transparent !important;
+	border: none !important;
+}
+/* 検索結果 */
+.b_algo {
+	background-color: transparent !important;
+}
+/* 検索結果 ページの種類 ウェブ */
+.algoSlug_icon {
+	background-color: white;
+}
+/* 検索結果 ページの種類 広告 */
+.b_adSlug {
+	background-color: white;
+}
+/* 広告リスト サブボタン */
+.sl_item {
+	background-color: white;
+}
+/* Bing翻訳 */
+.b_ans.b_top.b_topborder {
+	background-color: white !important;
+}
+/* マップ */
+#lMapContainer {
+	background-color: white;
+}
+#serpvidans.b_vidAns {
+	background-color: white;
+}
+/* 枠付き検索結果 */
+#serpvidans {
+	background-color: transparent;
+	box-shadow: none !important;
+}
+/* 枠付き検索結果の横から飛び出すボタン 背景 */
+#lgVidAnsContainer {
+	background: transparent !important;
+	background-color: transparent !important;
+}
+/* 枠付き検索結果の横から飛び出すボタン */
+.rel_ent {
+	border-radius: 20px !important;
+	background: white !important;
+}
+/* 枠付き検索結果の横から飛び出すボタン 影 */
+#lgVidAnsGradient {
+	background: transparent;
+}
+/* ニュース */
+.b_ans.b_nwsAns {
+	background-color: white !important;
+}
+/* 画像 */
+.b_ans.b_imgans {
+	background-color: white !important;
+}
+/* Wikipedia */
+.b_algo.b_algoBigWiki {
+	background-color: white !important;
+}
+/* ストリーミングカード */
+.slide {
+	background-color: white;
+}
+/* サイト内スライド */
+.b_insideSlide {
+	background-color: white;
+}
+/* 関連ページを探索する。 */
+.pageRecoContainer {
+	background-color: transparent !important;
+}
+/* 他の人はこちらも質問 */
+.df_alsoAskCard {
+	background-color: white;
+}
+/* YouTubeサムネイル */
+.wide_wideAlgo {
+	background-color: transparent !important;
+	box-shadow: none !important;
+}
+/* ショッピングタイトル */
+.sa_titlePane {
+	background-color: transparent !important;
+}
+/* 一部の検索結果が削除されました */
+.b_msg {
+	background-color: transparent !important;
+}
+/* 説明カード */
+.lite-entcard-main,.lite-entityv2-main {
+	background-color: white;
+}
+/* 関連する結果 */
+.b_ans {
+	background-color: transparent !important;
+}
+/* 「関連する結果」の中身 */
+.wpvn_ala {
+	background-color: white;
+}
+/* 「関連キーワード」の中身 */
+.richrswrapper {
+	background-color: white;
+}
+/* フッター */
+#b_footer {
+	background-color: transparent;
+}

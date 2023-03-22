@@ -26,13 +26,26 @@
 			"matches": [
         		"https://www.google.com/search?*"
     		]
+		},
+		{
+			"js": [
+				"CustomPageBackground.js"
+			],
+    		"css": [
+				"BackgroundImageInjector.css",
+				"site_css/bing.css"
+			],
+			"matches": [
+        		"https://www.bing.com/search?*"
+    		]
 		}
 	],
 	"options_page": "Options.html",
 	"web_accessible_resources": [
 		{
 			"matches": [
-				"<all_urls>"
+				"https://www.google.com/*",
+				"https://www.bing.com/*"
 			],
     		"resources": [
 				"BackgroundImageInjector.js"
