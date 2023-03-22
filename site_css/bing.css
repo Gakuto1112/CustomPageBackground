@@ -164,3 +164,24 @@
 .newsitem {
 	box-shadow: none !important;
 }
+/* ショッピング 詳細 (i) */
+.br_slug {
+	background-color: transparent !important;
+}
+/* ショッピング 商品カード */
+.br-card {
+	background-color: transparent !important;
+	border-radius: 0 !important;
+}
+/* ショッピング 説明欄 */
+.br-pdInfo {
+	background-color: transparent !important;
+}
+/* ショッピング 商品画像の角丸削除 */
+.cico {
+	border-radius: 0 !important;
+}
+/* ショッピング 関連検索 */
+#btf_content {
+	background-color: transparent !important;
+}

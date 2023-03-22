@@ -41,6 +41,19 @@
 				"https://www.bing.com/videos/search?*",
 				"https://www.bing.com/news/search?*"
     		]
+		},
+		{
+			"js": [
+				"CustomPageBackground.js",
+				"site_css/bing_shopping.js"
+			],
+    		"css": [
+				"BackgroundImageInjector.css",
+				"site_css/bing.css"
+			],
+			"matches": [
+				"https://www.bing.com/shop?*"
+    		]
 		}
 	],
 	"options_page": "Options.html",
