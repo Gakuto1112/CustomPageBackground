@@ -14,13 +14,20 @@
 		"tabs",
 		"scripting"
 	],
-	"host_permissions": [
-		"https://*/",
-		"http://*/"
+	"content_scripts":[
+		{
+			"js": [
+				"CustomPageBackground.js"
+			],
+    		"css": [
+				"BackgroundImageInjector.css",
+				"site_css/google.com_search.css"
+			],
+			"matches": [
+        		"https://www.google.com/search?*"
+    		]
+		}
 	],
-	"background": {
-		"service_worker": "ServiceWorker.js"
-	},
 	"options_page": "Options.html",
 	"web_accessible_resources": [
 		{

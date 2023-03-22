@@ -1,0 +1,85 @@
+/* 上部検索バー */
+.sfbg {
+	background-color: transparent !important;
+}
+/* 上部検索バー（ヘッダー） */
+.minidiv > .sfbg {
+	background-color: white !important;
+}
+/* タブ */
+#pTwnEc {
+	background-color: transparent;
+}
+/* フッター */
+#fbar {
+	background-color: transparent;
+}
+/* 約--件（0.--秒） */
+#appbar {
+	background-color: transparent;
+}
+/* Google翻訳 */
+.wDYxhc {
+	background-color: transparent !important;
+}
+/* Google翻訳 言語ボタン */
+.j1iyq {
+	background-color: white;
+}
+/* Google翻訳 原文入力欄 */
+#KnM9nf {
+	background-color: white;
+	border-radius: 8px;
+}
+/* Google翻訳 原文入力欄 クリアボタン */
+#tw-cst {
+	transform: translateX(-10px);
+}
+/* 検索結果 */
+.g {
+	background-color: transparent !important;
+}
+/* ナレッジパネル 詳細 */
+.KcXNxb {
+	background-color: transparent !important;
+}
+/* 画像検索 ヘッダー背景 */
+.s8GCU {
+	background-color: transparent !important;
+}
+/* 画像検索 上部検索バー */
+#kO001e {
+	background-color: transparent;
+}
+/* 画像検索 上部検索バー（ヘッダー） */
+.DU1Mzb {
+	background-color: white !important;
+}
+/* 画像検索 タブ */
+.jZWadf {
+	background-color: transparent !important;
+}
+/* 画像検索 上部関連キーワード */
+.ZZ7G7b {
+	background-color: white;
+}
+/* 画像検索 中間関連キーワード */
+.iPukc {
+	background-color: white;
+}
+/* ショッピング リスト */
+.i0X6df {
+	background-color: transparent !important;
+}
+/* ショッピング フィルター */
+.sh-dr__g {
+	background-color: white;
+}
+/* ショッピング 現在位置 */
+.zehhyb {
+	background-color: transparent !important;
+}
+/* ショッピング 「この結果について」 */
+.dkw61e {
+	background-color: transparent !important;
+}
