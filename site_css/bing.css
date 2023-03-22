@@ -112,7 +112,7 @@
 }
 /* フッター */
 #b_footer {
-	background-color: transparent;
+	background-color: transparent !important;
 }
 /* 画像検索 ヘッダー */
 #b_header {
@@ -151,6 +151,16 @@
 #vrp_tvs {
 	background-color: transparent;
 }
+/* 動画検索 作品説明の白いグラデーション */
 .vrp_tvs_attr_mmftb::after, .vrp_tvs_des_mmftb::after, .vrp_tvs_title_mmftb:after {
 	background: transparent !important;
+}
+/* ニュース サイドバー */
+.news-side-nav.dsncn:hover {
+	background-color: transparent !important;
+	box-shadow: none !important;
+}
+/* ニュース 検索結果 */
+.newsitem {
+	box-shadow: none !important;
 }
