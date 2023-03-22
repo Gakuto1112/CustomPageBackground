@@ -35,6 +35,14 @@
 #tw-cst {
 	transform: translateX(-10px);
 }
+/* 強調スニペット */
+.XzTjhb {
+	background-color: transparent !important;
+}
+/* サイト内検索 検索ボタン */
+.BwMo1 {
+	background-color: white !important;
+}
 /* 検索結果 */
 .g {
 	background-color: transparent !important;
