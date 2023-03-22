@@ -1,5 +1,5 @@
 /* バナー */
-.b_wpTabsWrapper,.ent-dtab-content,.ent-dtab-style-content {
+.b_wpTabsWrapper, .ent-dtab-content, .ent-dtab-style-content {
 	background-color: transparent !important;
 }
 /* バナータイトル */
@@ -95,7 +95,7 @@
 	background-color: transparent !important;
 }
 /* 説明カード */
-.lite-entcard-main,.lite-entityv2-main {
+.lite-entcard-main, .lite-entityv2-main {
 	background-color: white;
 }
 /* 関連する結果 */
@@ -125,4 +125,32 @@
 /* 画像検索 画像一覧 背景 */
 .dg_b {
 	background-color: transparent !important;
+}
+
+/* 動画検索 すべてのビデオを見る */
+.sel {
+	background-color: transparent !important;
+}
+/* 動画検索 ビデオの参照元 アイコン */
+.itmicon {
+	background: transparent !important;
+}
+/* 動画検索 タグ一覧1 */
+#rfCarousel {
+	background: transparent;
+}
+/* 動画検索 タグ一覧2 */
+.carousel-controls, #rfCarousel div div div div ol {
+	background-color: transparent !important;
+}
+/* 動画検索 検索結果 */
+.dg_u {
+	background-color: transparent !important;
+}
+/* 動画検索 作品説明 */
+#vrp_tvs {
+	background-color: transparent;
+}
+.vrp_tvs_attr_mmftb::after, .vrp_tvs_des_mmftb::after, .vrp_tvs_title_mmftb:after {
+	background: transparent !important;
 }
