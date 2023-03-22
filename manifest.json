@@ -21,7 +21,7 @@
 			],
     		"css": [
 				"BackgroundImageInjector.css",
-				"site_css/google.com_search.css"
+				"site_css/google.css"
 			],
 			"matches": [
         		"https://www.google.com/search?*"
