@@ -114,3 +114,15 @@
 #b_footer {
 	background-color: transparent;
 }
+/* 画像検索 ヘッダー */
+#b_header {
+	background-color: transparent !important;
+}
+/* 画像検索 ヘッダーと画像一覧の間の隙間 */
+#rfPane {
+	background-color: transparent !important;
+}
+/* 画像検索 画像一覧 背景 */
+.dg_b {
+	background-color: transparent !important;
+}
