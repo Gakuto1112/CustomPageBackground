@@ -1,15 +1,44 @@
 /* バナー */
 .b_wpTabsWrapper, .ent-dtab-content, .ent-dtab-style-content {
 	background-color: transparent !important;
+	border-bottom: none !important;
 }
 /* バナータイトル */
 .ent-dtab-ovr {
 	background-color: transparent !important;
 	border: none !important;
 }
+/* さらに表示 */
+#ent-car-exp {
+	background-color: transparent !important;
+}
+/* 画像一覧（一般検索に出てくる方） */
+.imgAnsbg {
+	background: transparent !important;
+}
+/* 画像一覧 白いバリを削除 */
+.wfr_cells div {
+	border-radius: 6px;
+}
+/* 画像一覧 非表示部のグラデーション */
+.wfr_sm::before, .wfr_sms {
+	display: none !important;
+}
+/* レシピ一覧 */
+.b_wfrcell {
+	background-color: transparent !important;
+}
+/* レシピ一覧 非表示部の線 */
+#wfrCarousel {
+	border-bottom: none !important;
+}
 /* 検索結果 */
 .b_algo {
 	background-color: transparent !important;
+}
+/* 枠付き検索結果1 */
+.b_algo.b_algoBorder {
+	background-color: white !important;
 }
 /* 検索結果 ページの種類 ウェブ */
 .algoSlug_icon {
@@ -23,35 +52,64 @@
 .sl_item {
 	background-color: white;
 }
+/* サイト内検索 */
+.dlCollapsedCnt div ul li:hover {
+	background-color: white;
+}
+/* サイト説明 タブ */
+.tab-head {
+	border-bottom: none !important;
+}
+.tab-head div, .tab-menu li {
+	background-color: transparent !important;
+}
+/* この回答は役に立ちましたか？（ガバガバBingに代わって修正） */
+.b-conclfb-container {
+	width: 100%;
+}
+/* この回答は役に立ちましたか？ 矢印 */
+.b-conclfb-container svg {
+	display: none;
+}
+/* この回答は役に立ちましたか？ 本文 */
+.b-conclfb-container span::before {
+	content: " ↑ ";
+}
+/* この回答は役に立ちましたか？ はい/いいえ */
+.b-fbbtn-container {
+	margin: 0 !important;
+}
 /* Bing翻訳 */
 .b_ans.b_top.b_topborder {
 	background-color: white !important;
 }
-/* マップ */
-#lMapContainer {
+/* マップ1 */
+#lMapContainer, .mt_mop {
 	background-color: white;
+	border-radius: 6px;
 }
-#serpvidans.b_vidAns {
-	background-color: white;
+/* マップ2 */
+.lgb_ans {
+	background-color: white !important;
 }
-/* 枠付き検索結果 */
+/* マップ本体 */
+#dynamicMap_2, .MicrosoftMap div {
+	border-radius: 6px 6px 0 0;
+}
+/* 枠付き検索結果2 */
 #serpvidans {
-	background-color: transparent;
-	box-shadow: none !important;
+	padding: 15px 19px;
+	background-color: white;
+	border-radius: 6px;
+	box-shadow: 0 0 0 1px rgba(0,0,0,.05);
 }
-/* 枠付き検索結果の横から飛び出すボタン 背景 */
-#lgVidAnsContainer {
-	background: transparent !important;
-	background-color: transparent !important;
+/* 枠付き検索結果 タイトルとリンク */
+.btitle, .b_attribution {
+	margin-left: 20px;
 }
-/* 枠付き検索結果の横から飛び出すボタン */
-.rel_ent {
-	border-radius: 20px !important;
-	background: white !important;
-}
-/* 枠付き検索結果の横から飛び出すボタン 影 */
-#lgVidAnsGradient {
-	background: transparent;
+/* 画像で--を探す */
+.rel_ent_w {
+	border-radius: 0 0 6px 6px;
 }
 /* ニュース */
 .b_ans.b_nwsAns {
@@ -60,6 +118,10 @@
 /* 画像 */
 .b_ans.b_imgans {
 	background-color: white !important;
+}
+/* 動画 大きいサムネイル */
+.videoPlayer, .video_metadata_container {
+	width: 100% !important;
 }
 /* Wikipedia */
 .b_algo.b_algoBigWiki {
@@ -72,6 +134,10 @@
 /* サイト内スライド */
 .b_insideSlide {
 	background-color: white;
+}
+/* はみ出たスライドの白いグラデーション */
+.openans_gradient_div {
+	display: none;
 }
 /* 関連ページを探索する。 */
 .pageRecoContainer {
@@ -90,12 +156,32 @@
 .sa_titlePane {
 	background-color: transparent !important;
 }
+/* その場所について */
+#placeAnswer {
+	background-color: white;
+}
 /* 一部の検索結果が削除されました */
 .b_msg {
 	background-color: transparent !important;
 }
 /* 説明カード */
 .lite-entcard-main, .lite-entityv2-main {
+	background-color: white;
+}
+/* 説明カード ヘッダーのグラデーションを出す */
+.l_ecrd_imcolheader {
+	z-index: 1;
+}
+/* 語句の定義 */
+.b_cbContainer {
+	background-color: white;
+}
+/* 結果を見る */
+.disambig-outline {
+	background-color: white;
+}
+/* 広告商品リスト */
+.pa_hCard {
 	background-color: white;
 }
 /* 関連する結果 */
@@ -105,6 +191,10 @@
 /* 「関連する結果」の中身 */
 .wpvn_ala {
 	background-color: white;
+}
+/* 短いサイトプレビュー */
+.b_ans.b_nonfirsttopb {
+	background-color: white !important;
 }
 /* 「関連キーワード」の中身 */
 .richrswrapper {
@@ -118,21 +208,48 @@
 #b_header {
 	background-color: transparent !important;
 }
+/* 画像検索 タグ一覧 スクロールボタン */
+#rfCarousel div .nav_container {
+	height: 48px !important;
+	background-color: lightgray !important;
+	border: solid 1px gray !important;
+}
+/* 画像検索 タグ一覧 スクロールボタン 左矢印 */
+#rfCarousel div .nav_left div::before {
+	margin-left: 1px !important;
+}
+/* 画像検索 タグ一覧 スクロールボタン 右矢印 */
+#rfCarousel div .nav_right div::before {
+	margin-right: 1px !important;
+}
 /* 画像検索 ヘッダーと画像一覧の間の隙間 */
 #rfPane {
 	background-color: transparent !important;
+}
+/* 画像検索 画像一覧 */
+.iuscp, .infopt {
+	background-color: transparent !important;
+	box-shadow: none !important;
+}
+/* 画像検索 画像一覧 画像 */
+.img_cont {
+	border-radius: 6px !important;
+	box-shadow: 0 0 0 1px rgba(0,0,0,.05);
+}
+/* 画像検索 画像一覧 画像の説明 */
+.img_info {
+	border-radius: 0 0 6px 6px !important;
 }
 /* 画像検索 画像一覧 背景 */
 .dg_b {
 	background-color: transparent !important;
 }
-
 /* 動画検索 すべてのビデオを見る */
 .sel {
 	background-color: transparent !important;
 }
 /* 動画検索 ビデオの参照元 アイコン */
-.itmicon {
+.ﾋﾞﾃﾞｵitmicon {
 	background: transparent !important;
 }
 /* 動画検索 タグ一覧1 */
@@ -171,15 +288,19 @@
 /* ショッピング 商品カード */
 .br-card {
 	background-color: transparent !important;
-	border-radius: 0 !important;
+	border-radius: 6px !important;
+}
+.br-card:hover {
+	background-color: white !important;
+	transition: .3s .2s !important;
 }
 /* ショッピング 説明欄 */
 .br-pdInfo {
 	background-color: transparent !important;
 }
 /* ショッピング 商品画像の角丸削除 */
-.cico {
-	border-radius: 0 !important;
+.br-pdMainImg {
+	border-radius: 6px !important;
 }
 /* ショッピング 関連検索 */
 #btf_content {
