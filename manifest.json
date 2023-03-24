@@ -54,6 +54,18 @@
 			"matches": [
 				"https://www.bing.com/shop?*"
     		]
+		},
+		{
+			"js": [
+				"CustomPageBackground.js"
+			],
+    		"css": [
+				"BackgroundImageInjector.css",
+				"site_css/yahoo_japan.css"
+			],
+			"matches": [
+				"https://search.yahoo.co.jp/search?*"
+    		]
 		}
 	],
 	"options_page": "Options.html",
@@ -61,7 +73,8 @@
 		{
 			"matches": [
 				"https://www.google.com/*",
-				"https://www.bing.com/*"
+				"https://www.bing.com/*",
+				"https://search.yahoo.co.jp/*"
 			],
     		"resources": [
 				"BackgroundImageInjector.js"
