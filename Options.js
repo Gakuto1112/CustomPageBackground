@@ -73,9 +73,11 @@ function previewChange() {
 }
 
 const footer = document.getElementById("footer");
+const saveButton = document.getElementById("save_button");
 function slideInFooter() {
 	//フッターのスライドイン
 	if(footer.classList.contains("hidden")) {
+		saveButton.classList.remove("button_disabled");
 		footer.classList.remove("hidden");
 		footer.classList.add("footer_slide_in");
 		footer.addEventListener("animationend", () => footer.classList.remove("footer_slide_in"), {once: true});
@@ -195,35 +197,32 @@ backgroundOpacity.addEventListener("change", () => background.setOpacity(backgro
 
 blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value));
 
-const saveButton = document.getElementById("save_button");
-let saving = false;
 saveButton.addEventListener("click", () => {
-	if(!saving) {
-		saving = true;
-		saveButton.classList.add("button_disabled");
-		const images = Array.from(imageSelector.children).slice(1).map((image) => image.firstElementChild.src);
-		let justifyMethodNumber = 0;
-		if(justifyMethodExpand.checked) justifyMethodNumber = 1
-		let imageAlignNumber = 4;
-		expandAlign.forEach((element, i) => {
-			if(element.checked) imageAlignNumber = i;
-		});
-		chrome.storage.local.set({
-			images: images,
-			style: {
-				justify_method: justifyMethodNumber,
-				image_align: imageAlignNumber,
-				opacity: backgroundOpacity.value,
-				border_blur: blurBorder.value
-			}
-		}, () => {
-			chrome.runtime.sendMessage({message: "reload"});
-			alert("保存しました。");
-			slideOutFooter();
-			saveButton.classList.remove("button_disabled");
-			saving = false;
-		});
-	}
+	saveButton.classList.add("button_disabled");
+	const images = Array.from(imageSelector.children).slice(1).map((image) => image.firstElementChild.src);
+	let justifyMethodNumber = 0;
+	if(justifyMethodExpand.checked) justifyMethodNumber = 1
+	let imageAlignNumber = 4;
+	expandAlign.forEach((element, i) => {
+		if(element.checked) imageAlignNumber = i;
+	});
+	chrome.storage.local.set({
+		images: images,
+		style: {
+			justify_method: justifyMethodNumber,
+			image_align: imageAlignNumber,
+			opacity: backgroundOpacity.value,
+			border_blur: blurBorder.value
+		}
+	}, () => {
+		chrome.runtime.sendMessage({message: "reload"});
+		alert("保存しました。");
+		slideOutFooter();
+	});
+});
+
+window.addEventListener("beforeunload", (event) => {
+	if(!saveButton.classList.contains("button_disabled")) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
 });
 
 chrome.storage.local.get(["images", "style"], (result) => {
