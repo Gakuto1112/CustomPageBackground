@@ -127,40 +127,24 @@ imageAllClearButton.addEventListener("click", () => {
 	}
 });
 
-let previewFrameResizeEvent;
 const previewFrame = document.getElementById("preview_frame");
 const backgroundOpacity = document.getElementById("background_opacity");
 const blurBorder = document.getElementById("blur_border");
 const background = new BackgroundImageInjector(previewFrame, "", 0, 4, backgroundOpacity.value, blurBorder.value);
-const justifyMethodExpand = document.getElementById("justify_method_expand");
-if(justifyMethodExpand.checked) background.setJustifyMethod(1);
-const frameRight = document.getElementById("frame_right");
-let mouseX, frameWidth;
-frameRight.addEventListener("mousedown", (event) => {
-	frameWidth = previewFrame.clientWidth;
-	mouseX = event.screenX;
-	previewFrameResizeEvent = (event) => {
-		previewFrame.style.width = frameWidth - mouseX + event.screenX + "px";
-		drawPreviewElementSample();
-	};
-	frameRight.addEventListener("mousemove", previewFrameResizeEvent);
-});
-frameRight.addEventListener("mouseup", () => frameRight.removeEventListener("mousemove", previewFrameResizeEvent));
-frameRight.addEventListener("mouseout", () => frameRight.removeEventListener("mousemove", previewFrameResizeEvent));
+["frame_right", "frame_bottom", "frame_right_bottom"].forEach((elementId) => document.getElementById(elementId).addEventListener("mousedown", (event) => {
 
-const frameBottom = document.getElementById("frame_bottom");
-let mouseY, frameHeight;
-frameBottom.addEventListener("mousedown", (event) => {
-	frameHeight = previewFrame.clientHeight;
-	mouseY = event.screenY;
-	previewFrameResizeEvent = (event) => {
-		previewFrame.style.height = frameHeight - mouseY + event.screenY + "px";
+	function onPreviewResize(event) {
+		if(resizeFrag[0]) previewFrame.style.width = `${frameSize[0] - mousePos[0] + event.screenX}px`;
+		if(resizeFrag[1]) previewFrame.style.height = `${frameSize[1] - mousePos[1] + event.screenY}px`;
 		drawPreviewElementSample();
 	}
-	frameBottom.addEventListener("mousemove", previewFrameResizeEvent);
-});
-frameBottom.addEventListener("mouseup", () => frameBottom.removeEventListener("mousemove", previewFrameResizeEvent));
-frameBottom.addEventListener("mouseout", () => frameBottom.removeEventListener("mousemove", previewFrameResizeEvent));
+
+	const mousePos = [event.screenX, event.screenY];
+	const frameSize = [previewFrame.clientWidth, previewFrame.clientHeight];
+	const resizeFrag = [event.target.id.startsWith("frame_right"), /^frame(_right)?_bottom$/.test(event.target.id)];
+	document.body.addEventListener("mousemove", onPreviewResize);
+	document.body.addEventListener("mouseup", () => document.body.removeEventListener("mousemove", onPreviewResize), {once: true});
+}));
 
 imagePrevious.addEventListener("click", () => {
 	const currentPosition = Number(imagePositionNow.innerText);
@@ -183,6 +167,7 @@ imageNext.addEventListener("click", () => {
 });
 
 const justifyMethodWhole = document.getElementById("justify_method_whole");
+const justifyMethodExpand = document.getElementById("justify_method_expand");
 const expandAlignGrid = document.getElementById("expand_align_grid");
 justifyMethodWhole.addEventListener("change", () => {
 	if(justifyMethodWhole.checked) {

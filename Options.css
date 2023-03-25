@@ -136,18 +136,34 @@ ul > li {
 #frame_right {
 	position: absolute;
 	width: 12px;
-	height: calc(100% + 24px);
+	height: calc(100% + 12px);
 	right: 0;
 	transform: translate(12px, -12px);
 	cursor: ew-resize;
 }
 #frame_bottom {
 	position: absolute;
-	width: calc(100% + 24px);
+	width: calc(100% + 12px);
 	height: 12px;
 	bottom: 0;
 	transform: translate(-12px, 12px);
 	cursor: ns-resize;
+}
+#frame_right::before, #frame_bottom::before {
+	content: "";
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	background-color: royalblue;
+}
+#frame_right_bottom {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	right: 0;
+	bottom: 0;
+	transform: translate(12px, 12px);
+	cursor: nwse-resize;
 }
 #preview_elements_sample {
 	width: 100%;
