@@ -125,6 +125,7 @@ imageAllClearButton.addEventListener("click", () => {
 		if(confirm("「画像全消去」ボタンが押されました。保存してある画像を全て削除します。宜しいですか？")) {
 			while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
 			imageAllClearButton.classList.add("button_disabled");
+			slideInFooter();
 		}
 	}
 });
