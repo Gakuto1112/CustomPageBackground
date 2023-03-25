@@ -65,7 +65,8 @@
 			],
 			"matches": [
 				"https://search.yahoo.co.jp/search?*",
-				"https://search.yahoo.co.jp/image/search?*"
+				"https://search.yahoo.co.jp/image/search?*",
+				"https://search.yahoo.co.jp/video/search?*"
     		]
 		}
 	],
