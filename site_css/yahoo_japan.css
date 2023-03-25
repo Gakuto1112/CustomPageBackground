@@ -48,3 +48,11 @@ footer {
 .Footer__space--searchBox {
 	background-color: transparent !important;
 }
+/* 画像検索 検索フィルター */
+#flt {
+	background-color: white;
+}
+/* 画像検索 関連キーワード */
+.sw-WordsList {
+	background-color: white;
+}

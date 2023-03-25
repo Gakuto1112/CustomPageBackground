@@ -64,7 +64,8 @@
 				"site_css/yahoo_japan.css"
 			],
 			"matches": [
-				"https://search.yahoo.co.jp/search?*"
+				"https://search.yahoo.co.jp/search?*",
+				"https://search.yahoo.co.jp/image/search?*"
     		]
 		}
 	],
