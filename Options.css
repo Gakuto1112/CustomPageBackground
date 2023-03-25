@@ -20,7 +20,7 @@ h2 {
 	font-weight: bold;
 	text-align: center;
 	border-radius: 24px;
-	user-select: none;
+	pointer-events: none;
 }
 .button {
 	margin: 0;
