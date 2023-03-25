@@ -120,7 +120,7 @@ document.getElementById("new_image").addEventListener("click", () => {
 
 imageAllClearButton.addEventListener("click", () => {
 	if(imageSelector.childElementCount >= 2) {
-		if(confirm("「画像の一括削除」ボタンが押されました。保存してある画像を全て削除します。宜しいですか？")) {
+		if(confirm("「画像全消去」ボタンが押されました。保存してある画像を全て削除します。宜しいですか？")) {
 			while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
 			imageAllClearButton.classList.add("button_disabled");
 		}
