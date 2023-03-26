@@ -203,11 +203,13 @@ saveButton.addEventListener("click", () => {
 	saveButton.classList.add("button_disabled");
 	let imageAlignNumber;
 	for(let i = 0; i < expandAlign.length; i++) {
-		if(expandAlign.item(i).checked) imageAlignNumber = i;
-		break;
+		if(expandAlign.item(i).checked) {
+			imageAlignNumber = i;
+			break;
+		}
 	}
 	const data = {
-		imageCount: 0,
+		image_count: 0,
 		style: {
 			justify_method: justifyMethodExpand.checked ? 1 : 0,
 			image_align: imageAlignNumber,
@@ -215,19 +217,19 @@ saveButton.addEventListener("click", () => {
 			border_blur: blurBorder.value
 		}
 	}
-	Array.from(imageSelector.children).slice(1).forEach((imageDiv) => data[`image_${data.imageCount++}`] = imageDiv.firstElementChild.src);
+	Array.from(imageSelector.children).slice(1).forEach((imageDiv) => data[`image_${data.image_count++}`] = imageDiv.firstElementChild.src);
 
 	function saveImage() {
 		chrome.storage.local.set(data, () => {
-			savedImageCount = data.imageCount;
+			savedImageCount = data.image_count;
 			alert("保存しました。");
 			slideOutFooter();
 		});
 	}
 
-	if(data.imageCount < savedImageCount) {
+	if(data.image_count < savedImageCount) {
 		const removeImageArray = [];
-		for(let i = data.imageCount; i < savedImageCount; i++) removeImageArray.push(`image_${i}`);
+		for(let i = data.image_count; i < savedImageCount; i++) removeImageArray.push(`image_${i}`);
 		chrome.storage.local.remove(removeImageArray, saveImage);
 	}
 	else {
@@ -239,7 +241,7 @@ window.addEventListener("beforeunload", (event) => {
 	if(!saveButton.classList.contains("button_disabled")) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
 });
 
-chrome.storage.local.get(["imageCount", "style"], (result) => {
+chrome.storage.local.get(["image_count", "style"], (result) => {
 	function loadData() {
 		switch(result.style.justify_method) {
 			case 0:
@@ -266,8 +268,8 @@ chrome.storage.local.get(["imageCount", "style"], (result) => {
 		}
 	}
 
-	if(result.imageCount != undefined) {
-		savedImageCount = result.imageCount;
+	if(result.image_count != undefined) {
+		savedImageCount = result.image_count;
 		loadData();
 	}
 	else {
@@ -276,13 +278,13 @@ chrome.storage.local.get(["imageCount", "style"], (result) => {
 			if(resultImages.images) {
 				const imageData = {};
 				resultImages.images.forEach((image) => imageData[`image_${savedImageCount++}`] = image);
-				imageData.imageCount = savedImageCount;
+				imageData.image_count = savedImageCount;
 				chrome.storage.local.remove("images", () => chrome.storage.local.set(imageData, loadData));
 			}
 			else loadData();
 		});
 	}
-	savedImageCount = result.imageCount;
+	savedImageCount = result.image_count;
 });
 
 document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));
