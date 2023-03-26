@@ -1,8 +1,13 @@
 import { BackgroundImageInjector } from "./BackgroundImageInjector.js"
 
 const imageSelector = document.getElementById("image_selector");
+/**
+ * "image_selector"に画像を追加する。
+ * @param {string} imageSrc 画像のソース
+ * @param {boolean} drawSample プレビューにこの画像を背景として描画するかどうか。
+ * @param {boolean} showFooter 設定の保存を促すフッターを表示するかどうか。
+ */
 function addImage(imageSrc, drawSample, showFooter) {
-	//image_selectorに画像追加
 	const imageDivElement = document.createElement("div");
 	const imageElement = document.createElement("img");
 	imageElement.src = imageSrc;
@@ -16,8 +21,10 @@ function addImage(imageSrc, drawSample, showFooter) {
 	if(showFooter) slideInFooter();
 }
 
+/**
+ * プレビューの初期描画・再描画を行う。
+ */
 function drawPreviewElementSample() {
-	//プレビュー枠のサンプルを描画する。
 	const canvas = document.getElementById("preview_elements_sample");
 	canvas.width = canvas.clientWidth;
 	canvas.height = canvas.clientHeight;
@@ -177,61 +184,105 @@ justifyMethodExpand.addEventListener("change", () => {
 
 const expandAlign = document.getElementsByName("expand_align");
 expandAlign.forEach((element) => element.addEventListener("change", () => {
-	expandAlign.forEach((subElement, i) => {
-		if(subElement.checked) background.setImageAlign(i);
-	});
+	for(let i = 0; i < expandAlign.length; i ++) {
+		if(expandAlign.item(i).checked) background.setImageAlign(i);
+		break;
+	}
 }));
 
 backgroundOpacity.addEventListener("change", () => background.setOpacity(backgroundOpacity.value));
 
 blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value));
 
+/**
+ * 画像の保存枚数
+ * @type {number}
+ */
+let savedImageCount = 0;
 saveButton.addEventListener("click", () => {
 	saveButton.classList.add("button_disabled");
-	const images = Array.from(imageSelector.children).slice(1).map((image) => image.firstElementChild.src);
-	let justifyMethodNumber = 0;
-	if(justifyMethodExpand.checked) justifyMethodNumber = 1
-	let imageAlignNumber = 4;
-	expandAlign.forEach((element, i) => {
-		if(element.checked) imageAlignNumber = i;
-	});
-	chrome.storage.local.set({
-		images: images,
+	let imageAlignNumber;
+	for(let i = 0; i < expandAlign.length; i++) {
+		if(expandAlign.item(i).checked) imageAlignNumber = i;
+		break;
+	}
+	const data = {
+		imageCount: 0,
 		style: {
-			justify_method: justifyMethodNumber,
+			justify_method: justifyMethodExpand.checked ? 1 : 0,
 			image_align: imageAlignNumber,
 			opacity: backgroundOpacity.value,
 			border_blur: blurBorder.value
 		}
-	}, () => {
-		chrome.runtime.sendMessage({message: "reload"});
-		alert("保存しました。");
-		slideOutFooter();
-	});
+	}
+	Array.from(imageSelector.children).slice(1).forEach((imageDiv) => data[`image_${data.imageCount++}`] = imageDiv.firstElementChild.src);
+
+	function saveImage() {
+		chrome.storage.local.set(data, () => {
+			savedImageCount = data.imageCount;
+			alert("保存しました。");
+			slideOutFooter();
+		});
+	}
+
+	if(data.imageCount < savedImageCount) {
+		const removeImageArray = [];
+		for(let i = data.imageCount; i < savedImageCount; i++) removeImageArray.push(`image_${i}`);
+		chrome.storage.local.remove(removeImageArray, saveImage);
+	}
+	else {
+		saveImage();
+	}
 });
 
 window.addEventListener("beforeunload", (event) => {
 	if(!saveButton.classList.contains("button_disabled")) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
 });
 
-chrome.storage.local.get(["images", "style"], (result) => {
-	result.images.forEach((image, index) => addImage(image, index == 0, false));
-	switch(result.style.justify_method) {
-		case 0:
-			justifyMethodWhole.checked = true;
-			break;
-		case 1:
-			justifyMethodExpand.checked = true;
-			expandAlignGrid.parentElement.classList.remove("hidden");
-			break;
+chrome.storage.local.get(["imageCount", "style"], (result) => {
+	function loadData() {
+		switch(result.style.justify_method) {
+			case 0:
+				justifyMethodWhole.checked = true;
+				break;
+			case 1:
+				justifyMethodExpand.checked = true;
+				expandAlignGrid.parentElement.classList.remove("hidden");
+				break;
+		}
+		background.setJustifyMethod(result.style.justify_method);
+		expandAlign.item(result.style.image_align).checked = true;
+		background.setImageAlign(result.style.image_align);
+		backgroundOpacity.value = result.style.opacity;
+		background.setOpacity(result.style.opacity);
+		blurBorder.value = result.style.border_blur;
+		background.setBlur(result.style.border_blur);
+		if(savedImageCount > 0) {
+			const loadImageArray = [];
+			for(let i = 0; i < savedImageCount; i++)  loadImageArray.push(`image_${i}`);
+			chrome.storage.local.get(loadImageArray, (resultImages) => {
+				for(let i = 0; i < savedImageCount; i++) addImage(resultImages[`image_${i}`], i == 0, false);
+			});
+		}
 	}
-	background.setJustifyMethod(result.style.justify_method);
-	expandAlign.item(result.style.image_align).checked = true;
-	background.setImageAlign(result.style.image_align);
-	backgroundOpacity.value = result.style.opacity;
-	background.setOpacity(result.style.opacity);
-	blurBorder.value = result.style.border_blur;
-	background.setBlur(result.style.border_blur);
+
+	if(result.imageCount != undefined) {
+		savedImageCount = result.imageCount;
+		loadData();
+	}
+	else {
+		chrome.storage.local.get("images", (resultImages) => {
+			savedImageCount = 0;
+			if(resultImages.images) {
+				const imageData = {};
+				resultImages.images.forEach((image) => imageData[`image_${savedImageCount++}`] = image);
+				imageData.imageCount = savedImageCount;
+				chrome.storage.local.remove("images", () => chrome.storage.local.set(imageData, loadData));
+			}
+			else loadData();
+		});
+	}
+	savedImageCount = result.imageCount;
 });
 
 document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));
