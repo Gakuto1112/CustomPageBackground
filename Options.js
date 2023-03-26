@@ -1,4 +1,5 @@
-import { BackgroundImageInjector } from "./BackgroundImageInjector.js"
+import { BackgroundImageInjector } from "./BackgroundImageInjector.js";
+import { update } from "./DataStructureUpdater.js";
 
 const imageSelector = document.getElementById("image_selector");
 /**
@@ -232,17 +233,17 @@ saveButton.addEventListener("click", () => {
 		for(let i = data.image_count; i < savedImageCount; i++) removeImageArray.push(`image_${i}`);
 		chrome.storage.local.remove(removeImageArray, saveImage);
 	}
-	else {
-		saveImage();
-	}
+	else saveImage();
 });
+
+document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));
 
 window.addEventListener("beforeunload", (event) => {
 	if(!saveButton.classList.contains("button_disabled")) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
 });
 
-chrome.storage.local.get(["image_count", "style"], (result) => {
-	function loadData() {
+update().then(() => {
+	chrome.storage.local.get(["image_count", "style"], (result) => {
 		switch(result.style.justify_method) {
 			case 0:
 				justifyMethodWhole.checked = true;
@@ -259,32 +260,13 @@ chrome.storage.local.get(["image_count", "style"], (result) => {
 		background.setOpacity(result.style.opacity);
 		blurBorder.value = result.style.border_blur;
 		background.setBlur(result.style.border_blur);
-		if(savedImageCount > 0) {
+		if(result.image_count > 0) {
 			const loadImageArray = [];
-			for(let i = 0; i < savedImageCount; i++)  loadImageArray.push(`image_${i}`);
+			for(let i = 0; i < result.image_count; i++)  loadImageArray.push(`image_${i}`);
 			chrome.storage.local.get(loadImageArray, (resultImages) => {
-				for(let i = 0; i < savedImageCount; i++) addImage(resultImages[`image_${i}`], i == 0, false);
+				for(let i = 0; i < result.image_count; i++) addImage(resultImages[`image_${i}`], i == 0, false);
 			});
 		}
-	}
-
-	if(result.image_count != undefined) {
 		savedImageCount = result.image_count;
-		loadData();
-	}
-	else {
-		chrome.storage.local.get("images", (resultImages) => {
-			savedImageCount = 0;
-			if(resultImages.images) {
-				const imageData = {};
-				resultImages.images.forEach((image) => imageData[`image_${savedImageCount++}`] = image);
-				imageData.image_count = savedImageCount;
-				chrome.storage.local.remove("images", () => chrome.storage.local.set(imageData, loadData));
-			}
-			else loadData();
-		});
-	}
-	savedImageCount = result.image_count;
+	});
 });
-
-document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));

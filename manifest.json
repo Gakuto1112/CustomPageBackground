@@ -82,7 +82,8 @@
 				"https://search.yahoo.co.jp/*"
 			],
     		"resources": [
-				"BackgroundImageInjector.js"
+				"BackgroundImageInjector.js",
+				"DataStructureUpdater.js"
 			]
 		}
 	]
