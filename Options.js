@@ -4,25 +4,13 @@ const imageSelector = document.getElementById("image_selector");
 function addImage(imageSrc, drawSample, showFooter) {
 	//image_selectorに画像追加
 	const imageDivElement = document.createElement("div");
-	imageDivElement.classList.add("image_div");
+	const imageElement = document.createElement("img");
+	imageElement.src = imageSrc;
+	if(drawSample) imageElement.addEventListener("load", () => drawPreviewElementSample(), {once: true});
 	imageDivElement.addEventListener("click", () => {
 		imageDivElement.remove();
 		slideInFooter();
 	});
-	imageDivElement.addEventListener("mouseover", () => {
-		imageElement.classList.add("remove_hover");
-		xMark.innerText = "x";
-		xMark.classList.add("character_mark", "x_mark");
-		imageDivElement.appendChild(xMark);
-	});
-	imageDivElement.addEventListener("mouseout", () => {
-		imageElement.classList.remove("remove_hover");
-		xMark.remove();
-	});
-	const imageElement = document.createElement("img");
-	imageElement.src = imageSrc;
-	if(drawSample) imageElement.addEventListener("load", () => drawPreviewElementSample(), {once: true});
-	const xMark = document.createElement("p");
 	imageDivElement.appendChild(imageElement);
 	imageSelector.appendChild(imageDivElement);
 	if(showFooter) slideInFooter();
