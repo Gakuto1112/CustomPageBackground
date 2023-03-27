@@ -66,13 +66,12 @@ function drawPreviewElementSample() {
 const imagePrevious = document.getElementById("image_previous");
 const imageNext = document.getElementById("image_next");
 const imagePositionNow = document.getElementById("image_position_now");
-const imageAllClearButton = document.getElementById("image_all_clear_button");
+const allClearButton = document.getElementById("all_clear_button");
 function previewChange() {
 	//プレビューの画像変更ボタンの設定
 	document.getElementById("image_position_total").innerText = imageSelector.children.length - 1;
-	imagePrevious.classList.add("button_disabled");
-	if(imageSelector.childElementCount >= 3) imageNext.classList.remove("button_disabled");
-	else imageNext.classList.add("button_disabled");
+	imagePrevious.disabled = true;
+	imageNext.disabled = imageSelector.childElementCount <= 2;
 	if(imageSelector.children.length >= 2) {
 		imagePositionNow.innerText = 1;
 		background.setImage(imageSelector.children.item(1).firstElementChild.src);
@@ -81,16 +80,15 @@ function previewChange() {
 		imagePositionNow.innerText = 0;
 		background.setImage("");
 	}
-	if(imageSelector.childElementCount >= 2) imageAllClearButton.classList.remove("button_disabled");
-	else imageAllClearButton.classList.add("button_disabled");
+	allClearButton.disabled = imageSelector.childElementCount == 1;
 }
 
 const footer = document.getElementById("footer");
-const saveButton = document.getElementById("save_button");
+const saveButton = document.getElementById("save");
 function slideInFooter() {
 	//フッターのスライドイン
 	if(footer.classList.contains("hidden")) {
-		saveButton.classList.remove("button_disabled");
+		saveButton.disabled = false;
 		footer.classList.remove("hidden");
 		footer.classList.add("footer_slide_in");
 		footer.addEventListener("animationend", () => footer.classList.remove("footer_slide_in"), {once: true});
@@ -141,11 +139,11 @@ document.getElementById("new_image").addEventListener("click", () => {
 	fileInputElement.click();
 });
 
-imageAllClearButton.addEventListener("click", () => {
+allClearButton.addEventListener("click", () => {
 	if(imageSelector.childElementCount >= 2) {
 		if(confirm("「画像全消去」ボタンが押されました。保存してある画像を全て削除します。宜しいですか？")) {
 			while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
-			imageAllClearButton.classList.add("button_disabled");
+			allClearButton.classList.disabled = true;
 			slideInFooter();
 		}
 	}
@@ -173,8 +171,8 @@ imagePrevious.addEventListener("click", () => {
 	const currentPosition = Number(imagePositionNow.innerText);
 	if(currentPosition >= 2) {
 		imagePositionNow.innerText = currentPosition - 1;
-		if(currentPosition == 2) imagePrevious.classList.add("button_disabled");
-		imageNext.classList.remove("button_disabled");
+		imagePrevious.disabled = currentPosition == 2;
+		imageNext.disabled = false;
 		background.setImage(imageSelector.children.item(currentPosition - 1).firstElementChild.src);
 	}
 });
@@ -183,8 +181,8 @@ imageNext.addEventListener("click", () => {
 	const currentPosition = Number(imagePositionNow.innerText);
 	if(currentPosition <= imageSelector.childElementCount - 2) {
 		imagePositionNow.innerText = currentPosition + 1;
-		if(currentPosition == imageSelector.childElementCount - 2) imageNext.classList.add("button_disabled");
-		imagePrevious.classList.remove("button_disabled");
+		imageNext.disabled = currentPosition == imageSelector.childElementCount - 2;
+		imagePrevious.disabled = false;
 		background.setImage(imageSelector.children.item(currentPosition + 1).firstElementChild.src);
 	}
 });
@@ -228,7 +226,7 @@ saveButton.addEventListener("click", () => {
 	slideOutFooter();
 	processDialog.show();
 	processDialog.setLabel("保存中...");
-	saveButton.classList.add("button_disabled");
+	saveButton.disabled = true;
 	let imageAlignNumber;
 	for(let i = 0; i < expandAlign.length; i++) {
 		if(expandAlign.item(i).checked) {
@@ -266,7 +264,7 @@ saveButton.addEventListener("click", () => {
 document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));
 
 window.addEventListener("beforeunload", (event) => {
-	if(!saveButton.classList.contains("button_disabled")) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
+	if(!saveButton.disabled) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
 });
 
 drawPreviewElementSample();

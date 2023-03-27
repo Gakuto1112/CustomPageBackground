@@ -5,6 +5,9 @@ h2 {
 	margin: 2em 0 0.5em 0;
 	font-size: medium;
 }
+button:disabled {
+	cursor: not-allowed;
+}
 .hidden {
 	display: none !important;
 }
@@ -21,27 +24,6 @@ h2 {
 	text-align: center;
 	border-radius: 24px;
 	pointer-events: none;
-}
-.button {
-	margin: 0;
-	height: 2em;
-	padding: 0 10px;
-	line-height: 2em;
-	border: solid 1px darkgray;
-	box-shadow: 2px 2px 5px #00000040;
-	background-color: whitesmoke;
-	user-select: none;
-	cursor: pointer;
-}
-.button:hover {
-	background-color: gainsboro;
-}
-.button_disabled {
-	color: darkgray;
-	cursor: not-allowed !important;
-}
-.button_disabled:hover {
-	background-color: whitesmoke !important;
 }
 #header {
 	position: fixed;
@@ -166,8 +148,7 @@ ul > li {
 	opacity: 0.75;
 	pointer-events: none;
 }
-#image_all_clear_button {
-	width: fit-content;
+#all_clear_button {
 	margin: 1em 0 0 20px;
 }
 #style_area {
