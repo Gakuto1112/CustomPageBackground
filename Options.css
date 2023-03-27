@@ -112,6 +112,15 @@ ul > li {
 	border: solid 2px darkgray;
 	overflow-x: scroll;
 }
+#image_selector > p {
+	width: 100%;
+	margin: auto;
+	color: lightgray;
+	font-size: 64px;
+	text-align: center;
+	line-height: 64px;
+	user-select: none;
+}
 #image_selector > div {
 	height: 180px;
 	margin-right: 10px;

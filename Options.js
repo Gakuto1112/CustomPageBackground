@@ -23,6 +23,7 @@ const processDialog = {
 }
 
 const imageSelector = document.getElementById("image_selector");
+const noImageLabel = document.querySelector("#image_selector > p");
 /**
  * "image_selector"に画像を追加する。
  * @param {string} imageSrc 画像のソース
@@ -33,10 +34,12 @@ function addImage(imageSrc) {
 	imageElement.src = imageSrc;
 	imageDivElement.addEventListener("click", () => {
 		imageDivElement.remove();
+		if(imageSelector.childElementCount == 1) noImageLabel.classList.remove("hidden");
 		slideInFooter();
 	});
 	imageDivElement.appendChild(imageElement);
 	imageSelector.appendChild(imageDivElement);
+	noImageLabel.classList.add("hidden");
 }
 
 //画像追加のタブの操作
@@ -93,7 +96,7 @@ function previewChange() {
 		imagePositionNow.innerText = 0;
 		background.setImage("");
 	}
-	allClearButton.disabled = imageSelector.childElementCount == 0;
+	allClearButton.disabled = imageSelector.childElementCount == 1;
 }
 
 const footer = document.getElementById("footer");
@@ -155,8 +158,9 @@ document.getElementById("load_from_local").addEventListener("click", () => {
 allClearButton.addEventListener("click", () => {
 	if(imageSelector.childElementCount >= 2) {
 		if(confirm("「画像全消去」ボタンが押されました。保存してある画像を全て削除します。宜しいですか？")) {
-			while(imageSelector.firstElementChild) imageSelector.firstElementChild.remove();
+			while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
 			allClearButton.disabled = true;
+			noImageLabel.classList.remove("hidden");
 			slideInFooter();
 		}
 	}
@@ -256,7 +260,7 @@ saveButton.addEventListener("click", () => {
 			border_blur: blurBorder.value
 		}
 	}
-	Array.from(imageSelector.children).forEach((imageDiv) => data[`image_${data.image_count++}`] = imageDiv.firstElementChild.src);
+	Array.from(imageSelector.children).slice(1).forEach((imageDiv) => data[`image_${data.image_count++}`] = imageDiv.firstElementChild.src);
 
 	function saveImage() {
 		chrome.storage.local.set(data, () => {
