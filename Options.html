@@ -17,10 +17,7 @@
 		</div>
 		<ol>
 			<li>画像の選択</li>
-				<div id="image_selector">
-					<div id="new_image">
-					</div>
-				</div>
+				<div id="image_selector"></div>
 				<div id="image_addition_area">
 					<div id="image_addition_tabs">
 						<p data-tab-index="0" class="active_tab">ローカルから</p>
@@ -31,24 +28,23 @@
 					<div id="image_addition_tab_area">
 						<div>
 							<p>お使いのコンピューターから画像を読み込みます。</p>
-							<button class="big_button">画像を選択</button>
+							<button id="load_from_local" class="big_button">画像を選択</button>
 						</div>
 						<div class="hidden">
 							<p>クリップボードにコピーされた画像を読み込みます。</p>
-							<button class="big_button">クリップボードから読み込み</button>
+							<button id="load_from_clipboard" class="big_button">クリップボードから読み込み</button>
 						</div>
 						<div class="hidden">
 							<p>画像のダイレクトリンクから画像を読み込みます。</p>
 							<input type="url" id="image_url" placeholder="画像のダイレクトリンクを入力してください。">
-							<button class="big_button">URLから読み込み</button>
+							<button id="load_from_url" class="big_button">URLから読み込み</button>
 						</div>
 						<div class="hidden">
 							<p><span>警告！！</span>保存されている画像を全て削除します。</p>
-							<button class="big_button warning_button" disabled>画像全消去</button>
+							<button id="all_clear" class="big_button warning_button" disabled>画像全消去</button>
 						</div>
 					</div>
 				</div>
-				<button id="all_clear_button" disabled>画像全削除</button>
 				<ul>
 					<li>お使いのモニターと同じ又は近い画面比の画像が推奨です。</li>
 					<li>解像度の大きい画像が推奨です。</li>

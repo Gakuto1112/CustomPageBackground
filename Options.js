@@ -79,7 +79,7 @@ function drawPreviewElementSample() {
 const imagePrevious = document.getElementById("image_previous");
 const imageNext = document.getElementById("image_next");
 const imagePositionNow = document.getElementById("image_position_now");
-const allClearButton = document.getElementById("all_clear_button");
+const allClearButton = document.getElementById("all_clear");
 function previewChange() {
 	//プレビューの画像変更ボタンの設定
 	document.getElementById("image_position_total").innerText = imageSelector.children.length - 1;
@@ -93,7 +93,7 @@ function previewChange() {
 		imagePositionNow.innerText = 0;
 		background.setImage("");
 	}
-	allClearButton.disabled = imageSelector.childElementCount == 1;
+	allClearButton.disabled = imageSelector.childElementCount == 0;
 }
 
 const footer = document.getElementById("footer");
@@ -125,7 +125,7 @@ imageSelectorObserver.observe(imageSelector, {
 	childList: true
 });
 
-document.getElementById("new_image").addEventListener("click", () => {
+document.getElementById("load_from_local").addEventListener("click", () => {
 	const fileInputElement = document.createElement("input");
 	fileInputElement.type = "file";
 	fileInputElement.accept = ".png, .jpg, .jpeg, .gif";
@@ -155,8 +155,8 @@ document.getElementById("new_image").addEventListener("click", () => {
 allClearButton.addEventListener("click", () => {
 	if(imageSelector.childElementCount >= 2) {
 		if(confirm("「画像全消去」ボタンが押されました。保存してある画像を全て削除します。宜しいですか？")) {
-			while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
-			allClearButton.classList.disabled = true;
+			while(imageSelector.firstElementChild) imageSelector.firstElementChild.remove();
+			allClearButton.disabled = true;
 			slideInFooter();
 		}
 	}
@@ -256,7 +256,7 @@ saveButton.addEventListener("click", () => {
 			border_blur: blurBorder.value
 		}
 	}
-	Array.from(imageSelector.children).slice(1).forEach((imageDiv) => data[`image_${data.image_count++}`] = imageDiv.firstElementChild.src);
+	Array.from(imageSelector.children).forEach((imageDiv) => data[`image_${data.image_count++}`] = imageDiv.firstElementChild.src);
 
 	function saveImage() {
 		chrome.storage.local.set(data, () => {
