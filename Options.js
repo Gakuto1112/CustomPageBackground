@@ -1,14 +1,34 @@
 import { BackgroundImageInjector } from "./BackgroundImageInjector.js";
 import { update } from "./DataStructureUpdater.js";
 
+/**
+ * 処理中のメッセージボックの操作関連
+ */
+const processDialog = {
+	area: document.getElementById("process_dialog"),
+	show: () => {
+		processDialog.area.classList.remove("hidden");
+	},
+	/**
+	 * メッセージボックスを隠す。
+	 */
+	hide: () => {
+		processDialog.area.classList.add("hidden");
+	},
+	/**
+	 * メッセージボックスのテキストを変更する。
+	 * @param {string} text 変更するテキスト
+	 */
+	setLabel: (text) => document.querySelector("#process_dialog > p").innerText = text
+}
+
 const imageSelector = document.getElementById("image_selector");
 /**
  * "image_selector"に画像を追加する。
  * @param {string} imageSrc 画像のソース
  * @param {boolean} drawSample プレビューにこの画像を背景として描画するかどうか。
- * @param {boolean} showFooter 設定の保存を促すフッターを表示するかどうか。
  */
-function addImage(imageSrc, drawSample, showFooter) {
+function addImage(imageSrc, drawSample) {
 	const imageDivElement = document.createElement("div");
 	const imageElement = document.createElement("img");
 	imageElement.src = imageSrc;
@@ -19,7 +39,6 @@ function addImage(imageSrc, drawSample, showFooter) {
 	});
 	imageDivElement.appendChild(imageElement);
 	imageSelector.appendChild(imageDivElement);
-	if(showFooter) slideInFooter();
 }
 
 /**
@@ -103,13 +122,21 @@ document.getElementById("new_image").addEventListener("click", () => {
 	fileInputElement.accept = ".png, .jpg, .jpeg, .gif";
 	fileInputElement.multiple = true;
 	fileInputElement.addEventListener("change", () => {
+		processDialog.show();
+		processDialog.setLabel("読み込み中...");
 		const fileList = Array.from(fileInputElement.files);
 		const acceptFileType = ["png", "jpg", "jpeg", "gif"];
 		const inputImages = fileList.filter((file) => acceptFileType.indexOf(file.name.split(".").slice(-1)[0].toLowerCase()) >= 0);
 		if(fileList.length != inputImages.length) alert("対応していない拡張子のファイルが選択されています。これらのファイルは無視されます。\n\n使用出来る拡張子は " + acceptFileType.join(", ") + " です。");
-		inputImages.forEach((image) => {
+		inputImages.forEach((image, index) => {
 			const reader = new FileReader();
-			reader.addEventListener("load", (event) => addImage(event.target.result, false, true));
+			reader.addEventListener("load", (event) => {
+				addImage(event.target.result, false);
+				if(index == inputImages.length - 1) {
+					processDialog.hide();
+					slideInFooter();
+				}
+			}, {once: true});
 			reader.readAsDataURL(image);
 		});
 	});
@@ -201,6 +228,9 @@ blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value)
  */
 let savedImageCount = 0;
 saveButton.addEventListener("click", () => {
+	slideOutFooter();
+	processDialog.show();
+	processDialog.setLabel("保存中...");
 	saveButton.classList.add("button_disabled");
 	let imageAlignNumber;
 	for(let i = 0; i < expandAlign.length; i++) {
@@ -223,8 +253,8 @@ saveButton.addEventListener("click", () => {
 	function saveImage() {
 		chrome.storage.local.set(data, () => {
 			savedImageCount = data.image_count;
-			alert("保存しました。");
-			slideOutFooter();
+			processDialog.setLabel("保存しました");
+			setTimeout(processDialog.hide, 1500);
 		});
 	}
 
@@ -243,6 +273,7 @@ window.addEventListener("beforeunload", (event) => {
 });
 
 update().then(() => {
+	processDialog.setLabel("読み込み中...");
 	chrome.storage.local.get(["image_count", "style"], (result) => {
 		switch(result.style.justify_method) {
 			case 0:
@@ -264,9 +295,14 @@ update().then(() => {
 			const loadImageArray = [];
 			for(let i = 0; i < result.image_count; i++)  loadImageArray.push(`image_${i}`);
 			chrome.storage.local.get(loadImageArray, (resultImages) => {
-				for(let i = 0; i < result.image_count; i++) addImage(resultImages[`image_${i}`], i == 0, false);
+				for(let i = 0; i < result.image_count; i++) addImage(resultImages[`image_${i}`], i == 0);
+				savedImageCount = result.image_count;
+				processDialog.hide();
 			});
 		}
-		savedImageCount = result.image_count;
+		else {
+			savedImageCount = result.image_count;
+			processDialog.hide();
+		}
 	});
 });
