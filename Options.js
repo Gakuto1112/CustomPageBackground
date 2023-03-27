@@ -26,13 +26,11 @@ const imageSelector = document.getElementById("image_selector");
 /**
  * "image_selector"に画像を追加する。
  * @param {string} imageSrc 画像のソース
- * @param {boolean} drawSample プレビューにこの画像を背景として描画するかどうか。
  */
-function addImage(imageSrc, drawSample) {
+function addImage(imageSrc) {
 	const imageDivElement = document.createElement("div");
 	const imageElement = document.createElement("img");
 	imageElement.src = imageSrc;
-	if(drawSample) imageElement.addEventListener("load", () => drawPreviewElementSample(), {once: true});
 	imageDivElement.addEventListener("click", () => {
 		imageDivElement.remove();
 		slideInFooter();
@@ -131,7 +129,7 @@ document.getElementById("new_image").addEventListener("click", () => {
 		inputImages.forEach((image, index) => {
 			const reader = new FileReader();
 			reader.addEventListener("load", (event) => {
-				addImage(event.target.result, false);
+				addImage(event.target.result);
 				if(index == inputImages.length - 1) {
 					processDialog.hide();
 					slideInFooter();
@@ -158,7 +156,6 @@ const backgroundOpacity = document.getElementById("background_opacity");
 const blurBorder = document.getElementById("blur_border");
 const background = new BackgroundImageInjector(previewFrame, "", 0, 4, backgroundOpacity.value, blurBorder.value);
 ["frame_right", "frame_bottom", "frame_right_bottom"].forEach((elementId) => document.getElementById(elementId).addEventListener("mousedown", (event) => {
-
 	function onPreviewResize(event) {
 		if(resizeFrag[0]) previewFrame.style.width = `${frameSize[0] - mousePos[0] + event.screenX}px`;
 		if(resizeFrag[1]) previewFrame.style.height = `${frameSize[1] - mousePos[1] + event.screenY}px`;
@@ -272,6 +269,7 @@ window.addEventListener("beforeunload", (event) => {
 	if(!saveButton.classList.contains("button_disabled")) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
 });
 
+drawPreviewElementSample();
 update().then(() => {
 	processDialog.setLabel("読み込み中...");
 	chrome.storage.local.get(["image_count", "style"], (result) => {
@@ -295,7 +293,7 @@ update().then(() => {
 			const loadImageArray = [];
 			for(let i = 0; i < result.image_count; i++)  loadImageArray.push(`image_${i}`);
 			chrome.storage.local.get(loadImageArray, (resultImages) => {
-				for(let i = 0; i < result.image_count; i++) addImage(resultImages[`image_${i}`], i == 0);
+				for(let i = 0; i < result.image_count; i++) addImage(resultImages[`image_${i}`]);
 				savedImageCount = result.image_count;
 				processDialog.hide();
 			});
