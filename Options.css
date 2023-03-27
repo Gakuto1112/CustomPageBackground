@@ -22,9 +22,12 @@ button:disabled {
 	background-color: darkgray;
 	cursor: not-allowed;
 }
-button.big_button {
+.big_button {
 	padding: 10px 100px;
 	font-size: large;
+}
+.warning_button {
+	background-color: firebrick;
 }
 .hidden {
 	display: none !important;
@@ -213,10 +216,32 @@ ul > li {
 	border-color: lightcoral !important;
 }
 #image_addition_tab_area {
-	height: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 50px 0;
 	border: solid 2px darkgray;
 	border-top: none !important;
-
+	overflow: scroll;
+	white-space: nowrap;
+}
+#image_addition_tab_area > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: auto;
+}
+#image_addition_tab_area > div > p {
+	margin-bottom: 50px;
+}
+#image_url {
+	width: 345px;
+	margin-bottom: 30px;
+}
+#image_addition_tab_area > div:last-child > p > span {
+	color: darkred;
+	font-size: xx-large;
+	font-weight: bold;
 }
 #all_clear_button {
 	margin: 1em 0 0 20px;

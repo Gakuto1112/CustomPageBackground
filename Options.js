@@ -44,6 +44,10 @@ document.querySelectorAll("#image_addition_tabs > p").forEach((element) => eleme
 	document.getElementsByClassName("active_tab").item(0).classList.remove("active_tab");
 	event.target.classList.add("active_tab");
 	const tabIndex = event.target.getAttribute("data-tab-index");
+	document.querySelectorAll("#image_addition_tab_area > div").forEach((areaElement, index) => {
+		if(index == tabIndex) areaElement.classList.remove("hidden");
+		else areaElement.classList.add("hidden");
+	});
 	if(tabIndex == 3) document.querySelectorAll("#image_addition_tabs > p:not(:last-child), #image_addition_tab_area").forEach((element) => element.classList.add("warning_border"));
 	else Array.from(document.getElementsByClassName("warning_border")).forEach((element) => element.classList.remove("warning_border"));
 }));
