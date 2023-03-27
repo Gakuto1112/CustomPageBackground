@@ -267,6 +267,9 @@ window.addEventListener("beforeunload", (event) => {
 	if(!saveButton.disabled) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
 });
 
+const windowRatio = window.innerWidth / window.innerHeight;
+if(windowRatio <= 16 / 9) previewFrame.style.width = `${480 * (windowRatio / 1.78)}px`;
+else previewFrame.style.height = `${270 / (windowRatio / 1.78)}px`;
 drawPreviewElementSample();
 update().then(() => {
 	processDialog.setLabel("読み込み中...");
