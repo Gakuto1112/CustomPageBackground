@@ -189,6 +189,9 @@ ul > li {
 	box-sizing: border-box;
 	cursor: pointer;
 }
+#image_addition_tabs > p.warning_border {
+	border-bottom: solid 2px lightcoral !important;
+}
 #image_addition_tabs > p:last-child {
 	flex: 1 0;
 	color: darkred;
@@ -205,6 +208,9 @@ ul > li {
 #image_addition_tabs > p:last-child.active_tab {
 	border-color: lightcoral;
 	background-color: mistyrose;
+}
+.warning_border {
+	border-color: lightcoral !important;
 }
 #image_addition_tab_area {
 	height: 100px;

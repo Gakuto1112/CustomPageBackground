@@ -39,9 +39,13 @@ function addImage(imageSrc) {
 	imageSelector.appendChild(imageDivElement);
 }
 
+//画像追加のタブの操作
 document.querySelectorAll("#image_addition_tabs > p").forEach((element) => element.addEventListener("click", (event) => {
 	document.getElementsByClassName("active_tab").item(0).classList.remove("active_tab");
 	event.target.classList.add("active_tab");
+	const tabIndex = event.target.getAttribute("data-tab-index");
+	if(tabIndex == 3) document.querySelectorAll("#image_addition_tabs > p:not(:last-child), #image_addition_tab_area").forEach((element) => element.classList.add("warning_border"));
+	else Array.from(document.getElementsByClassName("warning_border")).forEach((element) => element.classList.remove("warning_border"));
 }));
 
 /**
