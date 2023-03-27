@@ -39,6 +39,11 @@ function addImage(imageSrc) {
 	imageSelector.appendChild(imageDivElement);
 }
 
+document.querySelectorAll("#image_addition_tabs > p").forEach((element) => element.addEventListener("click", (event) => {
+	document.getElementsByClassName("active_tab").item(0).classList.remove("active_tab");
+	event.target.classList.add("active_tab");
+}));
+
 /**
  * プレビューの初期描画・再描画を行う。
  */

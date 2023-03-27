@@ -5,8 +5,26 @@ h2 {
 	margin: 2em 0 0.5em 0;
 	font-size: medium;
 }
+button {
+	padding: 5px 10px;
+	color: white;
+	font-weight: bold;
+	background-color: dodgerblue;
+	border: none;
+	border-radius: 4px;
+	box-shadow: 0 0 2px 2px #00000020;
+	cursor: pointer;
+}
+button:not(:disabled):active {
+	filter: brightness(0.8);
+}
 button:disabled {
+	background-color: darkgray;
 	cursor: not-allowed;
+}
+button.big_button {
+	padding: 10px 100px;
+	font-size: large;
 }
 .hidden {
 	display: none !important;
@@ -147,6 +165,52 @@ ul > li {
 	background-color: lightgray;
 	opacity: 0.75;
 	pointer-events: none;
+}
+#image_addition_area {
+	display: flex;
+	flex-direction: column;
+	width: calc(100% - 36px);
+	margin-top: 20px;
+}
+#image_addition_tabs {
+	display: flex;
+	overflow: scroll;
+}
+#image_addition_tabs::-webkit-scrollbar {
+	display: none;
+}
+#image_addition_tabs > p {
+	flex: 2 0;
+	min-width: 10em;
+	margin: 0;
+	padding: 10px 0;
+	text-align: center;
+	border-bottom: solid 2px darkgray;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+#image_addition_tabs > p:last-child {
+	flex: 1 0;
+	color: darkred;
+}
+#image_addition_tabs > p:hover {
+	text-decoration: underline;
+}
+.active_tab {
+	font-weight: bold;
+	border: solid 2px darkgray;
+	border-bottom: none !important;
+	background-color: whitesmoke;
+}
+#image_addition_tabs > p:last-child.active_tab {
+	border-color: lightcoral;
+	background-color: mistyrose;
+}
+#image_addition_tab_area {
+	height: 100px;
+	border: solid 2px darkgray;
+	border-top: none !important;
+
 }
 #all_clear_button {
 	margin: 1em 0 0 20px;
