@@ -96,7 +96,7 @@ document.getElementById("load_from_clipboard").addEventListener("click", () => {
 	navigator.clipboard.read().then((clipboard) => {
 		const clipboardImages = clipboard.filter((item) => item.types.find((type) => type.startsWith("image/")));
 		if(clipboard.length > clipboardImages.length) alert("クリップボードから読み取ったデータは画像ではありませんでした。");
-		Promise.all(clipboardImages.map((image) => image.getType(image.types.find((type) => type.startsWith("image/"))))).then((blobArray) => loadImages(blobArray));
+		Promise.all(clipboardImages.map((image) => image.getType(image.types.find((type) => type.startsWith("image/"))))).then(loadImages);
 		if(clipboardImages.length == 0) processDialog.hide();
 	});
 });
@@ -244,8 +244,10 @@ justifyMethodExpand.addEventListener("change", () => {
 const expandAlign = document.getElementsByName("expand_align");
 expandAlign.forEach((element) => element.addEventListener("change", () => {
 	for(let i = 0; i < expandAlign.length; i ++) {
-		if(expandAlign.item(i).checked) background.setImageAlign(i);
-		break;
+		if(expandAlign.item(i).checked) {
+			background.setImageAlign(i);
+			break;
+		}
 	}
 }));
 
