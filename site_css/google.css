@@ -1,10 +1,14 @@
+:root {
+	--background-color: white;
+}
+
 /* 上部検索バー */
 .sfbg {
 	background-color: transparent !important;
 }
 /* 上部検索バー（ヘッダー） */
 .minidiv > .sfbg {
-	background-color: white !important;
+	background-color: var(--background-color) !important;
 }
 /* タブ */
 #pTwnEc {
@@ -33,11 +37,11 @@
 }
 /* Google翻訳 言語ボタン */
 .j1iyq {
-	background-color: white;
+	background-color: var(--background-color);
 }
 /* Google翻訳 原文入力欄 */
 #KnM9nf {
-	background-color: white;
+	background-color: var(--background-color);
 	border-radius: 8px;
 }
 /* Google翻訳 原文入力欄 クリアボタン */
@@ -50,7 +54,7 @@
 }
 /* サイト内検索 検索ボタン */
 .BwMo1 {
-	background-color: white !important;
+	background-color: var(--background-color) !important;
 }
 /* 検索結果 */
 .g {
@@ -70,7 +74,7 @@
 }
 /* 画像検索 上部検索バー（ヘッダー） */
 .DU1Mzb {
-	background-color: white !important;
+	background-color: var(--background-color) !important;
 }
 /* 画像検索 タブ */
 .jZWadf {
@@ -78,11 +82,11 @@
 }
 /* 画像検索 上部関連キーワード */
 .ZZ7G7b {
-	background-color: white;
+	background-color: var(--background-color);
 }
 /* 画像検索 中間関連キーワード */
 .iPukc {
-	background-color: white;
+	background-color: var(--background-color);
 }
 /* ショッピング リスト */
 .i0X6df {
@@ -90,7 +94,7 @@
 }
 /* ショッピング フィルター */
 .sh-dr__g {
-	background-color: white;
+	background-color: var(--background-color);
 }
 /* ショッピング 現在位置 */
 .zehhyb {
