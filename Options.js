@@ -73,6 +73,7 @@ function loadImages(imageArray) {
 	});
 }
 
+//ローカルから画像読み込み
 document.getElementById("load_from_local").addEventListener("click", () => {
 	const fileInputElement = document.createElement("input");
 	fileInputElement.type = "file";
@@ -90,6 +91,7 @@ document.getElementById("load_from_local").addEventListener("click", () => {
 	fileInputElement.click();
 });
 
+//クリップボードから画像読み込み
 document.getElementById("load_from_clipboard").addEventListener("click", () => {
 	processDialog.show();
 	processDialog.setLabel("読み込み中...");
@@ -99,6 +101,14 @@ document.getElementById("load_from_clipboard").addEventListener("click", () => {
 		Promise.all(clipboardImages.map((image) => image.getType(image.types.find((type) => type.startsWith("image/"))))).then(loadImages);
 		if(clipboardImages.length == 0) processDialog.hide();
 	});
+});
+
+//URLテキストボックスの折り返し
+const urlTextBox = document.getElementById("image_url");
+const urlCheckBox = document.getElementById("url_wrap_checkbox");
+urlCheckBox.addEventListener("change", () => {
+	console.log(urlTextBox);
+	urlTextBox.wrap = urlCheckBox.checked ? "soft" : "off";
 });
 
 /**

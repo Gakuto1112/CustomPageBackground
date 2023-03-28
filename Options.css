@@ -214,12 +214,16 @@ ul > li {
 	align-items: center;
 	margin: auto;
 }
-#image_addition_tab_area > div > p {
+#image_addition_tab_area > div > div:first-child {
 	margin-bottom: 50px;
+	text-align: center;
 }
 #image_url {
-	width: 345px;
-	margin-bottom: 30px;
+	width: 100%;
+	height: 6em;
+}
+#url_wrap {
+	margin: 20px 0 30px 0;
 }
 #image_addition_tab_area > div:last-child > p > span {
 	color: darkred;
