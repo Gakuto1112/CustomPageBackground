@@ -2,24 +2,46 @@ import { BackgroundImageInjector } from "./BackgroundImageInjector.js";
 import { update } from "./DataStructureUpdater.js";
 
 /**
- * 処理中のメッセージボックの操作関連
+ * 処理中のメッセージボックスの操作関連
  */
 const processDialog = {
 	area: document.getElementById("process_dialog"),
-	show: () => {
-		processDialog.area.classList.remove("hidden");
-	},
+	/**
+	 * メッセージボックスを表示する。
+	 */
+	show: () => processDialog.area.classList.remove("hidden"),
 	/**
 	 * メッセージボックスを隠す。
 	 */
-	hide: () => {
-		processDialog.area.classList.add("hidden");
-	},
+	hide: () => processDialog.area.classList.add("hidden"),
 	/**
 	 * メッセージボックスのテキストを変更する。
 	 * @param {string} text 変更するテキスト
 	 */
 	setLabel: (text) => document.querySelector("#process_dialog > p").innerText = text
+}
+
+/**
+ * フッターの操作関連
+ */
+const footer = {
+	footer: document.getElementById("footer"),
+	saveButton: document.getElementById("save"),
+	/**
+	 * フッターを表示する。
+	 */
+	show: () => {
+		document.body.classList.add("footer_space");
+		footer.footer.classList.remove("hidden");
+		footer.saveButton.disabled = false;
+	},
+	/**
+	 * フッターを隠す。
+	 */
+	hide: () => {
+		document.body.classList.remove("footer_space");
+		footer.footer.classList.add("hidden");
+	}
 }
 
 const imageSelector = document.getElementById("image_selector");
@@ -35,7 +57,7 @@ function addImage(imageSrc) {
 	imageDivElement.addEventListener("click", () => {
 		imageDivElement.remove();
 		if(imageSelector.childElementCount == 1) noImageLabel.classList.remove("hidden");
-		slideInFooter();
+		footer.show();
 	});
 	imageDivElement.appendChild(imageElement);
 	imageSelector.appendChild(imageDivElement);
@@ -66,7 +88,7 @@ function loadImages(imageArray) {
 			addImage(event.target.result);
 			if(index == imageArray.length - 1) {
 				processDialog.hide();
-				slideInFooter();
+				footer.show();
 			}
 		}, {once: true});
 		reader.readAsDataURL(image);
@@ -147,30 +169,6 @@ function previewChange() {
 	allClearButton.disabled = imageSelector.childElementCount == 1;
 }
 
-const footer = document.getElementById("footer");
-const saveButton = document.getElementById("save");
-function slideInFooter() {
-	//フッターのスライドイン
-	if(footer.classList.contains("hidden")) {
-		saveButton.disabled = false;
-		footer.classList.remove("hidden");
-		footer.classList.add("footer_slide_in");
-		footer.addEventListener("animationend", () => footer.classList.remove("footer_slide_in"), {once: true});
-	}
-}
-
-function slideOutFooter() {
-	//フッターのスライドアウト
-	if(!footer.classList.contains("hidden")) {
-		footer.classList.remove("footer_slide_in");
-		footer.classList.add("footer_slide_out");
-		footer.addEventListener("animationend", () => {
-			footer.classList.remove("footer_slide_out");
-			footer.classList.add("hidden")
-		}, {once: true});
-	}
-}
-
 const imageSelectorObserver = new MutationObserver(previewChange);
 imageSelectorObserver.observe(imageSelector, {
 	childList: true
@@ -182,7 +180,7 @@ allClearButton.addEventListener("click", () => {
 			while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
 			allClearButton.disabled = true;
 			noImageLabel.classList.remove("hidden");
-			slideInFooter();
+			footer.show();
 		}
 	}
 });
@@ -262,11 +260,11 @@ blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value)
  * @type {number}
  */
 let savedImageCount = 0;
-saveButton.addEventListener("click", () => {
-	slideOutFooter();
+footer.saveButton.addEventListener("click", () => {
+	footer.hide();
 	processDialog.show();
 	processDialog.setLabel("保存中...");
-	saveButton.disabled = true;
+	footer.saveButton.disabled = true;
 	let imageAlignNumber;
 	for(let i = 0; i < expandAlign.length; i++) {
 		if(expandAlign.item(i).checked) {
@@ -301,10 +299,10 @@ saveButton.addEventListener("click", () => {
 	else saveImage();
 });
 
-document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));
+document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => footer.show()));
 
 window.addEventListener("beforeunload", (event) => {
-	if(!saveButton.disabled) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
+	if(!footer.saveButton.disabled) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
 });
 
 const windowRatio = window.innerWidth / window.innerHeight;
