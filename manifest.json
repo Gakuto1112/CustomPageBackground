@@ -25,6 +25,8 @@
 				"site_resources/google.css"
 			],
 			"matches": [
+				"https://www.google.com/",
+				"https://www.google.com/webhp?*",
         		"https://www.google.com/search?*"
     		]
 		},
