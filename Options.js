@@ -55,6 +55,33 @@ document.querySelectorAll("#image_addition_tabs > p").forEach((element) => eleme
 	else Array.from(document.getElementsByClassName("warning_border")).forEach((element) => element.classList.remove("warning_border"));
 }));
 
+document.getElementById("load_from_local").addEventListener("click", () => {
+	const fileInputElement = document.createElement("input");
+	fileInputElement.type = "file";
+	fileInputElement.accept = "image/*";
+	fileInputElement.multiple = true;
+	fileInputElement.addEventListener("change", () => {
+		processDialog.show();
+		processDialog.setLabel("読み込み中...");
+		const fileList = Array.from(fileInputElement.files);
+		const inputImages = fileList.filter((file) => file.type.startsWith("image/"));
+		if(fileList.length != inputImages.length) alert("画像以外のファイルが含まれています。これらのファイルは無視されます。");
+		inputImages.forEach((image, index) => {
+			const reader = new FileReader();
+			reader.addEventListener("load", (event) => {
+				addImage(event.target.result);
+				if(index == inputImages.length - 1) {
+					processDialog.hide();
+					slideInFooter();
+				}
+			}, {once: true});
+			reader.readAsDataURL(image);
+		});
+		if(inputImages.length == 0) processDialog.hide();
+	});
+	fileInputElement.click();
+});
+
 /**
  * プレビューの初期描画・再描画を行う。
  */
@@ -126,33 +153,6 @@ function slideOutFooter() {
 const imageSelectorObserver = new MutationObserver(previewChange);
 imageSelectorObserver.observe(imageSelector, {
 	childList: true
-});
-
-document.getElementById("load_from_local").addEventListener("click", () => {
-	const fileInputElement = document.createElement("input");
-	fileInputElement.type = "file";
-	fileInputElement.accept = ".png, .jpg, .jpeg, .gif";
-	fileInputElement.multiple = true;
-	fileInputElement.addEventListener("change", () => {
-		processDialog.show();
-		processDialog.setLabel("読み込み中...");
-		const fileList = Array.from(fileInputElement.files);
-		const acceptFileType = ["png", "jpg", "jpeg", "gif"];
-		const inputImages = fileList.filter((file) => acceptFileType.indexOf(file.name.split(".").slice(-1)[0].toLowerCase()) >= 0);
-		if(fileList.length != inputImages.length) alert("対応していない拡張子のファイルが選択されています。これらのファイルは無視されます。\n\n使用出来る拡張子は " + acceptFileType.join(", ") + " です。");
-		inputImages.forEach((image, index) => {
-			const reader = new FileReader();
-			reader.addEventListener("load", (event) => {
-				addImage(event.target.result);
-				if(index == inputImages.length - 1) {
-					processDialog.hide();
-					slideInFooter();
-				}
-			}, {once: true});
-			reader.readAsDataURL(image);
-		});
-	});
-	fileInputElement.click();
 });
 
 allClearButton.addEventListener("click", () => {
