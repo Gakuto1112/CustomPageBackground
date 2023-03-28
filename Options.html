@@ -28,23 +28,23 @@
 					</div>
 					<div id="image_addition_tab_area">
 						<div>
-							<div>
-								<p>お使いのコンピューターから画像を読み込みます。</p>
-							</div>
+							<p class="image_addition_tab_text">お使いのコンピューターから画像を読み込みます。</p>
 							<button id="load_from_local" class="big_button">画像を選択</button>
 						</div>
 						<div class="hidden">
-							<div>
+							<div class="image_addition_tab_text">
 								<p>クリップボードにコピーされた画像を読み込みます。</p>
-								<p>クリップボード読み取りの権限が必要です（初回ボタンクリック時に尋ねられます）。</p>
+								<p>クリップボード読み取りの権限が必要ですå（初回ボタンクリック時に尋ねられます）。</p>
 							</div>
 							<button id="load_from_clipboard" class="big_button">クリップボードから読み込み</button>
 						</div>
 						<div class="hidden">
-							<div>
-								<p><span>警告！！</span>保存されている画像を全て削除します。</p>
-							</div>
+							<p class="image_addition_tab_text"><span>警告！！</span>保存されている画像を全て削除します。</p>
 							<button id="all_clear" class="big_button warning_button" disabled>画像全消去</button>
+							<div id="all_clear_confirm_area" class="hidden">
+								<p class="image_addition_tab_text">宜しいですか？</p>
+								<button id="all_clear_confirm" class="big_button warning_button">画像全消去</button>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -46,6 +46,8 @@ const footer = {
 
 const imageSelector = document.getElementById("image_selector");
 const noImageLabel = document.querySelector("#image_selector > p");
+const allClearButton = document.getElementById("all_clear");
+const allClearConfirmArea = document.getElementById("all_clear_confirm_area");
 /**
  * "image_selector"に画像を追加する。
  * @param {string} imageSrc 画像のソース
@@ -56,12 +58,17 @@ function addImage(imageSrc) {
 	imageElement.src = imageSrc;
 	imageDivElement.addEventListener("click", () => {
 		imageDivElement.remove();
-		if(imageSelector.childElementCount == 1) noImageLabel.classList.remove("hidden");
+		if(imageSelector.childElementCount == 1) {
+			noImageLabel.classList.remove("hidden");
+			allClearButton.disabled = true;
+			allClearConfirmArea.classList.add("hidden");
+		}
 		footer.show();
 	});
 	imageDivElement.appendChild(imageElement);
 	imageSelector.appendChild(imageDivElement);
 	noImageLabel.classList.add("hidden");
+	allClearButton.disabled = allClearButton.classList.contains("hidden");
 }
 
 //画像追加のタブの操作
@@ -73,8 +80,14 @@ document.querySelectorAll("#image_addition_tabs > p").forEach((element) => eleme
 		if(index == tabIndex) areaElement.classList.remove("hidden");
 		else areaElement.classList.add("hidden");
 	});
-	if(tabIndex == 2) document.querySelectorAll("#image_addition_tabs > p:not(:last-child), #image_addition_tab_area").forEach((element) => element.classList.add("warning_border"));
-	else Array.from(document.getElementsByClassName("warning_border")).forEach((element) => element.classList.remove("warning_border"));
+	if(tabIndex == 2) {
+		document.querySelectorAll("#image_addition_tabs > p:not(:last-child), #image_addition_tab_area").forEach((element) => element.classList.add("warning_border"));
+		allClearButton.disabled = imageSelector.childElementCount == 1;
+	}
+	else {
+		Array.from(document.getElementsByClassName("warning_border")).forEach((element) => element.classList.remove("warning_border"));
+		allClearConfirmArea.classList.add("hidden");
+	}
 }));
 
 /**
@@ -125,6 +138,21 @@ document.getElementById("load_from_clipboard").addEventListener("click", () => {
 	});
 });
 
+//画像全削除ボタン
+allClearButton.addEventListener("click", () => {
+	allClearConfirmArea.classList.remove("hidden");
+	allClearButton.disabled = true;
+});
+
+//画像全削除確認ボタン
+document.getElementById("all_clear_confirm").addEventListener("click", () => {
+	noImageLabel.classList.remove("hidden");
+	allClearConfirmArea.classList.add("hidden");
+	allClearButton.disabled = true;
+	footer.show();
+	while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
+});
+
 /**
  * プレビューの初期描画・再描画を行う。
  */
@@ -152,7 +180,6 @@ function drawPreviewElementSample() {
 const imagePrevious = document.getElementById("image_previous");
 const imageNext = document.getElementById("image_next");
 const imagePositionNow = document.getElementById("image_position_now");
-const allClearButton = document.getElementById("all_clear");
 function previewChange() {
 	//プレビューの画像変更ボタンの設定
 	document.getElementById("image_position_total").innerText = imageSelector.children.length - 1;
@@ -166,23 +193,11 @@ function previewChange() {
 		imagePositionNow.innerText = 0;
 		background.setImage("");
 	}
-	allClearButton.disabled = imageSelector.childElementCount == 1;
 }
 
 const imageSelectorObserver = new MutationObserver(previewChange);
 imageSelectorObserver.observe(imageSelector, {
 	childList: true
-});
-
-allClearButton.addEventListener("click", () => {
-	if(imageSelector.childElementCount >= 2) {
-		if(confirm("「画像全消去」ボタンが押されました。保存してある画像を全て削除します。宜しいですか？")) {
-			while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
-			allClearButton.disabled = true;
-			noImageLabel.classList.remove("hidden");
-			footer.show();
-		}
-	}
 });
 
 const previewFrame = document.getElementById("preview_frame");

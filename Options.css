@@ -209,14 +209,22 @@ ul > li {
 	align-items: center;
 	margin: auto;
 }
-#image_addition_tab_area > div > div {
+.image_addition_tab_text {
 	margin-bottom: 50px;
 	text-align: center;
 }
-#image_addition_tab_area > div:last-child > p > span {
+#image_addition_tab_area > div:last-child > div:first-child > p > span {
 	color: darkred;
 	font-size: xx-large;
 	font-weight: bold;
+}
+#all_clear_confirm_area {
+	margin-top: 50px;
+	padding: 20px 100px;
+	border: solid 2px lightcoral;
+	border-radius: 20px;
+	background-color: mistyrose;
+	box-shadow: 0 0 2px 2px #00000020;
 }
 #style_area {
 	display: flex;
