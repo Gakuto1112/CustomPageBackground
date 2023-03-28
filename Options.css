@@ -166,7 +166,7 @@ ul > li {
 	display: none;
 }
 #image_addition_tabs > p {
-	flex: 2 0;
+	flex-grow: 2;
 	min-width: 10em;
 	margin: 0;
 	padding: 10px 0;
@@ -179,7 +179,7 @@ ul > li {
 	border-bottom: solid 2px lightcoral !important;
 }
 #image_addition_tabs > p:last-child {
-	flex: 1 0;
+	flex-grow: 1;
 	color: darkred;
 }
 #image_addition_tabs > p:hover {
@@ -214,16 +214,9 @@ ul > li {
 	align-items: center;
 	margin: auto;
 }
-#image_addition_tab_area > div > div:first-child {
+#image_addition_tab_area > div > div {
 	margin-bottom: 50px;
 	text-align: center;
-}
-#image_url {
-	width: 100%;
-	height: 6em;
-}
-#url_wrap {
-	margin: 20px 0 30px 0;
 }
 #image_addition_tab_area > div:last-child > p > span {
 	color: darkred;

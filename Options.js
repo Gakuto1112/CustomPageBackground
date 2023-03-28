@@ -51,7 +51,7 @@ document.querySelectorAll("#image_addition_tabs > p").forEach((element) => eleme
 		if(index == tabIndex) areaElement.classList.remove("hidden");
 		else areaElement.classList.add("hidden");
 	});
-	if(tabIndex == 3) document.querySelectorAll("#image_addition_tabs > p:not(:last-child), #image_addition_tab_area").forEach((element) => element.classList.add("warning_border"));
+	if(tabIndex == 2) document.querySelectorAll("#image_addition_tabs > p:not(:last-child), #image_addition_tab_area").forEach((element) => element.classList.add("warning_border"));
 	else Array.from(document.getElementsByClassName("warning_border")).forEach((element) => element.classList.remove("warning_border"));
 }));
 
@@ -101,14 +101,6 @@ document.getElementById("load_from_clipboard").addEventListener("click", () => {
 		Promise.all(clipboardImages.map((image) => image.getType(image.types.find((type) => type.startsWith("image/"))))).then(loadImages);
 		if(clipboardImages.length == 0) processDialog.hide();
 	});
-});
-
-//URLテキストボックスの折り返し
-const urlTextBox = document.getElementById("image_url");
-const urlCheckBox = document.getElementById("url_wrap_checkbox");
-urlCheckBox.addEventListener("change", () => {
-	console.log(urlTextBox);
-	urlTextBox.wrap = urlCheckBox.checked ? "soft" : "off";
 });
 
 /**
