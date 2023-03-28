@@ -55,6 +55,24 @@ document.querySelectorAll("#image_addition_tabs > p").forEach((element) => eleme
 	else Array.from(document.getElementsByClassName("warning_border")).forEach((element) => element.classList.remove("warning_border"));
 }));
 
+/**
+ * 画像の配列から画像を読み込む
+ * @param {Array} imageArray
+ */
+function loadImages(imageArray) {
+	imageArray.forEach((image, index) => {
+		const reader = new FileReader();
+		reader.addEventListener("load", (event) => {
+			addImage(event.target.result);
+			if(index == imageArray.length - 1) {
+				processDialog.hide();
+				slideInFooter();
+			}
+		}, {once: true});
+		reader.readAsDataURL(image);
+	});
+}
+
 document.getElementById("load_from_local").addEventListener("click", () => {
 	const fileInputElement = document.createElement("input");
 	fileInputElement.type = "file";
@@ -64,22 +82,23 @@ document.getElementById("load_from_local").addEventListener("click", () => {
 		processDialog.show();
 		processDialog.setLabel("読み込み中...");
 		const fileList = Array.from(fileInputElement.files);
-		const inputImages = fileList.filter((file) => file.type.startsWith("image/"));
-		if(fileList.length != inputImages.length) alert("画像以外のファイルが含まれています。これらのファイルは無視されます。");
-		inputImages.forEach((image, index) => {
-			const reader = new FileReader();
-			reader.addEventListener("load", (event) => {
-				addImage(event.target.result);
-				if(index == inputImages.length - 1) {
-					processDialog.hide();
-					slideInFooter();
-				}
-			}, {once: true});
-			reader.readAsDataURL(image);
-		});
-		if(inputImages.length == 0) processDialog.hide();
+		const localImages = fileList.filter((file) => file.type.startsWith("image/"));
+		if(fileList.length > localImages.length) alert("画像以外のファイルが含まれています。これらのファイルは無視されます。");
+		loadImages(localImages);
+		if(localImages.length == 0) processDialog.hide();
 	});
 	fileInputElement.click();
+});
+
+document.getElementById("load_from_clipboard").addEventListener("click", () => {
+	processDialog.show();
+	processDialog.setLabel("読み込み中...");
+	navigator.clipboard.read().then((clipboard) => {
+		const clipboardImages = clipboard.filter((item) => item.types.find((type) => type.startsWith("image/")));
+		if(clipboard.length > clipboardImages.length) alert("クリップボードから読み取ったデータは画像ではありませんでした。");
+		Promise.all(clipboardImages.map((image) => image.getType(image.types.find((type) => type.startsWith("image/"))))).then((blobArray) => loadImages(blobArray));
+		if(clipboardImages.length == 0) processDialog.hide();
+	});
 });
 
 /**
