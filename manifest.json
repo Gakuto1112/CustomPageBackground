@@ -18,11 +18,11 @@
 		{
 			"js": [
 				"CustomPageBackground.js",
-				"site_css/google.js"
+				"site_resources/google.js"
 			],
     		"css": [
 				"BackgroundImageInjector.css",
-				"site_css/google.css"
+				"site_resources/google.css"
 			],
 			"matches": [
         		"https://www.google.com/search?*"
@@ -34,7 +34,7 @@
 			],
     		"css": [
 				"BackgroundImageInjector.css",
-				"site_css/bing.css"
+				"site_resources/bing.css"
 			],
 			"matches": [
         		"https://www.bing.com/search?*",
@@ -46,11 +46,11 @@
 		{
 			"js": [
 				"CustomPageBackground.js",
-				"site_css/bing_shopping.js"
+				"site_resources/bing_shopping.js"
 			],
     		"css": [
 				"BackgroundImageInjector.css",
-				"site_css/bing.css"
+				"site_resources/bing.css"
 			],
 			"matches": [
 				"https://www.bing.com/shop?*"
@@ -62,7 +62,7 @@
 			],
     		"css": [
 				"BackgroundImageInjector.css",
-				"site_css/yahoo_japan.css"
+				"site_resources/yahoo_japan.css"
 			],
 			"matches": [
 				"https://search.yahoo.co.jp/search?*",
