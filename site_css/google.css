@@ -18,6 +18,10 @@
 #appbar {
 	background-color: transparent;
 }
+/* 日本語の検査結果のみ表示します */
+.Ww4FFb {
+	background-color: transparent !important;
+}
 /* サイトアイコン */
 .H9lube {
 	background-color: transparent !important;
