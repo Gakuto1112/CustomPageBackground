@@ -72,6 +72,13 @@
 .KcXNxb {
 	background-color: transparent !important;
 }
+/* 曲のプレイリスト */
+.rl_item {
+	background-color: transparent !important;
+}
+.WeviRb, .SUgb2e {
+	border: none !important;
+}
 /* 画像検索 ヘッダー背景 */
 .s8GCU {
 	background-color: transparent !important;
