@@ -42,7 +42,7 @@
 							<p class="image_addition_tab_text"><span>警告！！</span>保存されている画像を全て削除します。</p>
 							<button id="all_clear" class="big_button warning_button" disabled>画像全消去</button>
 							<div id="all_clear_confirm_area" class="hidden">
-								<p class="image_addition_tab_text">宜しいですか？</p>
+								<p class="image_addition_tab_text"><span>⚠</span>宜しいですか？</p>
 								<button id="all_clear_confirm" class="big_button warning_button">画像全消去</button>
 							</div>
 						</div>
@@ -122,8 +122,11 @@
 							</div>
 						</div>
 					</div>
-					<h2>透明度</h2>
-					<input type="range" id="background_opacity" class="modify" min="0" max="1" step="0.01" value="0.5">
+					<h2>不透明度</h2>
+					<div id="background_opacity_area">
+						<input type="range" id="background_opacity" class="modify" min="0" max="1" step="0.01" value="0.5">
+						<p class="hidden"><span>⚠</span>画像によってはページの視認性が低下します。</p>
+					</div>
 					<h2>画像端の影</h2>
 					<input type="range" id="blur_border" class="modify" min="0" max="50" step="1" value="10">
 				</div>

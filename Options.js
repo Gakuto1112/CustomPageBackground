@@ -269,7 +269,12 @@ expandAlign.forEach((element) => element.addEventListener("change", () => {
 	}
 }));
 
-backgroundOpacity.addEventListener("change", () => background.setOpacity(backgroundOpacity.value));
+const hardVisibilityMessage = document.querySelector("#background_opacity_area > p");
+backgroundOpacity.addEventListener("change", () => {
+	background.setOpacity(backgroundOpacity.value);
+	if(backgroundOpacity.value >= 0.5) hardVisibilityMessage.classList.remove("hidden");
+	else hardVisibilityMessage.classList.add("hidden");
+});
 
 blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value));
 
@@ -343,6 +348,7 @@ update().then(() => {
 		expandAlign.item(result.style.image_align).checked = true;
 		background.setImageAlign(result.style.image_align);
 		backgroundOpacity.value = result.style.opacity;
+		if(result.style.opacity >= 0.5) hardVisibilityMessage.classList.remove("hidden");
 		background.setOpacity(result.style.opacity);
 		blurBorder.value = result.style.border_blur;
 		background.setBlur(result.style.border_blur);
