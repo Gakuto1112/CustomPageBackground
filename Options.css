@@ -213,7 +213,7 @@ ul > li {
 	margin-bottom: 50px;
 	text-align: center;
 }
-#image_addition_tab_area > div:last-child > p > span {
+#image_addition_tab_area > div:last-child > p > span:first-child {
 	color: darkred;
 	font-size: xx-large;
 	font-weight: bold;
@@ -229,7 +229,7 @@ ul > li {
 #all_clear_confirm_area > p {
 	color: darkred;
 }
-#all_clear_confirm_area > p > span {
+#all_clear_confirm_area > p > span:first-child {
 	margin-right: 0.25em;
 	color: lightcoral;
 	font-size: xx-large;
@@ -308,7 +308,7 @@ ul > li {
 	opacity: 0%;
 	user-select: none;
 }
-#background_opacity_area > p > span {
+#background_opacity_area > p > span:first-child {
 	margin-right: 0.25em;
 	font-size: large;
 }

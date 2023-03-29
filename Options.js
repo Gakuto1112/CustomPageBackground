@@ -116,10 +116,10 @@ document.getElementById("load_from_local").addEventListener("click", () => {
 	fileInputElement.multiple = true;
 	fileInputElement.addEventListener("change", () => {
 		processDialog.show();
-		processDialog.setLabel("読み込み中...");
+		processDialog.setLabel(chrome.i18n.getMessage("process_dialog_load"));
 		const fileList = Array.from(fileInputElement.files);
 		const localImages = fileList.filter((file) => file.type.startsWith("image/"));
-		if(fileList.length > localImages.length) alert("画像以外のファイルが含まれています。これらのファイルは無視されます。");
+		if(fileList.length > localImages.length) alert(chrome.i18n.getMessage("error_invalid_files"));
 		loadImages(localImages);
 		if(localImages.length == 0) processDialog.hide();
 	});
@@ -129,14 +129,14 @@ document.getElementById("load_from_local").addEventListener("click", () => {
 //クリップボードから画像読み込み
 document.getElementById("load_from_clipboard").addEventListener("click", () => {
 	processDialog.show();
-	processDialog.setLabel("読み込み中...");
+	processDialog.setLabel(chrome.i18n.getMessage("process_dialog_load"));
 	navigator.clipboard.read().then((clipboard) => {
 		const clipboardImages = clipboard.filter((item) => item.types.find((type) => type.startsWith("image/")));
-		if(clipboard.length > clipboardImages.length) alert("クリップボードから読み取ったデータは画像ではありませんでした。");
+		if(clipboard.length > clipboardImages.length) alert(chrome.i18n.getMessage("error_no_clipboard_image"));
 		Promise.all(clipboardImages.map((image) => image.getType(image.types.find((type) => type.startsWith("image/"))))).then(loadImages);
 		if(clipboardImages.length == 0) processDialog.hide();
 	}).catch(() => {
-		alert("クリップボード読み取りの権限がないため、クリップボードのデータを読み取れませんでした。");
+		alert(chrome.i18n.getMessage("error_no_clipboard_permission"));
 		processDialog.hide();
 	});
 });
@@ -286,7 +286,7 @@ let savedImageCount = 0;
 footer.saveButton.addEventListener("click", () => {
 	footer.hide();
 	processDialog.show();
-	processDialog.setLabel("保存中...");
+	processDialog.setLabel(chrome.i18n.getMessage("process_dialog_saving"));
 	footer.saveButton.disabled = true;
 	let imageAlignNumber;
 	for(let i = 0; i < expandAlign.length; i++) {
@@ -309,7 +309,7 @@ footer.saveButton.addEventListener("click", () => {
 	function saveImage() {
 		chrome.storage.local.set(data, () => {
 			savedImageCount = data.image_count;
-			processDialog.setLabel("保存しました");
+			processDialog.setLabel(chrome.i18n.getMessage("process_dialog_save_done"));
 			setTimeout(processDialog.hide, 1500);
 		});
 	}
@@ -325,15 +325,21 @@ footer.saveButton.addEventListener("click", () => {
 document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => footer.show()));
 
 window.addEventListener("beforeunload", (event) => {
-	if(!footer.saveButton.disabled) event.returnValue = "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？";
+	if(!footer.saveButton.disabled) event.returnValue = chrome.i18n.getMessage("message_unsaved_changes");
 });
 
+//イベント設定等以外の処理
+document.documentElement.lang = chrome.i18n.getMessage("@@ui_locale");
+document.title = chrome.i18n.getMessage("options_title");
+document.querySelectorAll("[data-locale-key]").forEach((element) => element.innerText = chrome.i18n.getMessage(element.dataset.localeKey));
+processDialog.show();
+processDialog.setLabel(chrome.i18n.getMessage("process_dialog_update"));
 const windowRatio = window.innerWidth / window.innerHeight;
 if(windowRatio <= 16 / 9) previewFrame.style.width = `${480 * (windowRatio / 1.78)}px`;
 else previewFrame.style.height = `${270 / (windowRatio / 1.78)}px`;
 drawPreviewElementSample();
 update().then(() => {
-	processDialog.setLabel("読み込み中...");
+	processDialog.setLabel(chrome.i18n.getMessage("process_dialog_load"));
 	chrome.storage.local.get(["image_count", "style"], (result) => {
 		switch(result.style.justify_method) {
 			case 0:
