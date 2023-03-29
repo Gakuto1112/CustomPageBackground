@@ -1,0 +1,222 @@
+{
+	"extension_name": {
+		"message": "カスタム背景",
+		"description": "拡張機能の名前"
+	},
+	"extension_description": {
+		"message": "検索ページ（Google・Bing・Yahoo! JAPAN）の背景にお好みの画像を挿入します。",
+		"description": "拡張機能の説明"
+	},
+	"warning_icon": {
+		"message": "⚠",
+		"description": "警告アイコン"
+	},
+	"options_title": {
+		"message": "カスタム背景　設定画面",
+		"description": "設定画面のタイトル"
+	},
+	"no_image": {
+		"message": "画像未選択",
+		"description": "画像一覧で画像未選択に表示されるテキスト"
+	},
+	"options_section_1_title": {
+		"message": "画像の選択",
+		"description": "設定画面の第1セクションのタイトル"
+	},
+	"tab_local_label": {
+		"message": "ローカルから",
+		"description": "画像をローカルから取得するタブのラベル"
+	},
+	"tab_clipboard_label": {
+		"message": "クリップボードから",
+		"description": "画像をクリップボードから取得するタブのラベル"
+	},
+	"tab_all_clear_label": {
+		"message": "画像全消去",
+		"description": "画像を全て削除するタブのラベル"
+	},
+	"tab_local_description_1": {
+		"message": "お使いのコンピューターから画像を読み込みます。",
+		"description": "画像をローカルから取得するタブの説明1"
+	},
+	"tab_local_button": {
+		"message": "画像を選択",
+		"description": "画像をローカルから取得するタブのボタンのラベル"
+	},
+	"tab_clipboard_description_1": {
+		"message": "クリップボードにコピーされた画像を読み込みます。",
+		"description": "画像をクリップボードから取得するタブの説明1"
+	},
+	"tab_clipboard_description_2": {
+		"message": "クリップボード読み取りの権限が必要です（初回ボタンクリック時に尋ねられます）。",
+		"description": "画像をクリップボードから取得するタブの説明2"
+	},
+	"tab_clipboard_button": {
+		"message": "クリップボードから読み込み",
+		"description": "画像をクリップボードから取得するタブのボタンのラベル"
+	},
+	"tab_all_clear_description_1": {
+		"message": "警告！！",
+		"description": "画像を全て削除するタブの説明1（警告の大きな文字）"
+	},
+	"tab_all_clear_description_2": {
+		"message": "保存されている画像を全て削除します。",
+		"description": "画像を全て削除するタブの説明2"
+	},
+	"tab_all_clear_button": {
+		"message": "画像全消去",
+		"description": "画像を全て削除するタブのボタンのラベル"
+	},
+	"tab_all_clear_confirm": {
+		"message": "宜しいですか？",
+		"description": "画像を全て削除するタブの確認のメッセージ（「⚠」は含まない）"
+	},
+	"options_section_1_note_1": {
+		"message": "お使いのモニターと同じ又は近い画面比の画像が推奨されます。",
+		"description": "設定画面の第1セクションのメモ1"
+	},
+	"options_section_1_note_2": {
+		"message": "解像度の大きい画像が推奨されます。",
+		"description": "設定画面の第1セクションのメモ2"
+	},
+	"options_section_1_note_3": {
+		"message": "複数の画像を選択出来ます。",
+		"description": "設定画面の第1セクションのメモ3"
+	},
+	"options_section_1_note_4": {
+		"message": "複数の画像を選択した場合、対象のページが表示されるたびにランダムで1枚表示されます。",
+		"description": "設定画面の第1セクションのメモ4"
+	},
+	"options_section_1_note_5": {
+		"message": "選択した画像をクリックするとその画像を削除出来ます。",
+		"description": "設定画面の第1セクションのメモ5"
+	},
+	"options_section_2_title": {
+		"message": "スタイルの設定",
+		"description": "設定画面の第2セクションのタイトル"
+	},
+	"image_size_title": {
+		"message": "画像の大きさ",
+		"description": "画像の大きさの設定のタイトル"
+	},
+	"image_size_zoom_in": {
+		"message": "画像全体が映るように縮小する",
+		"description": "画像の大きさの設定の縮小選択肢"
+	},
+	"image_size_zoom_out": {
+		"message": "余白が表示されないように拡大する",
+		"description": "画像の大きさの設定の拡大選択肢"
+	},
+	"image_align_title": {
+		"message": "画像の基準",
+		"description": "画像の基準の設定のタイトル"
+	},
+	"image_align_description": {
+		"message": "画像を拡大した場合、どこを中心に拡大するか選んでください。",
+		"description": "画像の基準の設定の説明"
+	},
+	"image_align_ul": {
+		"message": "左上",
+		"description": "画像の基準位置（左上）"
+	},
+	"image_align_uc": {
+		"message": "上",
+		"description": "画像の基準位置（上）"
+	},
+	"image_align_ur": {
+		"message": "右上",
+		"description": "画像の基準位置（右上）"
+	},
+	"image_align_cl": {
+		"message": "左",
+		"description": "画像の基準位置（左）"
+	},
+	"image_align_cc": {
+		"message": "中央",
+		"description": "画像の基準位置（中央）"
+	},
+	"image_align_cr": {
+		"message": "右",
+		"description": "画像の基準位置（右）"
+	},
+	"image_align_bl": {
+		"message": "左下",
+		"description": "画像の基準位置（左下）"
+	},
+	"image_align_bc": {
+		"message": "下",
+		"description": "画像の基準位置（下）"
+	},
+	"image_align_br": {
+		"message": "右下",
+		"description": "画像の基準位置（右下）"
+	},
+	"image_opacity": {
+		"message": "不透明度",
+		"description": "画像の透明度の設定のタイトル"
+	},
+	"image_opacity_warning": {
+		"message": "画像によってはページの視認性が低下します。",
+		"description": "画像の透明度の設定の警告文"
+	},
+	"image_shadow": {
+		"message": "画像端の影",
+		"description": "画像の影の設定のタイトル"
+	},
+	"options_section_2_note_1": {
+		"message": "上側はプレビューです。",
+		"description": "設定画面の第2セクションのメモ1"
+	},
+	"options_section_2_note_2": {
+		"message": "青枠部分をドラッグする事でプレビュー枠の大きさを変更出来ます。",
+		"description": "設定画面の第2セクションのメモ2"
+	},
+	"options_section_2_note_3": {
+		"message": "プレビュー枠下のボタンでプレビューする画像を切り替えられます。",
+		"description": "設定画面の第2セクションのメモ3"
+	},
+	"options_section_2_note_4": {
+		"message": "背景が変化してもWebページが見えやすいように不透明度等を調整して下さい。",
+		"description": "設定画面の第2セクションのメモ4"
+	},
+	"save_description": {
+		"message": "変更内容を保存するには、右側の「保存」を押して下さい。",
+		"description": "フッターの保存を促す説明"
+	},
+	"save_button": {
+		"message": "保存",
+		"description": "フッターの保存ボタンのラベル"
+	},
+	"process_dialog_update": {
+		"message": "データ形式の更新中...",
+		"description": "データの形式を新しいものにする処理のダイアログのメッセージ"
+	},
+	"process_dialog_load": {
+		"message": "読み込み中...",
+		"description": "データを読み込む処理のダイアログのメッセージ"
+	},
+	"process_dialog_saving": {
+		"message": "保存中...",
+		"description": "保存中のダイアログのメッセージ"
+	},
+	"process_dialog_save_done": {
+		"message": "保存しました",
+		"description": "保存完了時のダイアログのメッセージ"
+	},
+	"error_invalid_files": {
+		"message": "画像以外のファイルが含まれています。これらのファイルは無視されます。",
+		"description": "画像以外のファイルを選択した場合のエラーメッセージ"
+	},
+	"error_no_clipboard_permission": {
+		"message": "クリップボード読み取りの権限がないため、クリップボードのデータを読み取れませんでした。",
+		"description": "クリップボードの読み取り権限がない場合のエラーメッセージ"
+	},
+	"error_no_clipboard_image": {
+		"message": "クリップボードから読み取ったデータは画像ではありませんでした。",
+		"description": "クリップボードに画像がない場合のエラーメッセージ"
+	},
+	"message_unsaved_changes": {
+		"message": "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？",
+		"description": "未保存の変更があるのにページを離れようとする場合に表示するメッセージ（Chromeの場合、実際にはこのメッセージは表示されない）"
+	}
+}

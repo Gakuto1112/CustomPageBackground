@@ -1,0 +1,34 @@
+:root {
+	--background-color: white;
+}
+
+#pTwnEc/* タブ */, #fbar/* フッター */, #appbar/* 約--件（0.--秒） */, #kO001e/* 画像検索 上部検索バー */ {
+	background-color: transparent;
+}
+.c93Gbe/* トップページ フッター */, .sfbg/* 上部検索バー */, .Ww4FFb/* 日本語の検査結果のみ表示します */, .wDYxhc/* Google翻訳 */, .XzTjhb/* 強調スニペット */, .g/* 検索結果 */, .KcXNxb/* ナレッジパネル 詳細 */, .rl_item/* 曲のプレイリスト */, .s8GCU/* 画像検索 ヘッダー背景 */, .jZWadf/* 画像検索 タブ */, .i0X6df/* ショッピング リスト */, .zehhyb/* ショッピング 現在位置 */, .dkw61e/* ショッピング 「この結果について」 */ {
+	background-color: transparent !important;
+}
+.j1iyq/* Google翻訳 言語ボタン */, .ZZ7G7b/* 画像検索 上部関連キーワード */, .iPukc/* 画像検索 中間関連キーワード */, .sh-dr__g/* ショッピング フィルター */ {
+	background-color: var(--background-color);
+}
+.minidiv > .sfbg/* 上部検索バー（ヘッダー） */, .AUiS2/* 他の人はこちらも検索 */, .BwMo1/* サイト内検索 検索ボタン */, .DU1Mzb/* 画像検索 上部検索バー（ヘッダー） */ {
+	background-color: var(--background-color) !important;
+}
+/* サイトアイコン */
+.H9lube {
+	background-color: transparent !important;
+	border: none !important;
+}
+/* Google翻訳 原文入力欄 */
+#KnM9nf {
+	background-color: var(--background-color);
+	border-radius: 8px;
+}
+/* Google翻訳 原文入力欄 クリアボタン */
+#tw-cst {
+	transform: translateX(-10px);
+}
+/* 右矢印のボタン */
+.WeviRb, .SUgb2e {
+	border: none !important;
+}

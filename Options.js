@@ -1,33 +1,165 @@
-const imageSelector = document.getElementById("image_selector");
-function addImage(imageSrc, drawSample, showFooter) {
-	//image_selectorに画像追加
-	const imageDivElement = document.createElement("div");
-	imageDivElement.classList.add("image_div");
-	imageDivElement.addEventListener("click", () => {
-		imageDivElement.remove();
-		slideInFooter();
-	});
-	imageDivElement.addEventListener("mouseover", () => {
-		imageElement.classList.add("remove_hover");
-		xMark.innerText = "x";
-		xMark.classList.add("character_mark", "x_mark");
-		imageDivElement.appendChild(xMark);
-	});
-	imageDivElement.addEventListener("mouseout", () => {
-		imageElement.classList.remove("remove_hover");
-		xMark.remove();
-	});
-	const imageElement = document.createElement("img");
-	imageElement.src = imageSrc;
-	if(drawSample) imageElement.addEventListener("load", () => drawPreviewElementSample(), {once: true});
-	const xMark = document.createElement("p");
-	imageDivElement.appendChild(imageElement);
-	imageSelector.appendChild(imageDivElement);
-	if(showFooter) slideInFooter();
+import { BackgroundImageInjector } from "./BackgroundImageInjector.js";
+import { update } from "./DataStructureUpdater.js";
+
+/**
+ * 処理中のメッセージボックスの操作関連
+ */
+const processDialog = {
+	area: document.getElementById("process_dialog"),
+	/**
+	 * メッセージボックスを表示する。
+	 */
+	show: () => processDialog.area.classList.remove("hidden"),
+	/**
+	 * メッセージボックスを隠す。
+	 */
+	hide: () => processDialog.area.classList.add("hidden"),
+	/**
+	 * メッセージボックスのテキストを変更する。
+	 * @param {string} text 変更するテキスト
+	 */
+	setLabel: (text) => document.querySelector("#process_dialog > p").innerText = text
 }
 
+/**
+ * フッターの操作関連
+ */
+const footer = {
+	footer: document.getElementById("footer"),
+	saveButton: document.getElementById("save"),
+	/**
+	 * フッターを表示する。
+	 */
+	show: () => {
+		document.body.classList.add("footer_space");
+		footer.footer.classList.remove("hidden");
+		footer.saveButton.disabled = false;
+	},
+	/**
+	 * フッターを隠す。
+	 */
+	hide: () => {
+		document.body.classList.remove("footer_space");
+		footer.footer.classList.add("hidden");
+	}
+}
+
+const imageSelector = document.getElementById("image_selector");
+const noImageLabel = document.querySelector("#image_selector > p");
+const allClearButton = document.getElementById("all_clear");
+const allClearConfirmArea = document.getElementById("all_clear_confirm_area");
+/**
+ * "image_selector"に画像を追加する。
+ * @param {string} imageSrc 画像のソース
+ */
+function addImage(imageSrc) {
+	const imageDivElement = document.createElement("div");
+	const imageElement = document.createElement("img");
+	imageElement.src = imageSrc;
+	imageDivElement.addEventListener("click", () => {
+		imageDivElement.remove();
+		if(imageSelector.childElementCount == 1) {
+			noImageLabel.classList.remove("hidden");
+			allClearButton.disabled = true;
+			allClearConfirmArea.classList.add("hidden");
+		}
+		footer.show();
+	});
+	imageDivElement.appendChild(imageElement);
+	imageSelector.appendChild(imageDivElement);
+	noImageLabel.classList.add("hidden");
+	allClearButton.disabled = allClearButton.classList.contains("hidden");
+}
+
+//画像追加のタブの操作
+document.querySelectorAll("#image_addition_tabs > p").forEach((element) => element.addEventListener("click", (event) => {
+	document.getElementsByClassName("active_tab").item(0).classList.remove("active_tab");
+	event.target.classList.add("active_tab");
+	const tabIndex = event.target.getAttribute("data-tab-index");
+	document.querySelectorAll("#image_addition_tab_area > div").forEach((areaElement, index) => {
+		if(index == tabIndex) areaElement.classList.remove("hidden");
+		else areaElement.classList.add("hidden");
+	});
+	if(tabIndex == 2) {
+		document.querySelectorAll("#image_addition_tabs > p:not(:last-child), #image_addition_tab_area").forEach((element) => element.classList.add("warning_border"));
+		allClearButton.disabled = imageSelector.childElementCount == 1;
+	}
+	else {
+		Array.from(document.getElementsByClassName("warning_border")).forEach((element) => element.classList.remove("warning_border"));
+		allClearConfirmArea.classList.add("hidden");
+	}
+}));
+
+/**
+ * 画像の配列から画像を読み込む
+ * @param {Array} imageArray
+ */
+function loadImages(imageArray) {
+	imageArray.forEach((image, index) => {
+		const reader = new FileReader();
+		reader.addEventListener("load", (event) => {
+			addImage(event.target.result);
+			if(index == imageArray.length - 1) {
+				processDialog.hide();
+				footer.show();
+			}
+		}, {once: true});
+		reader.readAsDataURL(image);
+	});
+}
+
+//ローカルから画像読み込み
+document.getElementById("load_from_local").addEventListener("click", () => {
+	const fileInputElement = document.createElement("input");
+	fileInputElement.type = "file";
+	fileInputElement.accept = "image/*";
+	fileInputElement.multiple = true;
+	fileInputElement.addEventListener("change", () => {
+		processDialog.show();
+		processDialog.setLabel(chrome.i18n.getMessage("process_dialog_load"));
+		const fileList = Array.from(fileInputElement.files);
+		const localImages = fileList.filter((file) => file.type.startsWith("image/"));
+		if(fileList.length > localImages.length) alert(chrome.i18n.getMessage("error_invalid_files"));
+		loadImages(localImages);
+		if(localImages.length == 0) processDialog.hide();
+	});
+	fileInputElement.click();
+});
+
+//クリップボードから画像読み込み
+document.getElementById("load_from_clipboard").addEventListener("click", () => {
+	processDialog.show();
+	processDialog.setLabel(chrome.i18n.getMessage("process_dialog_load"));
+	navigator.clipboard.read().then((clipboard) => {
+		const clipboardImages = clipboard.filter((item) => item.types.find((type) => type.startsWith("image/")));
+		if(clipboard.length > clipboardImages.length) alert(chrome.i18n.getMessage("error_no_clipboard_image"));
+		Promise.all(clipboardImages.map((image) => image.getType(image.types.find((type) => type.startsWith("image/"))))).then(loadImages);
+		if(clipboardImages.length == 0) processDialog.hide();
+	}).catch(() => {
+		alert(chrome.i18n.getMessage("error_no_clipboard_permission"));
+		processDialog.hide();
+	});
+});
+
+//画像全削除ボタン
+allClearButton.addEventListener("click", () => {
+	allClearConfirmArea.classList.remove("hidden");
+	allClearButton.disabled = true;
+});
+
+//画像全削除確認ボタン
+document.getElementById("all_clear_confirm").addEventListener("click", () => {
+	noImageLabel.classList.remove("hidden");
+	allClearConfirmArea.classList.add("hidden");
+	allClearButton.disabled = true;
+	footer.show();
+	while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
+});
+
+/**
+ * プレビューの初期描画・再描画を行う。
+ */
 function drawPreviewElementSample() {
-	//プレビュー枠のサンプルを描画する。
 	const canvas = document.getElementById("preview_elements_sample");
 	canvas.width = canvas.clientWidth;
 	canvas.height = canvas.clientHeight;
@@ -51,13 +183,11 @@ function drawPreviewElementSample() {
 const imagePrevious = document.getElementById("image_previous");
 const imageNext = document.getElementById("image_next");
 const imagePositionNow = document.getElementById("image_position_now");
-const imageAllClearButton = document.getElementById("image_all_clear_button");
 function previewChange() {
 	//プレビューの画像変更ボタンの設定
 	document.getElementById("image_position_total").innerText = imageSelector.children.length - 1;
-	imagePrevious.classList.add("button_disabled");
-	if(imageSelector.childElementCount >= 3) imageNext.classList.remove("button_disabled");
-	else imageNext.classList.add("button_disabled");
+	imagePrevious.disabled = true;
+	imageNext.disabled = imageSelector.childElementCount <= 2;
 	if(imageSelector.children.length >= 2) {
 		imagePositionNow.innerText = 1;
 		background.setImage(imageSelector.children.item(1).firstElementChild.src);
@@ -66,30 +196,6 @@ function previewChange() {
 		imagePositionNow.innerText = 0;
 		background.setImage("");
 	}
-	if(imageSelector.childElementCount >= 2) imageAllClearButton.classList.remove("button_disabled");
-	else imageAllClearButton.classList.add("button_disabled");
-}
-
-const footer = document.getElementById("footer");
-function slideInFooter() {
-	//フッターのスライドイン
-	if(footer.classList.contains("hidden")) {
-		footer.classList.remove("hidden");
-		footer.classList.add("footer_slide_in");
-		footer.addEventListener("animationend", () => footer.classList.remove("footer_slide_in"), {once: true});
-	}
-}
-
-function slideOutFooter() {
-	//フッターのスライドアウト
-	if(!footer.classList.contains("hidden")) {
-		footer.classList.remove("footer_slide_in");
-		footer.classList.add("footer_slide_out");
-		footer.addEventListener("animationend", () => {
-			footer.classList.remove("footer_slide_out");
-			footer.classList.add("hidden")
-		}, {once: true});
-	}
 }
 
 const imageSelectorObserver = new MutationObserver(previewChange);
@@ -97,75 +203,30 @@ imageSelectorObserver.observe(imageSelector, {
 	childList: true
 });
 
-document.getElementById("new_image").addEventListener("click", () => {
-	const fileInputElement = document.createElement("input");
-	fileInputElement.type = "file";
-	fileInputElement.accept = ".png, .jpg, .jpeg, .gif";
-	fileInputElement.multiple = true;
-	fileInputElement.addEventListener("change", () => {
-		const fileList = Array.from(fileInputElement.files);
-		const acceptFileType = ["png", "jpg", "jpeg", "gif"];
-		const inputImages = fileList.filter((file) => acceptFileType.indexOf(file.name.split(".").slice(-1)[0].toLowerCase()) >= 0);
-		if(fileList.length != inputImages.length) alert("対応していない拡張子のファイルが選択されています。これらのファイルは無視されます。\n\n使用出来る拡張子は " + acceptFileType.join(", ") + " です。");
-		inputImages.forEach((image) => {
-			const reader = new FileReader();
-			reader.addEventListener("load", (event) => addImage(event.target.result, false, true));
-			reader.readAsDataURL(image);
-		});
-	});
-	fileInputElement.click();
-});
-
-imageAllClearButton.addEventListener("click", () => {
-	if(imageSelector.childElementCount >= 2) {
-		if(confirm("「画像の一括削除」ボタンが押されました。保存してある画像を全て削除します。宜しいですか？")) {
-			while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
-			imageAllClearButton.classList.add("button_disabled");
-		}
-	}
-});
-
-let previewFrameResizeEvent;
 const previewFrame = document.getElementById("preview_frame");
 const backgroundOpacity = document.getElementById("background_opacity");
 const blurBorder = document.getElementById("blur_border");
 const background = new BackgroundImageInjector(previewFrame, "", 0, 4, backgroundOpacity.value, blurBorder.value);
-const justifyMethodExpand = document.getElementById("justify_method_expand");
-if(justifyMethodExpand.checked) background.setJustifyMethod(1);
-const frameRight = document.getElementById("frame_right");
-let mouseX, frameWidth;
-frameRight.addEventListener("mousedown", (event) => {
-	frameWidth = previewFrame.clientWidth;
-	mouseX = event.screenX;
-	previewFrameResizeEvent = (event) => {
-		previewFrame.style.width = frameWidth - mouseX + event.screenX + "px";
-		drawPreviewElementSample();
-	};
-	frameRight.addEventListener("mousemove", previewFrameResizeEvent);
-});
-frameRight.addEventListener("mouseup", () => frameRight.removeEventListener("mousemove", previewFrameResizeEvent));
-frameRight.addEventListener("mouseout", () => frameRight.removeEventListener("mousemove", previewFrameResizeEvent));
-
-const frameBottom = document.getElementById("frame_bottom");
-let mouseY, frameHeight;
-frameBottom.addEventListener("mousedown", (event) => {
-	frameHeight = previewFrame.clientHeight;
-	mouseY = event.screenY;
-	previewFrameResizeEvent = (event) => {
-		previewFrame.style.height = frameHeight - mouseY + event.screenY + "px";
+["frame_right", "frame_bottom", "frame_right_bottom"].forEach((elementId) => document.getElementById(elementId).addEventListener("mousedown", (event) => {
+	function onPreviewResize(event) {
+		if(resizeFrag[0]) previewFrame.style.width = `${frameSize[0] - mousePos[0] + event.screenX}px`;
+		if(resizeFrag[1]) previewFrame.style.height = `${frameSize[1] - mousePos[1] + event.screenY}px`;
 		drawPreviewElementSample();
 	}
-	frameBottom.addEventListener("mousemove", previewFrameResizeEvent);
-});
-frameBottom.addEventListener("mouseup", () => frameBottom.removeEventListener("mousemove", previewFrameResizeEvent));
-frameBottom.addEventListener("mouseout", () => frameBottom.removeEventListener("mousemove", previewFrameResizeEvent));
+
+	const mousePos = [event.screenX, event.screenY];
+	const frameSize = [previewFrame.clientWidth, previewFrame.clientHeight];
+	const resizeFrag = [event.target.id.startsWith("frame_right"), /^frame(_right)?_bottom$/.test(event.target.id)];
+	document.body.addEventListener("mousemove", onPreviewResize);
+	document.body.addEventListener("mouseup", () => document.body.removeEventListener("mousemove", onPreviewResize), {once: true});
+}));
 
 imagePrevious.addEventListener("click", () => {
 	const currentPosition = Number(imagePositionNow.innerText);
 	if(currentPosition >= 2) {
 		imagePositionNow.innerText = currentPosition - 1;
-		if(currentPosition == 2) imagePrevious.classList.add("button_disabled");
-		imageNext.classList.remove("button_disabled");
+		imagePrevious.disabled = currentPosition == 2;
+		imageNext.disabled = false;
 		background.setImage(imageSelector.children.item(currentPosition - 1).firstElementChild.src);
 	}
 });
@@ -174,13 +235,14 @@ imageNext.addEventListener("click", () => {
 	const currentPosition = Number(imagePositionNow.innerText);
 	if(currentPosition <= imageSelector.childElementCount - 2) {
 		imagePositionNow.innerText = currentPosition + 1;
-		if(currentPosition == imageSelector.childElementCount - 2) imageNext.classList.add("button_disabled");
-		imagePrevious.classList.remove("button_disabled");
+		imageNext.disabled = currentPosition == imageSelector.childElementCount - 2;
+		imagePrevious.disabled = false;
 		background.setImage(imageSelector.children.item(currentPosition + 1).firstElementChild.src);
 	}
 });
 
 const justifyMethodWhole = document.getElementById("justify_method_whole");
+const justifyMethodExpand = document.getElementById("justify_method_expand");
 const expandAlignGrid = document.getElementById("expand_align_grid");
 justifyMethodWhole.addEventListener("change", () => {
 	if(justifyMethodWhole.checked) {
@@ -199,68 +261,115 @@ justifyMethodExpand.addEventListener("change", () => {
 
 const expandAlign = document.getElementsByName("expand_align");
 expandAlign.forEach((element) => element.addEventListener("change", () => {
-	expandAlign.forEach((subElement, i) => {
-		if(subElement.checked) background.setImageAlign(i);
-	});
+	for(let i = 0; i < expandAlign.length; i ++) {
+		if(expandAlign.item(i).checked) {
+			background.setImageAlign(i);
+			break;
+		}
+	}
 }));
 
-backgroundOpacity.addEventListener("change", () => background.setOpacity(backgroundOpacity.value));
+const hardVisibilityMessage = document.querySelector("#background_opacity_area > p");
+backgroundOpacity.addEventListener("change", () => {
+	background.setOpacity(backgroundOpacity.value);
+	if(backgroundOpacity.value >= 0.5) hardVisibilityMessage.classList.remove("hidden");
+	else hardVisibilityMessage.classList.add("hidden");
+});
 
 blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value));
 
-const applySiteList = document.getElementById("apply_site_list");
-const saveButton = document.getElementById("save_button");
-let saving = false;
-saveButton.addEventListener("click", () => {
-	if(!saving) {
-		saving = true;
-		saveButton.classList.add("button_disabled");
-		const images = Array.from(imageSelector.children).slice(1).map((image) => image.firstElementChild.src);
-		let justifyMethodNumber = 0;
-		if(justifyMethodExpand.checked) justifyMethodNumber = 1
-		let imageAlignNumber = 4;
-		expandAlign.forEach((element, i) => {
-			if(element.checked) imageAlignNumber = i;
-		});
-		chrome.storage.local.set({
-			images: images,
-			style: {
-				justify_method: justifyMethodNumber,
-				image_align: imageAlignNumber,
-				opacity: backgroundOpacity.value,
-				border_blur: blurBorder.value
-			},
-			apply_sites: applySiteList.value.split("\n")
-		}, () => {
-			chrome.runtime.sendMessage({message: "reload"});
-			alert("保存しました。");
-			slideOutFooter();
-			saveButton.classList.remove("button_disabled");
-			saving = false;
+/**
+ * 画像の保存枚数
+ * @type {number}
+ */
+let savedImageCount = 0;
+footer.saveButton.addEventListener("click", () => {
+	footer.hide();
+	processDialog.show();
+	processDialog.setLabel(chrome.i18n.getMessage("process_dialog_saving"));
+	footer.saveButton.disabled = true;
+	let imageAlignNumber;
+	for(let i = 0; i < expandAlign.length; i++) {
+		if(expandAlign.item(i).checked) {
+			imageAlignNumber = i;
+			break;
+		}
+	}
+	const data = {
+		image_count: 0,
+		style: {
+			justify_method: justifyMethodExpand.checked ? 1 : 0,
+			image_align: imageAlignNumber,
+			opacity: backgroundOpacity.value,
+			border_blur: blurBorder.value
+		}
+	}
+	Array.from(imageSelector.children).slice(1).forEach((imageDiv) => data[`image_${data.image_count++}`] = imageDiv.firstElementChild.src);
+
+	function saveImage() {
+		chrome.storage.local.set(data, () => {
+			savedImageCount = data.image_count;
+			processDialog.setLabel(chrome.i18n.getMessage("process_dialog_save_done"));
+			setTimeout(processDialog.hide, 1500);
 		});
 	}
-});
 
-chrome.storage.local.get(["images", "style", "apply_sites"], (result) => {
-	result.images.forEach((image, index) => addImage(image, index == 0, false));
-	switch(result.style.justify_method) {
-		case 0:
-			justifyMethodWhole.checked = true;
-			break;
-		case 1:
-			justifyMethodExpand.checked = true;
-			expandAlignGrid.parentElement.classList.remove("hidden");
-			break;
+	if(data.image_count < savedImageCount) {
+		const removeImageArray = [];
+		for(let i = data.image_count; i < savedImageCount; i++) removeImageArray.push(`image_${i}`);
+		chrome.storage.local.remove(removeImageArray, saveImage);
 	}
-	background.setJustifyMethod(result.style.justify_method);
-	expandAlign.item(result.style.image_align).checked = true;
-	background.setImageAlign(result.style.image_align);
-	backgroundOpacity.value = result.style.opacity;
-	background.setOpacity(result.style.opacity);
-	blurBorder.value = result.style.border_blur;
-	background.setBlur(result.style.border_blur);
-	applySiteList.value = result.apply_sites.join("\n");
+	else saveImage();
 });
 
-document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => slideInFooter()));
-applySiteList.addEventListener("input", () => slideInFooter());
+document.querySelectorAll(".modify").forEach((element) => element.addEventListener("click", () => footer.show()));
+
+window.addEventListener("beforeunload", (event) => {
+	if(!footer.saveButton.disabled) event.returnValue = chrome.i18n.getMessage("message_unsaved_changes");
+});
+
+//イベント設定等以外の処理
+document.documentElement.lang = chrome.i18n.getMessage("@@ui_locale");
+document.title = chrome.i18n.getMessage("options_title");
+document.querySelectorAll("[data-locale-key]").forEach((element) => element.innerText = chrome.i18n.getMessage(element.dataset.localeKey));
+processDialog.show();
+processDialog.setLabel(chrome.i18n.getMessage("process_dialog_update"));
+const windowRatio = window.innerWidth / window.innerHeight;
+if(windowRatio <= 16 / 9) previewFrame.style.width = `${480 * (windowRatio / 1.78)}px`;
+else previewFrame.style.height = `${270 / (windowRatio / 1.78)}px`;
+drawPreviewElementSample();
+update().then(() => {
+	processDialog.setLabel(chrome.i18n.getMessage("process_dialog_load"));
+	chrome.storage.local.get(["image_count", "style"], (result) => {
+		switch(result.style.justify_method) {
+			case 0:
+				justifyMethodWhole.checked = true;
+				break;
+			case 1:
+				justifyMethodExpand.checked = true;
+				expandAlignGrid.parentElement.classList.remove("hidden");
+				break;
+		}
+		background.setJustifyMethod(result.style.justify_method);
+		expandAlign.item(result.style.image_align).checked = true;
+		background.setImageAlign(result.style.image_align);
+		backgroundOpacity.value = result.style.opacity;
+		if(result.style.opacity >= 0.5) hardVisibilityMessage.classList.remove("hidden");
+		background.setOpacity(result.style.opacity);
+		blurBorder.value = result.style.border_blur;
+		background.setBlur(result.style.border_blur);
+		if(result.image_count > 0) {
+			const loadImageArray = [];
+			for(let i = 0; i < result.image_count; i++)  loadImageArray.push(`image_${i}`);
+			chrome.storage.local.get(loadImageArray, (resultImages) => {
+				for(let i = 0; i < result.image_count; i++) addImage(resultImages[`image_${i}`]);
+				savedImageCount = result.image_count;
+				processDialog.hide();
+			});
+		}
+		else {
+			savedImageCount = result.image_count;
+			processDialog.hide();
+		}
+	});
+});

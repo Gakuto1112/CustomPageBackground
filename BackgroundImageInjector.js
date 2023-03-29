@@ -1,4 +1,4 @@
-class BackgroundImageInjector {
+export class BackgroundImageInjector {
 	constructor(elementToInject, imageSrc, justifyMethod, imageAlign, opacity, blur) {
 		this.elementToInject = elementToInject;
 		this.justifyMethod = justifyMethod;
@@ -150,6 +150,6 @@ class BackgroundImageInjector {
 					this.backgroundBorderBlur.style.height = "100%";
 				}
 				break;
-		}	
+		}
 	}
 }

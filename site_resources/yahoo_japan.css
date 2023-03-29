@@ -1,0 +1,27 @@
+header/* ヘッダー */, .sw-Expand__button/* 「ツール」タブ */, #contents/* メイン背景 */, .sw-CardBase:not(.sw-CardBase--shadow)/* 検索結果 */, .AnswerSPRO__goodDeliveryTrigger/* Yahoo!ショッピング 優良配送 */, footer/* フッター */, .Footer__space--searchBox/* フッター 検索バー */ {
+	background-color: transparent !important;
+}
+.sw-FilterToolbar/* 画像検索 検索フィルター */, .sw-WordsList/* 画像検索 関連キーワード */ {
+	background-color: white;
+}
+/* 画像タグの展開ボタン */
+.sw-Chips__expandTrigger {
+	background-color: white !important;
+}
+/* Yahoo!ショッピング カルーセル 背景 */
+.sw-Carousel__listItem {
+	padding: 17px 16px 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+.sw-Carousel__listItemLink .sw-Carousel__info {
+	padding: none !important;
+}
+/* 関連項目 矢印 */
+.sw-Icon--product_navigate_next {
+	display: none !important;
+}
+/* 検索ページ番号 */
+.Pagenation__page a, .Pagenation__next a, .Pagenation__prev a {
+	border-radius: 4px;
+}

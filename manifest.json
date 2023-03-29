@@ -1,25 +1,101 @@
 {
 	"manifest_version": 3,
-	"name": "カスタム背景",
-	"version": "1.1.0",
-	"description": "Webページ（検索エンジン等）の背景にお好みの画像を挿入します。",
+	"name": "__MSG_extension_name__",
+	"version": "1.2.0",
+	"description": "__MSG_extension_description__",
+	"author": "gakuto131112@gmail.com",
+	"default_locale": "en_US",
 	"icons": {
-		"16": "Icons/Icon16.png",
-		"48": "Icons/Icon48.png",
-		"128": "Icons/Icon128.png"
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png"
+	},
+	"action": {
+		"default_icon": {
+			"16": "icons/icon16.png",
+			"48": "icons/icon48.png",
+			"128": "icons/icon128.png"
+		}
 	},
 	"permissions": [
 		"storage",
-		"unlimitedStorage",
-		"tabs",
-		"scripting"
+		"unlimitedStorage"
 	],
-	"host_permissions": [
-		"https://*/",
-		"http://*/"
+	"content_scripts":[
+		{
+			"js": [
+				"CustomPageBackground.js",
+				"site_resources/google.js"
+			],
+    		"css": [
+				"BackgroundImageInjector.css",
+				"site_resources/google.css"
+			],
+			"matches": [
+				"https://www.google.com/",
+				"https://www.google.com/webhp?*",
+        		"https://www.google.com/search?*"
+    		]
+		},
+		{
+			"js": [
+				"CustomPageBackground.js"
+			],
+    		"css": [
+				"BackgroundImageInjector.css",
+				"site_resources/bing.css"
+			],
+			"matches": [
+				"https://www.bing.com/",
+        		"https://www.bing.com/search?*",
+				"https://www.bing.com/images/search?*",
+				"https://www.bing.com/videos/search?*",
+				"https://www.bing.com/news/search?*"
+    		]
+		},
+		{
+			"js": [
+				"CustomPageBackground.js",
+				"site_resources/bing_shopping.js"
+			],
+    		"css": [
+				"BackgroundImageInjector.css",
+				"site_resources/bing.css"
+			],
+			"matches": [
+				"https://www.bing.com/shop?*"
+    		]
+		},
+		{
+			"js": [
+				"CustomPageBackground.js"
+			],
+    		"css": [
+				"BackgroundImageInjector.css",
+				"site_resources/yahoo_japan.css"
+			],
+			"matches": [
+				"https://search.yahoo.co.jp/search?*",
+				"https://search.yahoo.co.jp/image/search?*",
+				"https://search.yahoo.co.jp/video/search?*"
+    		]
+		}
 	],
 	"background": {
 		"service_worker": "ServiceWorker.js"
 	},
-	"options_page": "Options.html"
+	"options_page": "Options.html",
+	"web_accessible_resources": [
+		{
+			"matches": [
+				"https://www.google.com/*",
+				"https://www.bing.com/*",
+				"https://search.yahoo.co.jp/*"
+			],
+    		"resources": [
+				"BackgroundImageInjector.js",
+				"DataStructureUpdater.js"
+			]
+		}
+	]
 }

@@ -1,131 +1,146 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 	<head>
 		<meta charset="utf-8">
-		<title>カスタム背景　設定画面</title>
-		<script defer src="BackgroundImageInjector.js"></script>
-		<script defer src="Options.js"></script>
+		<title></title>
+		<script type="module" defer src="Options.js"></script>
 		<link rel="stylesheet" href="BackgroundImageInjector.css">
 		<link rel="stylesheet" href="Options.css">
 	</head>
 	<body>
+		<div id="process_dialog">
+			<p></p>
+		</div>
 		<div id="header">
 			<img src="Icons\Icon128.png">
-			<h1>カスタム背景設定画面</h1>
+			<h1 data-locale-key="options_title"></h1>
 		</div>
 		<ol>
-			<li>画像の選択</li>
+			<li data-locale-key="options_section_1_title"></li>
 				<div id="image_selector">
-					<div id="new_image">
-						<p class="character_mark">+</p>
+					<p data-locale-key="no_image"></p>
+				</div>
+				<div id="image_addition_area">
+					<div id="image_addition_tabs">
+						<p data-tab-index="0" class="active_tab" data-locale-key="tab_local_label"></p>
+						<p data-tab-index="1" data-locale-key="tab_clipboard_label"></p>
+						<p data-tab-index="2" data-locale-key="tab_all_clear_label"></p>
+					</div>
+					<div id="image_addition_tab_area">
+						<div>
+							<p class="image_addition_tab_text" data-locale-key="tab_local_description_1"></p>
+							<button id="load_from_local" class="big_button" data-locale-key="tab_local_button"></button>
+						</div>
+						<div class="hidden">
+							<div class="image_addition_tab_text">
+								<p data-locale-key="tab_clipboard_description_1"></p>
+								<p data-locale-key="tab_clipboard_description_2"></p>
+							</div>
+							<button id="load_from_clipboard" class="big_button" data-locale-key="tab_clipboard_button"></button>
+						</div>
+						<div class="hidden">
+							<p class="image_addition_tab_text"><span data-locale-key="tab_all_clear_description_1"></span><span data-locale-key="tab_all_clear_description_2"></span></p>
+							<button id="all_clear" class="big_button warning_button" data-locale-key="tab_all_clear_button" disabled></button>
+							<div id="all_clear_confirm_area" class="hidden">
+								<p class="image_addition_tab_text"><span data-locale-key="warning_icon"></span><span data-locale-key="tab_all_clear_confirm"></span></p>
+								<button id="all_clear_confirm" class="big_button warning_button" data-locale-key="tab_all_clear_button"></button>
+							</div>
+						</div>
 					</div>
 				</div>
-				<p id="image_all_clear_button" class="button button_disabled">画像の一括削除</p>
 				<ul>
-					<li>お使いのモニターと同じ又は近い画面比の画像が推奨です。</li>
-					<li>解像度の大きい画像が推奨です。</li>
-					<li>複数の画像を選択出来ます。</li>
-					<li>複数の画像を選択した場合、対象のページが表示されるたびにランダムで1枚表示されます。</li>
-					<li>選択した画像をクリックするとその画像を削除出来ます。</li>
-					<li>大量の画像を選択すると画像の表示に時間がかかる場合があります。</li>
+					<li data-locale-key="options_section_1_note_1"></li>
+					<li data-locale-key="options_section_1_note_2"></li>
+					<li data-locale-key="options_section_1_note_3"></li>
+					<li data-locale-key="options_section_1_note_4"></li>
+					<li data-locale-key="options_section_1_note_5"></li>
 				</ul>
-			<li>スタイルの設定</li>
+			<li data-locale-key="options_section_2_title"></li>
 			<div id="style_area">
 				<div id="preview_area">
 					<div id="preview_frame">
+						<div id="frame_right_bottom"></div>
 						<div id="frame_right"></div>
 						<div id="frame_bottom"></div>
 						<canvas id="preview_elements_sample" width="480" height="270"></canvas>
 					</div>
 					<div id="image_change">
-						<p id="image_previous" class="button button_disabled">←</p>
+						<button id="image_previous" disabled>←</button>
 						<p id="image_position"><span id="image_position_now">0</span>/<span id="image_position_total">0</span></p>
-						<p id="image_next" class="button button_disabled">→</p>
+						<button id="image_next" disabled>→</button>
 					</div>
 				</div>
 				<div id="style_settings">
-					<h2>調整方法</h2>
+					<h2 data-locale-key="image_size_title"></h2>
 					<div>
 						<input type="radio" id="justify_method_whole" name="justify_method" class="modify" checked>
-						<label for="justify_method_whole">画像全体が映るように調整する</label>
+						<label for="justify_method_whole" data-locale-key="image_size_zoom_in"></label>
 					</div>
 					<div>
 						<input type="radio" id="justify_method_expand" name="justify_method" class="modify">
-						<label for="justify_method_expand">余白が表示されないように画像を拡大する</label>
+						<label for="justify_method_expand" data-locale-key="image_size_zoom_out"></label>
 					</div>
 					<div class="hidden">
-						<h2>画像の基準</h2>
-						<p>画像を拡大した場合、どこを中心に拡大するか選んでください。</p>
+						<h2 data-locale-key="image_align_title"></h2>
+						<p data-locale-key="image_align_description"></p>
 						<div id="expand_align_grid">
 							<div>
 								<input type="radio" id="expand_align_ul" name="expand_align" class="modify">
-								<label for="expand_align_ul">左上</label>
+								<label for="expand_align_ul" data-locale-key="image_align_ul"></label>
 							</div>
 							<div>
 								<input type="radio" id="expand_align_uc" name="expand_align" class="modify">
-								<label for="expand_align_uc">上</label>
+								<label for="expand_align_uc" data-locale-key="image_align_uc"></label>
 							</div>
 							<div>
 								<input type="radio" id="expand_align_ur" name="expand_align" class="modify">
-								<label for="expand_align_ur">右上</label>
+								<label for="expand_align_ur" data-locale-key="image_align_ur"></label>
 							</div>
 							<div>
 								<input type="radio" id="expand_align_cl" name="expand_align" class="modify">
-								<label for="expand_align_cl">左</label>
+								<label for="expand_align_cl" data-locale-key="image_align_cl"></label>
 							</div>
 							<div>
 								<input type="radio" id="expand_align_cc" name="expand_align" class="modify" checked>
-								<label for="expand_align_cc">中央</label>
+								<label for="expand_align_cc" data-locale-key="image_align_cc"></label>
 							</div>
 							<div>
 								<input type="radio" id="expand_align_cr" name="expand_align" class="modify">
-								<label for="expand_align_cr">右</label>
+								<label for="expand_align_cr" data-locale-key="image_align_cr"></label>
 							</div>
 							<div>
 								<input type="radio" id="expand_align_bl" name="expand_align" class="modify">
-								<label for="expand_align_bl">左下</label>
+								<label for="expand_align_bl" data-locale-key="image_align_bl"></label>
 							</div>
 							<div>
 								<input type="radio" id="expand_align_bc" name="expand_align" class="modify">
-								<label for="expand_align_bc">下</label>
+								<label for="expand_align_bc" data-locale-key="image_align_bc"></label>
 							</div>
 							<div>
-								<input type="radio" id="expand_align_ur" name="expand_align" class="modify">
-								<label for="expand_align_br">右下</label>
+								<input type="radio" id="expand_align_br" name="expand_align" class="modify">
+								<label for="expand_align_br" data-locale-key="image_align_br"></label>
 							</div>
 						</div>
 					</div>
-					<h2>透明度</h2>
-					<input type="range" id="background_opacity" class="modify" min="0" max="1" step="0.01" value="0.5">
-					<h2>ぼかしの大きさ</h2>
+					<h2 data-locale-key="image_opacity"></h2>
+					<div id="background_opacity_area">
+						<input type="range" id="background_opacity" class="modify" min="0" max="1" step="0.01" value="0.5">
+						<p class="hidden"><span data-locale-key="warning_icon"></span><span data-locale-key="image_opacity_warning"></span></p>
+					</div>
+					<h2 data-locale-key="image_shadow"></h2>
 					<input type="range" id="blur_border" class="modify" min="0" max="50" step="1" value="10">
 				</div>
 			</div>
 			<ul>
-				<li>左側はプレビューです。</li>
-				<li>青枠部分をドラッグする事でプレビュー枠の大きさを変更出来ます。</li>
-				<li>プレビュー枠下のボタンでプレビューする画像を切り替えられます。</li>
-				<li>背景が変化してもWebページが見えやすいように透明度等を調整して下さい。</li>
-			</ul>
-			<li>表示ページの設定</li>
-			<textarea id="apply_site_list"></textarea>
-			<h3>入力例</h3>
-			<div id="url_examples">
-				<p>https://www.google.com/search</p>
-				<p>https://www.bing.com/search</p>
-				<p>https://search.yahoo.co.jp</p>
-			</div>
-			<ul>
-				<li>上のテキストエリアに背景を適用したいWebサイトのURLを1行に1つずつ入力して下さい（複数のURLを入力する場合は、その都度改行して下さい）。</li>
-				<li>「https://」または「http://」から入力して下さい。</li>
-				<li>URLは前方一致です。</li>
-				<li>全てのサイトで正常に背景が表示されるとは限りません。</li>
-				<li>上のテキストエリアの右下をドラッグするとサイズを変更出来ます。</li>
+				<li data-locale-key="options_section_2_note_1"></li>
+				<li data-locale-key="options_section_2_note_2"></li>
+				<li data-locale-key="options_section_2_note_3"></li>
+				<li data-locale-key="options_section_2_note_4"></li>
 			</ul>
 		</ol>
 		<div id="footer" class="hidden">
-			<p>変更内容を保存するには、右側の「保存」を押して下さい。</p>
-			<p id="save_button" class="button">保存</p>
+			<p data-locale-key="save_description"></p>
+			<button id="save" class="big_button" data-locale-key="save_button" disabled></button>
 		</div>
 	</body>
 </html>
