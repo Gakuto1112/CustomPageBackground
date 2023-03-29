@@ -135,6 +135,9 @@ document.getElementById("load_from_clipboard").addEventListener("click", () => {
 		if(clipboard.length > clipboardImages.length) alert("クリップボードから読み取ったデータは画像ではありませんでした。");
 		Promise.all(clipboardImages.map((image) => image.getType(image.types.find((type) => type.startsWith("image/"))))).then(loadImages);
 		if(clipboardImages.length == 0) processDialog.hide();
+	}).catch(() => {
+		alert("クリップボード読み取りの権限がないため、クリップボードのデータを読み取れませんでした。");
+		processDialog.hide();
 	});
 });
 
