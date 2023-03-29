@@ -1,19 +1,8 @@
-
-/* ヘッダー */
-header {
+header/* ヘッダー */, .sw-Expand__button/* 「ツール」タブ */, #contents/* メイン背景 */, .sw-CardBase:not(.sw-CardBase--shadow)/* 検索結果 */, .AnswerSPRO__goodDeliveryTrigger/* Yahoo!ショッピング 優良配送 */, footer/* フッター */, .Footer__space--searchBox/* フッター 検索バー */ {
 	background-color: transparent !important;
 }
-/* 「ツール」タブ */
-.sw-Expand__button {
-	background-color: transparent !important;
-}
-/* メイン背景 */
-#contents {
-	background-color: transparent !important;
-}
-/* 検索結果 */
-.sw-CardBase:not(.sw-CardBase--shadow) {
-	background-color: transparent !important;
+.sw-FilterToolbar/* 画像検索 検索フィルター */, .sw-WordsList/* 画像検索 関連キーワード */ {
+	background-color: white;
 }
 /* 画像タグの展開ボタン */
 .sw-Chips__expandTrigger {
@@ -28,10 +17,6 @@ header {
 .sw-Carousel__listItemLink .sw-Carousel__info {
 	padding: none !important;
 }
-/* Yahoo!ショッピング 優良配送 */
-.AnswerSPRO__goodDeliveryTrigger {
-	background-color: transparent !important;
-}
 /* 関連項目 矢印 */
 .sw-Icon--product_navigate_next {
 	display: none !important;
@@ -39,20 +24,4 @@ header {
 /* 検索ページ番号 */
 .Pagenation__page a, .Pagenation__next a, .Pagenation__prev a {
 	border-radius: 4px;
-}
-/* フッター */
-footer {
-	background-color: transparent !important;
-}
-/* フッター 検索バー */
-.Footer__space--searchBox {
-	background-color: transparent !important;
-}
-/* 画像検索 検索フィルター */
-.sw-FilterToolbar {
-	background-color: white;
-}
-/* 画像検索 関連キーワード */
-.sw-WordsList {
-	background-color: white;
 }

@@ -2,50 +2,22 @@
 	--background-color: white;
 }
 
-/* トップページ フッター */
-.c93Gbe {
+#pTwnEc/* タブ */, #fbar/* フッター */, #appbar/* 約--件（0.--秒） */, #kO001e/* 画像検索 上部検索バー */ {
+	background-color: transparent;
+}
+.c93Gbe/* トップページ フッター */, .sfbg/* 上部検索バー */, .Ww4FFb/* 日本語の検査結果のみ表示します */, .wDYxhc/* Google翻訳 */, .XzTjhb/* 強調スニペット */, .g/* 検索結果 */, .KcXNxb/* ナレッジパネル 詳細 */, .rl_item/* 曲のプレイリスト */, .s8GCU/* 画像検索 ヘッダー背景 */, .jZWadf/* 画像検索 タブ */, .i0X6df/* ショッピング リスト */, .zehhyb/* ショッピング 現在位置 */, .dkw61e/* ショッピング 「この結果について」 */ {
 	background-color: transparent !important;
 }
-/* 上部検索バー */
-.sfbg {
-	background-color: transparent !important;
+.j1iyq/* Google翻訳 言語ボタン */, .ZZ7G7b/* 画像検索 上部関連キーワード */, .iPukc/* 画像検索 中間関連キーワード */, .sh-dr__g/* ショッピング フィルター */ {
+	background-color: var(--background-color);
 }
-/* 上部検索バー（ヘッダー） */
-.minidiv > .sfbg {
+.minidiv > .sfbg/* 上部検索バー（ヘッダー） */, .AUiS2/* 他の人はこちらも検索 */, .BwMo1/* サイト内検索 検索ボタン */, .DU1Mzb/* 画像検索 上部検索バー（ヘッダー） */ {
 	background-color: var(--background-color) !important;
-}
-/* タブ */
-#pTwnEc {
-	background-color: transparent;
-}
-/* フッター */
-#fbar {
-	background-color: transparent;
-}
-/* 約--件（0.--秒） */
-#appbar {
-	background-color: transparent;
-}
-/* 日本語の検査結果のみ表示します */
-.Ww4FFb {
-	background-color: transparent !important;
 }
 /* サイトアイコン */
 .H9lube {
 	background-color: transparent !important;
 	border: none !important;
-}
-/* 他の人はこちらも検索 */
-.AUiS2 {
-	background-color: var(--background-color) !important;
-}
-/* Google翻訳 */
-.wDYxhc {
-	background-color: transparent !important;
-}
-/* Google翻訳 言語ボタン */
-.j1iyq {
-	background-color: var(--background-color);
 }
 /* Google翻訳 原文入力欄 */
 #KnM9nf {
@@ -56,66 +28,7 @@
 #tw-cst {
 	transform: translateX(-10px);
 }
-/* 強調スニペット */
-.XzTjhb {
-	background-color: transparent !important;
-}
-/* サイト内検索 検索ボタン */
-.BwMo1 {
-	background-color: var(--background-color) !important;
-}
-/* 検索結果 */
-.g {
-	background-color: transparent !important;
-}
-/* ナレッジパネル 詳細 */
-.KcXNxb {
-	background-color: transparent !important;
-}
-/* 曲のプレイリスト */
-.rl_item {
-	background-color: transparent !important;
-}
+/* 右矢印のボタン */
 .WeviRb, .SUgb2e {
 	border: none !important;
-}
-/* 画像検索 ヘッダー背景 */
-.s8GCU {
-	background-color: transparent !important;
-}
-/* 画像検索 上部検索バー */
-#kO001e {
-	background-color: transparent;
-}
-/* 画像検索 上部検索バー（ヘッダー） */
-.DU1Mzb {
-	background-color: var(--background-color) !important;
-}
-/* 画像検索 タブ */
-.jZWadf {
-	background-color: transparent !important;
-}
-/* 画像検索 上部関連キーワード */
-.ZZ7G7b {
-	background-color: var(--background-color);
-}
-/* 画像検索 中間関連キーワード */
-.iPukc {
-	background-color: var(--background-color);
-}
-/* ショッピング リスト */
-.i0X6df {
-	background-color: transparent !important;
-}
-/* ショッピング フィルター */
-.sh-dr__g {
-	background-color: var(--background-color);
-}
-/* ショッピング 現在位置 */
-.zehhyb {
-	background-color: transparent !important;
-}
-/* ショッピング 「この結果について」 */
-.dkw61e {
-	background-color: transparent !important;
 }

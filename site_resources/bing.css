@@ -1,24 +1,32 @@
-/* トップページ */
-body, .no_image, .img_cont, .img_uhd, .hp_top_cover {
+.imgAnsbg/* 画像一覧（一般検索に出てくる方） */, .itmicon/* 動画検索 ビデオの参照元 アイコン */ {
+	background: transparent !important;
+}
+#vrp_tvs/* 動画検索 作品説明 */ {
+	background-color: transparent;
+}
+body, .no_image, .img_cont, .img_uhd, .hp_top_cover/* トップページ */, .ent-dtab-ovr/* バナータイトル */, #ent-car-exp/* さらに表示 */, .b_wfrcell/* レシピ一覧 */, .b_algo/* 検索結果 */, .tab-head div, .tab-menu li/* サイト内説明 タブ */, .pageRecoContainer/* 関連ページを探索する。 */, .sa_titlePane/* ショッピングタイトル */, .b_msg/* 一部の検索結果が削除されました */, .b_ans/* 関連する結果 */, footer/* フッター */, #b_header/* 画像検索 ヘッダー */, #rfPane/* 画像検索 ヘッダーと画像一覧の間の隙間 */, .dg_b/* 画像検索 画像一覧 背景 */, .sel/* 動画検索 すべてのビデオを見る */, .carousel-controls, #rfCarousel > div > div > div > div > ol /* 動画検索 タグ一覧 */, .dg_u/* 動画検索 検索結果 */, .br-pdInfo/* ショッピング 説明欄 */, #btf_content/* ショッピング 関連検索 */, .br_slug/* ショッピング 詳細 (i) */ {
 	background-color: transparent !important;
+}
+.algoSlug_icon/* 検索結果 ページの種類 ウェブ */, .b_adSlug/* 検索結果 ページの種類 広告 */, .sl_item/* 広告リスト サブボタン */, .dlCollapsedCnt > div > ul > li:hover/* サイト内検索 */, .slide/* ストリーミングカード */, .b_insideSlide/* サイト内スライド */, .df_alsoAskCard/* 他の人はこちらも質問 */, #placeAnswer/* その場所について */, .lite-entcard-main, .lite-entityv2-main/* 説明カード */, .b_cbContainer/* 語句の定義 */, .disambig-outline/* 結果を見る */, .pa_hCard/* 広告商品リスト */, .wpvn_ala/* 「関連する結果」の中身 */, .richrswrapper/* 「関連キーワード」の中身 */ {
+	background-color: white;
+}
+.b_algo.b_algoBorder/* 枠付き検索結果1 */, .b_ans.b_top.b_topborder/* Bing翻訳 */, .lgb_ans/* マップ */, .b_ans.b_nwsAns/* ニュース */, .b_ans.b_imgans/* 画像 */, .b_algo.b_algoBigWiki/* Wikipedia */, .b_ans.b_nonfirsttopb/* 短いサイトプレビュー */ {
+	background-color: white !important;
+}
+.wide_wideAlgo/* YouTubeサムネイル */, .iuscp, .infopt/* 画像検索 画像一覧 */, .news-side-nav.dsncn:hover/* ニュース サイドバー */ {
+	background-color: transparent !important;
+	box-shadow: none !important;
+}
+#wfrCarousel/* レシピ一覧 非表示部の線 */, .tab-head/* サイト説明 タブ */ {
+	border-bottom: none !important;
+}
+.b-conclfb-container > svg/* この回答は役に立ちましたか？ 矢印 */, .openans_gradient_div/* はみ出たスライドの白いグラデーション */ {
+	display: none;
 }
 /* バナー */
 .b_wpTabsWrapper, .ent-dtab-content, .ent-dtab-style-content {
 	background-color: transparent !important;
 	border-bottom: none !important;
-}
-/* バナータイトル */
-.ent-dtab-ovr {
-	background-color: transparent !important;
-	border: none !important;
-}
-/* さらに表示 */
-#ent-car-exp {
-	background-color: transparent !important;
-}
-/* 画像一覧（一般検索に出てくる方） */
-.imgAnsbg {
-	background: transparent !important;
 }
 /* 画像一覧 白いバリを削除 */
 .wfr_cells div {
@@ -28,52 +36,9 @@ body, .no_image, .img_cont, .img_uhd, .hp_top_cover {
 .wfr_sm::before, .wfr_sms {
 	display: none !important;
 }
-/* レシピ一覧 */
-.b_wfrcell {
-	background-color: transparent !important;
-}
-/* レシピ一覧 非表示部の線 */
-#wfrCarousel {
-	border-bottom: none !important;
-}
-/* 検索結果 */
-.b_algo {
-	background-color: transparent !important;
-}
-/* 枠付き検索結果1 */
-.b_algo.b_algoBorder {
-	background-color: white !important;
-}
-/* 検索結果 ページの種類 ウェブ */
-.algoSlug_icon {
-	background-color: white;
-}
-/* 検索結果 ページの種類 広告 */
-.b_adSlug {
-	background-color: white;
-}
-/* 広告リスト サブボタン */
-.sl_item {
-	background-color: white;
-}
-/* サイト内検索 */
-.dlCollapsedCnt div ul li:hover {
-	background-color: white;
-}
-/* サイト説明 タブ */
-.tab-head {
-	border-bottom: none !important;
-}
-.tab-head div, .tab-menu li {
-	background-color: transparent !important;
-}
 /* この回答は役に立ちましたか？（ガバガバBingに代わって修正） */
 .b-conclfb-container {
 	width: 100%;
-}
-/* この回答は役に立ちましたか？ 矢印 */
-.b-conclfb-container svg {
-	display: none;
 }
 /* この回答は役に立ちましたか？ 本文 */
 .b-conclfb-container span::before {
@@ -83,18 +48,10 @@ body, .no_image, .img_cont, .img_uhd, .hp_top_cover {
 .b-fbbtn-container {
 	margin: 0 !important;
 }
-/* Bing翻訳 */
-.b_ans.b_top.b_topborder {
-	background-color: white !important;
-}
 /* マップ1 */
 #lMapContainer, .mt_mop {
 	background-color: white;
 	border-radius: 6px;
-}
-/* マップ2 */
-.lgb_ans {
-	background-color: white !important;
 }
 /* マップ本体 */
 #dynamicMap_2, .MicrosoftMap div {
@@ -115,102 +72,13 @@ body, .no_image, .img_cont, .img_uhd, .hp_top_cover {
 .rel_ent_w {
 	border-radius: 0 0 6px 6px;
 }
-/* ニュース */
-.b_ans.b_nwsAns {
-	background-color: white !important;
-}
-/* 画像 */
-.b_ans.b_imgans {
-	background-color: white !important;
-}
 /* 動画 大きいサムネイル */
 .videoPlayer, .video_metadata_container {
 	width: 100% !important;
 }
-/* Wikipedia */
-.b_algo.b_algoBigWiki {
-	background-color: white !important;
-}
-/* ストリーミングカード */
-.slide {
-	background-color: white;
-}
-/* サイト内スライド */
-.b_insideSlide {
-	background-color: white;
-}
-/* はみ出たスライドの白いグラデーション */
-.openans_gradient_div {
-	display: none;
-}
-/* 関連ページを探索する。 */
-.pageRecoContainer {
-	background-color: transparent !important;
-}
-/* 他の人はこちらも質問 */
-.df_alsoAskCard {
-	background-color: white;
-}
-/* YouTubeサムネイル */
-.wide_wideAlgo {
-	background-color: transparent !important;
-	box-shadow: none !important;
-}
-/* ショッピングタイトル */
-.sa_titlePane {
-	background-color: transparent !important;
-}
-/* その場所について */
-#placeAnswer {
-	background-color: white;
-}
-/* 一部の検索結果が削除されました */
-.b_msg {
-	background-color: transparent !important;
-}
-/* 説明カード */
-.lite-entcard-main, .lite-entityv2-main {
-	background-color: white;
-}
 /* 説明カード ヘッダーのグラデーションを出す */
 .l_ecrd_imcolheader {
 	z-index: 1;
-}
-/* 語句の定義 */
-.b_cbContainer {
-	background-color: white;
-}
-/* 結果を見る */
-.disambig-outline {
-	background-color: white;
-}
-/* 広告商品リスト */
-.pa_hCard {
-	background-color: white;
-}
-/* 関連する結果 */
-.b_ans {
-	background-color: transparent !important;
-}
-/* 「関連する結果」の中身 */
-.wpvn_ala {
-	background-color: white;
-}
-/* 短いサイトプレビュー */
-.b_ans.b_nonfirsttopb {
-	background-color: white !important;
-}
-/* 「関連キーワード」の中身 */
-.richrswrapper {
-	background-color: white;
-}
-/* フッター */
-footer {
-	background-color: transparent !important;
-}
-/* 画像検索 ヘッダー */
-#b_header {
-	background-color: transparent !important;
 }
 /* 画像検索 タグ一覧 スクロールボタン */
 #rfCarousel div .nav_container {
@@ -226,15 +94,6 @@ footer {
 #rfCarousel div .nav_right div::before {
 	margin-right: 1px !important;
 }
-/* 画像検索 ヘッダーと画像一覧の間の隙間 */
-#rfPane {
-	background-color: transparent !important;
-}
-/* 画像検索 画像一覧 */
-.iuscp, .infopt {
-	background-color: transparent !important;
-	box-shadow: none !important;
-}
 /* 画像検索 画像一覧 画像 */
 .img_cont {
 	border-radius: 6px !important;
@@ -244,50 +103,17 @@ footer {
 .img_info {
 	border-radius: 0 0 6px 6px !important;
 }
-/* 画像検索 画像一覧 背景 */
-.dg_b {
-	background-color: transparent !important;
-}
-/* 動画検索 すべてのビデオを見る */
-.sel {
-	background-color: transparent !important;
-}
-/* 動画検索 ビデオの参照元 アイコン */
-.ﾋﾞﾃﾞｵitmicon {
-	background: transparent !important;
-}
 /* 動画検索 タグ一覧1 */
 #rfCarousel {
 	background: transparent;
-}
-/* 動画検索 タグ一覧2 */
-.carousel-controls, #rfCarousel div div div div ol {
-	background-color: transparent !important;
-}
-/* 動画検索 検索結果 */
-.dg_u {
-	background-color: transparent !important;
-}
-/* 動画検索 作品説明 */
-#vrp_tvs {
-	background-color: transparent;
 }
 /* 動画検索 作品説明の白いグラデーション */
 .vrp_tvs_attr_mmftb::after, .vrp_tvs_des_mmftb::after, .vrp_tvs_title_mmftb:after {
 	background: transparent !important;
 }
-/* ニュース サイドバー */
-.news-side-nav.dsncn:hover {
-	background-color: transparent !important;
-	box-shadow: none !important;
-}
 /* ニュース 検索結果 */
 .newsitem {
 	box-shadow: none !important;
-}
-/* ショッピング 詳細 (i) */
-.br_slug {
-	background-color: transparent !important;
 }
 /* ショッピング 商品カード */
 .br-card {
@@ -298,15 +124,7 @@ footer {
 	background-color: white !important;
 	transition: .3s .2s !important;
 }
-/* ショッピング 説明欄 */
-.br-pdInfo {
-	background-color: transparent !important;
-}
 /* ショッピング 商品画像の角丸削除 */
 .br-pdMainImg {
 	border-radius: 6px !important;
-}
-/* ショッピング 関連検索 */
-#btf_content {
-	background-color: transparent !important;
 }
