@@ -8,6 +8,6 @@ chrome.runtime.onInstalled.addListener((details) => {
 				opacity: 0.5,
 				border_blur: 10
 			}
-		});
+		}, chrome.runtime.openOptionsPage);
 	}
 });
