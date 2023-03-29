@@ -1,3 +1,7 @@
+/* トップページ */
+body, .no_image, .img_cont, .img_uhd, .hp_top_cover {
+	background-color: transparent !important;
+}
 /* バナー */
 .b_wpTabsWrapper, .ent-dtab-content, .ent-dtab-style-content {
 	background-color: transparent !important;
@@ -201,7 +205,7 @@
 	background-color: white;
 }
 /* フッター */
-#b_footer {
+footer {
 	background-color: transparent !important;
 }
 /* 画像検索 ヘッダー */
