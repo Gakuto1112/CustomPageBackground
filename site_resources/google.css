@@ -35,6 +35,10 @@
 	background-color: transparent !important;
 	border: none !important;
 }
+/* 他の人はこちらも検索 */
+.AUiS2 {
+	background-color: var(--background-color) !important;
+}
 /* Google翻訳 */
 .wDYxhc {
 	background-color: transparent !important;
