@@ -1,0 +1,222 @@
+{
+	"extension_name": {
+		"message": "Customizable Page Background",
+		"description": "The name of this extension"
+	},
+	"extension_description": {
+		"message": "Enables you to insert an image of your choice to the background of search pages (Google, bing, Yahoo! JAPAN).",
+		"description": "The description of this extension"
+	},
+	"warning_icon": {
+		"message": "⚠",
+		"description": "The character of warning icon (Unicode: 26A0)"
+	},
+	"options_title": {
+		"message": "CPB Options Page",
+		"description": "The title of the options page"
+	},
+	"no_image": {
+		"message": "No image selected",
+		"description": "The text indicated in image selector when no image selected"
+	},
+	"options_section_1_title": {
+		"message": "Select images",
+		"description": "The title of the 1st section of the options page"
+	},
+	"tab_local_label": {
+		"message": "From local",
+		"description": "The label of the tab to load images from local machine"
+	},
+	"tab_clipboard_label": {
+		"message": "From clipboard",
+		"description": "The label of the tab to load images from clipboard"
+	},
+	"tab_all_clear_label": {
+		"message": "All clear images",
+		"description": "The label of the tab to remove all images"
+	},
+	"tab_local_description_1": {
+		"message": "Loads images from your local machine.",
+		"description": "The description of the tab to load images from local machine (1)"
+	},
+	"tab_local_button": {
+		"message": "Select images",
+		"description": "The label of the button in the tab to load images from local machine"
+	},
+	"tab_clipboard_description_1": {
+		"message": "Loads an image copied to the clipboard.",
+		"description": "The description of the tab to load images from clipboard (1)"
+	},
+	"tab_clipboard_description_2": {
+		"message": "The permission of reading the clipboard is needed. You will be asked when clicking below button for the first time.",
+		"description": "The description of the tab to load images from clipboard (2)"
+	},
+	"tab_clipboard_button": {
+		"message": "Load from clipboard",
+		"description": "The label of the button in the tab to load images from clipboard"
+	},
+	"tab_all_clear_description_1": {
+		"message": "Warning!!",
+		"description": "The description of the tab to remove all images (The big warning text)"
+	},
+	"tab_all_clear_description_2": {
+		"message": "Removes all images!",
+		"description": "The description of the tab to remove all images (2)"
+	},
+	"tab_all_clear_button": {
+		"message": "Remove all images",
+		"description": "The label of the button in the tab to remove all images"
+	},
+	"tab_all_clear_confirm": {
+		"message": "Are you sure?",
+		"description": "The message of the tab to remove all images to confirm"
+	},
+	"options_section_1_note_1": {
+		"message": "It is recommended to select images with a screen ratio equal to or close to that of your screen.",
+		"description": "The note of the 1st section of the options page (1)"
+	},
+	"options_section_1_note_2": {
+		"message": "It recommended to select images with a high resolution.",
+		"description": "The note of the 1st section of the options page (2)"
+	},
+	"options_section_1_note_3": {
+		"message": "You can select multiple images",
+		"description": "The note of the 1st section of the options page (3)"
+	},
+	"options_section_1_note_4": {
+		"message": "If you select multiple images, one images will displayed at random each time you visit target page.",
+		"description": "The note of the 1st section of the options page (4)"
+	},
+	"options_section_1_note_5": {
+		"message": "You can remove images by clicking them.",
+		"description": "The note of the 1st section of the options page (5)"
+	},
+	"options_section_2_title": {
+		"message": "Style settings",
+		"description": "The title of the 2nd section of the options page"
+	},
+	"image_size_title": {
+		"message": "Image sizing",
+		"description": "The title of the image sizing option"
+	},
+	"image_size_zoom_in": {
+		"message": "Shrink to fit whole of the image",
+		"description": "The option to shrink the image in the image sizing option"
+	},
+	"image_size_zoom_out": {
+		"message": "Enlarge to hide margins whole of the image",
+		"description": "The option to enlarge the image in the image sizing option"
+	},
+	"image_align_title": {
+		"message": "Image reference point",
+		"description": "The title of the image pivot option"
+	},
+	"image_align_description": {
+		"message": "Select a reference point when enlarging images.",
+		"description": "The description of the image pivot option"
+	},
+	"image_align_ul": {
+		"message": "Top-Left",
+		"description": "One of the reference points of the images (top-left)"
+	},
+	"image_align_uc": {
+		"message": "Top",
+		"description": "One of the reference points of the images (top)"
+	},
+	"image_align_ur": {
+		"message": "Top-Right",
+		"description": "One of the reference points of the images (top-right)"
+	},
+	"image_align_cl": {
+		"message": "Left",
+		"description": "One of the reference points of the images (left)"
+	},
+	"image_align_cc": {
+		"message": "Center",
+		"description": "One of the reference points of the images (center)"
+	},
+	"image_align_cr": {
+		"message": "Right",
+		"description": "One of the reference points of the images (right)"
+	},
+	"image_align_bl": {
+		"message": "Bottom-Left",
+		"description": "One of the reference points of the images (bottom-left)"
+	},
+	"image_align_bc": {
+		"message": "Bottom",
+		"description": "One of the reference points of the images (bottom)"
+	},
+	"image_align_br": {
+		"message": "Bottom-Right",
+		"description": "One of the reference points of the images (bottom-right)"
+	},
+	"image_opacity": {
+		"message": "Opacity",
+		"description": "The title of the image opacity option"
+	},
+	"image_opacity_warning": {
+		"message": "Some images may reduce page visibility.",
+		"description": "The warning text of the image opacity option"
+	},
+	"image_shadow": {
+		"message": "Image edge shadows",
+		"description": "The title of the image shadow option"
+	},
+	"options_section_2_note_1": {
+		"message": "Above is a preview frame",
+		"description": "The note of the 2nd section of the options page (1)"
+	},
+	"options_section_2_note_2": {
+		"message": "You can resize the preview by dragging the blue borders",
+		"description": "The note of the 2nd section of the options page (2)"
+	},
+	"options_section_2_note_3": {
+		"message": "You can change the images of the preview by clicking buttons below the preview.",
+		"description": "The note of the 2nd section of the options page (3)"
+	},
+	"options_section_2_note_4": {
+		"message": "Please adjust opacity to keep visibility.",
+		"description": "The note of the 2nd section of the options page (4)"
+	},
+	"save_description": {
+		"message": "Please click the right \"Save\" button to save changes.",
+		"description": "The description of the foot to prompt to save"
+	},
+	"save_button": {
+		"message": "Save",
+		"description": "The label fo the save button"
+	},
+	"process_dialog_update": {
+		"message": "Updating data structure...",
+		"description": "The message of the process dialog when updating data structure"
+	},
+	"process_dialog_load": {
+		"message": "Loading...",
+		"description": "The message of the process dialog when loading images"
+	},
+	"process_dialog_saving": {
+		"message": "Saving...",
+		"description": "The message of the process dialog when saving images"
+	},
+	"process_dialog_save_done": {
+		"message": "Saved!",
+		"description": "The message of the process dialog when complete saving"
+	},
+	"error_invalid_files": {
+		"message": "Some selected files are not image. These files will be skipped.",
+		"description": "The error message when including non-image files"
+	},
+	"error_no_clipboard_permission": {
+		"message": "Could not read the clipboard because of no permission to read it.",
+		"description": "The error message when don't have a permission to read clipboard"
+	},
+	"error_no_clipboard_image": {
+		"message": "The data read from the clipboard is not image.",
+		"description": "The error message when no image in the clipboard"
+	},
+	"message_unsaved_changes": {
+		"message": "There are unsaved changes. These will be lost if you leave this page. Do you want to proceed?",
+		"description": "The message shown when leaving page with unsaved changes (Actually, Chrome doesn't show this message)"
+	}
+}
