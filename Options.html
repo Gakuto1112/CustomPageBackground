@@ -16,7 +16,8 @@
 			<h1 data-locale-key="options_title"></h1>
 		</div>
 		<ol>
-			<li data-locale-key="options_section_1_title"></li>
+			<li>
+				<p data-locale-key="options_section_1_title"></p>
 				<div id="image_selector">
 					<p data-locale-key="no_image"></p>
 				</div>
@@ -55,88 +56,91 @@
 					<li data-locale-key="options_section_1_note_4"></li>
 					<li data-locale-key="options_section_1_note_5"></li>
 				</ul>
-			<li data-locale-key="options_section_2_title"></li>
-			<div id="style_area">
-				<div id="preview_area">
-					<div id="preview_frame">
-						<div id="frame_right_bottom"></div>
-						<div id="frame_right"></div>
-						<div id="frame_bottom"></div>
-						<canvas id="preview_elements_sample" width="480" height="270"></canvas>
-					</div>
-					<div id="image_change">
-						<button id="image_previous" disabled>←</button>
-						<p id="image_position"><span id="image_position_now">0</span>/<span id="image_position_total">0</span></p>
-						<button id="image_next" disabled>→</button>
-					</div>
-				</div>
-				<div id="style_settings">
-					<h2 data-locale-key="image_size_title"></h2>
-					<div>
-						<input type="radio" id="justify_method_whole" name="justify_method" class="modify" checked>
-						<label for="justify_method_whole" data-locale-key="image_size_zoom_in"></label>
-					</div>
-					<div>
-						<input type="radio" id="justify_method_expand" name="justify_method" class="modify">
-						<label for="justify_method_expand" data-locale-key="image_size_zoom_out"></label>
-					</div>
-					<div class="hidden">
-						<h2 data-locale-key="image_align_title"></h2>
-						<p data-locale-key="image_align_description"></p>
-						<div id="expand_align_grid">
-							<div>
-								<input type="radio" id="expand_align_ul" name="expand_align" class="modify">
-								<label for="expand_align_ul" data-locale-key="image_align_ul"></label>
-							</div>
-							<div>
-								<input type="radio" id="expand_align_uc" name="expand_align" class="modify">
-								<label for="expand_align_uc" data-locale-key="image_align_uc"></label>
-							</div>
-							<div>
-								<input type="radio" id="expand_align_ur" name="expand_align" class="modify">
-								<label for="expand_align_ur" data-locale-key="image_align_ur"></label>
-							</div>
-							<div>
-								<input type="radio" id="expand_align_cl" name="expand_align" class="modify">
-								<label for="expand_align_cl" data-locale-key="image_align_cl"></label>
-							</div>
-							<div>
-								<input type="radio" id="expand_align_cc" name="expand_align" class="modify" checked>
-								<label for="expand_align_cc" data-locale-key="image_align_cc"></label>
-							</div>
-							<div>
-								<input type="radio" id="expand_align_cr" name="expand_align" class="modify">
-								<label for="expand_align_cr" data-locale-key="image_align_cr"></label>
-							</div>
-							<div>
-								<input type="radio" id="expand_align_bl" name="expand_align" class="modify">
-								<label for="expand_align_bl" data-locale-key="image_align_bl"></label>
-							</div>
-							<div>
-								<input type="radio" id="expand_align_bc" name="expand_align" class="modify">
-								<label for="expand_align_bc" data-locale-key="image_align_bc"></label>
-							</div>
-							<div>
-								<input type="radio" id="expand_align_br" name="expand_align" class="modify">
-								<label for="expand_align_br" data-locale-key="image_align_br"></label>
-							</div>
+			</li>
+			<li>
+				<p data-locale-key="options_section_2_title"></p>
+				<div id="style_area">
+					<div id="preview_area">
+						<div id="preview_frame">
+							<div id="frame_right_bottom"></div>
+							<div id="frame_right"></div>
+							<div id="frame_bottom"></div>
+							<canvas id="preview_elements_sample" width="480" height="270"></canvas>
+						</div>
+						<div id="image_change">
+							<button id="image_previous" disabled>←</button>
+							<p id="image_position"><span id="image_position_now">0</span>/<span id="image_position_total">0</span></p>
+							<button id="image_next" disabled>→</button>
 						</div>
 					</div>
-					<h2 data-locale-key="image_opacity"></h2>
-					<div id="background_opacity_area">
-						<input type="range" id="background_opacity" class="modify" min="0" max="1" step="0.01" value="0.5">
-						<p class="hidden"><span data-locale-key="warning_icon"></span><span data-locale-key="image_opacity_warning"></span></p>
+					<div id="style_settings">
+						<h2 data-locale-key="image_size_title"></h2>
+						<div>
+							<input type="radio" id="justify_method_whole" name="justify_method" class="modify" checked>
+							<label for="justify_method_whole" data-locale-key="image_size_zoom_in"></label>
+						</div>
+						<div>
+							<input type="radio" id="justify_method_expand" name="justify_method" class="modify">
+							<label for="justify_method_expand" data-locale-key="image_size_zoom_out"></label>
+						</div>
+						<div class="hidden">
+							<h2 data-locale-key="image_align_title"></h2>
+							<p data-locale-key="image_align_description"></p>
+							<div id="expand_align_grid">
+								<div>
+									<input type="radio" id="expand_align_ul" name="expand_align" class="modify">
+									<label for="expand_align_ul" data-locale-key="image_align_ul"></label>
+								</div>
+								<div>
+									<input type="radio" id="expand_align_uc" name="expand_align" class="modify">
+									<label for="expand_align_uc" data-locale-key="image_align_uc"></label>
+								</div>
+								<div>
+									<input type="radio" id="expand_align_ur" name="expand_align" class="modify">
+									<label for="expand_align_ur" data-locale-key="image_align_ur"></label>
+								</div>
+								<div>
+									<input type="radio" id="expand_align_cl" name="expand_align" class="modify">
+									<label for="expand_align_cl" data-locale-key="image_align_cl"></label>
+								</div>
+								<div>
+									<input type="radio" id="expand_align_cc" name="expand_align" class="modify" checked>
+									<label for="expand_align_cc" data-locale-key="image_align_cc"></label>
+								</div>
+								<div>
+									<input type="radio" id="expand_align_cr" name="expand_align" class="modify">
+									<label for="expand_align_cr" data-locale-key="image_align_cr"></label>
+								</div>
+								<div>
+									<input type="radio" id="expand_align_bl" name="expand_align" class="modify">
+									<label for="expand_align_bl" data-locale-key="image_align_bl"></label>
+								</div>
+								<div>
+									<input type="radio" id="expand_align_bc" name="expand_align" class="modify">
+									<label for="expand_align_bc" data-locale-key="image_align_bc"></label>
+								</div>
+								<div>
+									<input type="radio" id="expand_align_br" name="expand_align" class="modify">
+									<label for="expand_align_br" data-locale-key="image_align_br"></label>
+								</div>
+							</div>
+						</div>
+						<h2 data-locale-key="image_opacity"></h2>
+						<div id="background_opacity_area">
+							<input type="range" id="background_opacity" class="modify" min="0" max="1" step="0.01" value="0.5">
+							<p class="hidden"><span data-locale-key="warning_icon"></span><span data-locale-key="image_opacity_warning"></span></p>
+						</div>
+						<h2 data-locale-key="image_shadow"></h2>
+						<input type="range" id="blur_border" class="modify" min="0" max="50" step="1" value="10">
 					</div>
-					<h2 data-locale-key="image_shadow"></h2>
-					<input type="range" id="blur_border" class="modify" min="0" max="50" step="1" value="10">
 				</div>
-			</div>
-			<ul>
-				<li data-locale-key="options_section_2_note_1"></li>
-				<li data-locale-key="options_section_2_note_2"></li>
-				<li data-locale-key="options_section_2_note_3"></li>
-				<li data-locale-key="options_section_2_note_4"></li>
-			</ul>
+				<ul>
+					<li data-locale-key="options_section_2_note_1"></li>
+					<li data-locale-key="options_section_2_note_2"></li>
+					<li data-locale-key="options_section_2_note_3"></li>
+					<li data-locale-key="options_section_2_note_4"></li>
+				</ul>
+			</li>
 		</ol>
 		<div id="footer" class="hidden">
 			<p data-locale-key="save_description"></p>

@@ -86,11 +86,10 @@ button:disabled {
 	background-color: lemonchiffon;
 	box-shadow: 0 0 5px 5px #00000020;
 }
-ol > li {
-	margin: 2em 0 0.5em 0;
+ol > li::marker, ol > li > p:first-child {
 	font-size: large;
 }
-ol > li:first-child {
+ol > li:first-child > p:first-child {
 	margin-top: 0;
 }
 ul {
