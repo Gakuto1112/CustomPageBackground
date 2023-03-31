@@ -24,12 +24,53 @@ button:disabled {
 	background-color: darkgray;
 	cursor: not-allowed;
 }
+.checkbox_area {
+	display: flex;
+	align-items: center;
+}
+.checkbox_area > label {
+	margin-left: 0.5em;
+}
 .big_button {
 	padding: 10px 100px;
 	font-size: large;
 }
 .warning_button {
 	background-color: firebrick;
+}
+.question_icon {
+	position: relative;
+}
+.question_icon::before {
+	content: "?";
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+	margin: 0 0.5em;
+	text-align: center;
+	line-height: 1.2em;
+	border: solid 1px darkgray;
+	border-radius: 50%;
+	user-select: none;
+	cursor: help;
+}
+.question_icon > * {
+	position: absolute;
+	width: max-content;
+	padding: 5px 10px;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	border: solid 1px darkgray;
+	border-radius: 6px;
+	background-color: white;
+	box-shadow: 0 0 2px 2px #00000020;
+	opacity: 0%;
+	transition: 0.3s;
+	pointer-events: none;
+}
+.question_icon:hover > * {
+	opacity: 100%;
 }
 .hidden {
 	display: none !important;
@@ -86,11 +127,29 @@ button:disabled {
 	background-color: lemonchiffon;
 	box-shadow: 0 0 5px 5px #00000020;
 }
-ol > li::marker, ol > li > p:first-child {
+body > ol {
+	counter-reset: section-1;
+}
+body > ol > li {
+	counter-increment: section-1;
+}
+body > ol > li::marker, body > ol > li > p:first-child {
 	font-size: large;
 }
 ol > li:first-child > p:first-child {
 	margin-top: 0;
+}
+body > ol > li > ol {
+	counter-reset: section-2;
+}
+body > ol > li > ol > li {
+	counter-increment: section-2;
+}
+body > ol > li > ol > li::marker {
+	content: counter(section-1) "-" counter(section-2) ". ";
+}
+body > ol > li > ol > li::marker, body > ol > li > ol > li > p:first-child {
+	font-size: larger;
 }
 ul {
 	margin-top: 1em;
