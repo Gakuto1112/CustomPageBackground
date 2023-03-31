@@ -5,7 +5,7 @@ chrome.runtime.onInstalled.addListener((details) => {
 			style: {
 				justify_method: 0,
 				image_align: 4,
-				opacity: 0.5,
+				opacity: 0.3,
 				border_blur: 10
 			}
 		}, chrome.runtime.openOptionsPage);
