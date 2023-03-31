@@ -7,6 +7,11 @@ chrome.runtime.onInstalled.addListener((details) => {
 				image_align: 4,
 				opacity: 0.3,
 				border_blur: 10
+			},
+			site_config: {
+				google: {
+					hide_seasonal_illust: false
+				}
 			}
 		}, chrome.runtime.openOptionsPage);
 	}

@@ -282,6 +282,7 @@ blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value)
  * 画像の保存枚数
  * @type {number}
  */
+const googleHideSeasonalIllust = document.getElementById("google_hide_seasonal_illust");
 let savedImageCount = 0;
 footer.saveButton.addEventListener("click", () => {
 	footer.hide();
@@ -302,6 +303,11 @@ footer.saveButton.addEventListener("click", () => {
 			image_align: imageAlignNumber,
 			opacity: backgroundOpacity.value,
 			border_blur: blurBorder.value
+		},
+		site_config: {
+			google: {
+				hide_seasonal_illust: googleHideSeasonalIllust.checked
+			}
 		}
 	}
 	Array.from(imageSelector.children).slice(1).forEach((imageDiv) => data[`image_${data.image_count++}`] = imageDiv.firstElementChild.src);
@@ -340,7 +346,7 @@ else previewFrame.style.height = `${270 / (windowRatio / 1.78)}px`;
 drawPreviewElementSample();
 update().then(() => {
 	processDialog.setLabel(chrome.i18n.getMessage("process_dialog_load"));
-	chrome.storage.local.get(["image_count", "style"], (result) => {
+	chrome.storage.local.get(["image_count", "style", "site_config"], (result) => {
 		switch(result.style.justify_method) {
 			case 0:
 				justifyMethodWhole.checked = true;
@@ -358,6 +364,7 @@ update().then(() => {
 		background.setOpacity(result.style.opacity);
 		blurBorder.value = result.style.border_blur;
 		background.setBlur(result.style.border_blur);
+		googleHideSeasonalIllust.checked = result.site_config.google.hide_seasonal_illust;
 		if(result.image_count > 0) {
 			const loadImageArray = [];
 			for(let i = 0; i < result.image_count; i++)  loadImageArray.push(`image_${i}`);
