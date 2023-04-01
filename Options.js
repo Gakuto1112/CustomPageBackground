@@ -251,6 +251,13 @@ backgroundOpacity.addEventListener("change", () => {
 	else hardVisibilityMessage.classList.add("hidden");
 });
 
+const generalHideSidePanel = document.getElementById("general_hide_side_panel");
+const sampleSidePanel = document.querySelector("#sample_search_page > div:last-child > div:last-child");
+generalHideSidePanel.addEventListener("change", () => {
+	if(generalHideSidePanel.checked) sampleSidePanel.classList.add("hidden");
+	else sampleSidePanel.classList.remove("hidden");
+});
+
 blurBorder.addEventListener("change", () => background.setBlur(blurBorder.value));
 
 /**
@@ -280,6 +287,9 @@ footer.saveButton.addEventListener("click", () => {
 			border_blur: blurBorder.value
 		},
 		site_config: {
+			general: {
+				hide_side_panel: generalHideSidePanel.checked
+			},
 			google: {
 				hide_seasonal_illust: googleHideSeasonalIllust.checked
 			}
@@ -338,6 +348,8 @@ update().then(() => {
 		background.setOpacity(result.style.opacity);
 		blurBorder.value = result.style.border_blur;
 		background.setBlur(result.style.border_blur);
+		generalHideSidePanel.checked = result.site_config.general.hide_side_panel;
+		if(result.site_config.general.hide_side_panel) sampleSidePanel.classList.add("hidden");
 		googleHideSeasonalIllust.checked = result.site_config.google.hide_seasonal_illust;
 		if(result.image_count > 0) {
 			const loadImageArray = [];

@@ -1,6 +1,5 @@
 body {
-	margin-top: 70px;
-	margin-bottom: 0;
+	margin: 70px 0 0 0;
 	transition: 0.3s;
 }
 h2 {
@@ -384,8 +383,11 @@ ul > li {
 	color: mediumblue;
 }
 #sample_search_page > div:last-child > div:first-child p:last-child {
-	margin-top: 0.5em;
+	margin: 0.5em 0 0 0;
 	color: dimgray;
+}
+#sample_search_page > div:last-child > div:first-child > div:last-child > p:last-child {
+	margin-bottom: 1em;
 }
 #sample_search_page > div:last-child > div:last-child {
 	width: 101px;
@@ -404,7 +406,7 @@ ul > li {
 	margin: 0;
 	font-size: small;
 }
-#sample_search_page > div:last-child > div:last-child > div:first-child > div:first-child > p, #sample_search_page > div:last-child > div:last-child > div:last-child > div > p {
+#sample_search_page > div:last-child > div:last-child > div:first-child > div:first-child > p {
 	margin: 0;
 }
 #sample_search_page > div:last-child > div:last-child > div:first-child > div:last-child {
@@ -426,6 +428,10 @@ ul > li {
 	width: 15px;
 	height: 25px;
 	background-color: gold;
+}
+#sample_search_page > div:last-child > div:last-child > div:last-child > div > p {
+	margin: 0;
+	color: mediumblue;
 }
 #image_change {
 	display: flex;

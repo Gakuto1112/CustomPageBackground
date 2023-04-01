@@ -9,6 +9,9 @@ chrome.runtime.onInstalled.addListener((details) => {
 				border_blur: 10
 			},
 			site_config: {
+				general: {
+					hide_side_panel: false
+				},
 				google: {
 					hide_seasonal_illust: false
 				}
