@@ -95,6 +95,38 @@
 		"message": "Style settings",
 		"description": "The title of the 2nd section of the options page"
 	},
+	"sample_page_search_text": {
+		"message": "Search...",
+		"description": "The text indicated on the search bar in the sample page"
+	},
+	"sample_page_search_icon": {
+		"message": "🔍",
+		"description": "The icon indicated on the search bar in the sample page"
+	},
+	"sample_page_site_title": {
+		"message": "Search result",
+		"description": "The titles of the sites in the sample page (all are in common)"
+	},
+	"sample_page_site_description": {
+		"message": "Sample Sample Sample Sample Sample Sample Sample Sample Sample Sample",
+		"description": "The descriptions of the sites in the sample page (all are in common)"
+	},
+	"sample_page_side_panel_title": {
+		"message": "Sample",
+		"description": "The title of the side panel in the sample page"
+	},
+	"sample_page_side_panel_pronounce": {
+		"message": "ˈsampəl",
+		"description": "Pronounce of the side panel in the sample page"
+	},
+	"sample_page_side_panel_description": {
+		"message": "Sample Sample Sample Sample Sample Sample Sample Sample Sample Sample",
+		"description": "The description of the side panel in the sample page"
+	},
+	"sample_page_side_panel_related_titles": {
+		"message": "Item",
+		"description": "The titles of the related items in the side panel in the sample page"
+	},
 	"image_size_title": {
 		"message": "Image sizing",
 		"description": "The title of the image sizing option"
@@ -183,6 +215,42 @@
 		"message": "Please click the right \"Save\" button to save changes.",
 		"description": "The description of the foot to prompt to save"
 	},
+	"options_section_3_title": {
+		"message": "Site options",
+		"description": "The title of the 3rd section of the options page"
+	},
+	"options_section_3_subsection_1_title": {
+		"message": "General",
+		"description": "The title of the 1st sub-section of the 3rd section of the options page"
+	},
+	"hide_side_panel_label": {
+		"message": "Hide side panel",
+		"description": "The label of the checkbox to the hide side panel"
+	},
+	"hide_side_panel_help_1": {
+		"message": "This feature is for those for whom the background image is more important than the side panel.",
+		"description": "The help description of the function to hide the side panel (1)"
+	},
+	"hide_side_panel_help_2": {
+		"message": "The button to show the side panel again will appears in the target page if the side panel is hidden.",
+		"description": "The help description of the function to hide the side panel (2)"
+	},
+	"options_section_3_subsection_2_title": {
+		"message": "Google",
+		"description": "The title of the 2nd sub-section of the 3rd section of the options page"
+	},
+	"hide_seasonal_illust_label": {
+		"message": "Hide anniversary illust",
+		"description": "The label of the checkbox to hide the anniversary illust"
+	},
+	"hide_seasonal_illust_help_1": {
+		"message": "It means the illust which appears behind the top search bar during some anniversaries or seasonal events.",
+		"description": "The help description of the function to hide the anniversary illust (1)"
+	},
+	"hide_seasonal_illust_help_2": {
+		"message": "This feature is under the test and may not work correctly.",
+		"description": "The help description of the function to hide the anniversary illust (2)"
+	},
 	"save_button": {
 		"message": "Save",
 		"description": "The label fo the save button"
@@ -218,5 +286,9 @@
 	"message_unsaved_changes": {
 		"message": "There are unsaved changes. These will be lost if you leave this page. Do you want to proceed?",
 		"description": "The message shown when leaving page with unsaved changes (Actually, Chrome doesn't show this message)"
+	},
+	"show_side_panel_label": {
+		"message": "Show side panel",
+		"description": "The label of the button to show the side panel again"
 	}
 }

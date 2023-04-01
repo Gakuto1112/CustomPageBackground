@@ -240,7 +240,7 @@
 		"description": "設定画面の第3セクションの第2サブセクションのタイトル"
 	},
 	"hide_seasonal_illust_label": {
-		"message": "記念日の装飾を隠す（テスト）",
+		"message": "記念日の装飾を隠す",
 		"description": "記念日のイラストを隠すチェックボックスのラベル"
 	},
 	"hide_seasonal_illust_help_1": {
