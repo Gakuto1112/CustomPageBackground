@@ -16,7 +16,7 @@ Promise.all([
 //サイドパネルの非表示
 chrome.storage.local.get("site_config", (siteConfig) => {
 	if(siteConfig.site_config.general.hide_side_panel) {
-		const sidePanelElement = location.href.startsWith("https://www.google.com/") ? document.getElementsByClassName("TQc1id").item(0) : (location.href.startsWith("https://www.bing.com/search") ? document.getElementById("b_context") : undefined);
+		const sidePanelElement = location.href.startsWith("https://www.google.com/") ? document.getElementsByClassName("TQc1id").item(0) : (location.href.startsWith("https://www.bing.com/search") ? document.getElementById("b_context") : (location.href.startsWith("https://search.yahoo.co.jp/search") ? document.getElementsByClassName("Contents__inner--sub").item(0) : undefined));
 		if(sidePanelElement) {
 			const sidePanelArea = document.createElement("div");
 			sidePanelArea.classList.add("background_image_injector_side_panel_area");
