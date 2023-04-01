@@ -16,6 +16,9 @@ export async function update() {
 	if(dataType <= 1) {
 		const data = {
 			site_config: {
+				general: {
+					hide_side_panel: false
+				},
 				google: {
 					hide_seasonal_illust: false
 				}

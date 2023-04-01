@@ -156,30 +156,6 @@ document.getElementById("all_clear_confirm").addEventListener("click", () => {
 	while(imageSelector.childElementCount >= 2) imageSelector.children.item(1).remove();
 });
 
-/**
- * プレビューの初期描画・再描画を行う。
- */
-function drawPreviewElementSample() {
-	const canvas = document.getElementById("preview_elements_sample");
-	canvas.width = canvas.clientWidth;
-	canvas.height = canvas.clientHeight;
-	const context = canvas.getContext("2d");
-	context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-	context.strokeStyle = "black";
-	context.lineWidth = 1;
-	context.fillStyle = "white";
-	context.fillRect(20, 20, Math.max(Math.min(canvas.clientWidth - 80, 250), 50), 20);
-	context.strokeRect(20, 21, Math.max(Math.min(canvas.clientWidth - 80, 250), 50), 18);
-	context.fillStyle = "royalblue";
-	context.fillRect(Math.max(Math.min(canvas.clientWidth - 61, 231), 71), 20, 40, 20);
-	for(let i = 0; i < (canvas.clientHeight - 60) / 70; i++) {
-		context.fillStyle = "mediumblue";
-		context.fillRect(20, i * 70 + 60, Math.max(Math.min(canvas.clientWidth - 40, 150), 90), 10);
-		context.fillStyle = "dimgray";
-		for(let j = 0; j < 3; j++) context.fillRect(20, i * 70 + j * 10 + 80, Math.max(Math.min(canvas.clientWidth - 40, 120), 90), 5);
-	}
-}
-
 const imagePrevious = document.getElementById("image_previous");
 const imageNext = document.getElementById("image_next");
 const imagePositionNow = document.getElementById("image_position_now");
@@ -211,7 +187,6 @@ const background = new BackgroundImageInjector(previewFrame, "", 0, 4, backgroun
 	function onPreviewResize(event) {
 		if(resizeFrag[0]) previewFrame.style.width = `${frameSize[0] - mousePos[0] + event.screenX}px`;
 		if(resizeFrag[1]) previewFrame.style.height = `${frameSize[1] - mousePos[1] + event.screenY}px`;
-		drawPreviewElementSample();
 	}
 
 	const mousePos = [event.screenX, event.screenY];
@@ -343,7 +318,6 @@ processDialog.setLabel(chrome.i18n.getMessage("process_dialog_update"));
 const windowRatio = window.innerWidth / window.innerHeight;
 if(windowRatio <= 16 / 9) previewFrame.style.width = `${480 * (windowRatio / 1.78)}px`;
 else previewFrame.style.height = `${270 / (windowRatio / 1.78)}px`;
-drawPreviewElementSample();
 update().then(() => {
 	processDialog.setLabel(chrome.i18n.getMessage("process_dialog_load"));
 	chrome.storage.local.get(["image_count", "style", "site_config"], (result) => {

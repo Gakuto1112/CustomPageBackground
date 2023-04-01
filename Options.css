@@ -338,9 +338,95 @@ ul > li {
 	transform: translate(12px, 12px);
 	cursor: nwse-resize;
 }
-#preview_elements_sample {
+#sample_search_page {
+	display: flex;
+	flex-direction: column;
+	width: calc(100% - 70px);
+	height: calc(100% - 10px);
+	padding: 10px 0 0 70px;
+	font-size: smaller;
+	overflow: scroll;
+	user-select: none;
+}
+#sample_search_page * {
+	flex-shrink: 0;
+}
+#sample_search_page > div:first-child {
+	display: flex;
+	width: fit-content;
+	border-radius: 1em;
+	box-shadow: 0 2px 5px 1px rgba(64, 60, 67, 0.16);
+	overflow: hidden;
+}
+#sample_search_page > div:first-child > p {
+	margin: 0;
+}
+#sample_search_page > div:first-child > p:first-child {
+	width: 150px;
+	padding-left: 10px;
+	color: darkgray;
+	background-color: white;
+}
+#sample_search_page > div:first-child > p:last-child {
+	width: 40px;
+	text-align: center;
+	background-color: royalblue;
+}
+#sample_search_page > div:last-child {
+	display: flex;
+}
+#sample_search_page > div:last-child > div:first-child {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+}
+#sample_search_page > div:last-child > div:first-child p:first-child {
+	margin-bottom: 0;
+	color: mediumblue;
+}
+#sample_search_page > div:last-child > div:first-child p:last-child {
+	margin-top: 0.5em;
+	color: dimgray;
+}
+#sample_search_page > div:last-child > div:last-child {
+	width: 101px;
+	height: fit-content;
+	margin: 1em 0 0 5px;
+	padding: 4px;
+	border: solid 1px lightgray;
+	border-radius: 4px;
+	background-color: white;
+}
+#sample_search_page > div:last-child > div:last-child > div:first-child {
+	position: relative;
+	display: flex;
+}
+#sample_search_page > div:last-child > div:last-child h1 {
+	margin: 0;
+	font-size: small;
+}
+#sample_search_page > div:last-child > div:last-child > div:first-child > div:first-child > p, #sample_search_page > div:last-child > div:last-child > div:last-child > div > p {
+	margin: 0;
+}
+#sample_search_page > div:last-child > div:last-child > div:first-child > div:last-child {
+	flex-shrink: initial;
 	width: 100%;
-	height: 100%;
+	margin-left: 5px;
+	background-color: gold;
+}
+#sample_search_page > div:last-child > div:last-child > div:last-child {
+	display: flex;
+	justify-content: space-between;
+}
+#sample_search_page > div:last-child > div:last-child > div:last-child > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#sample_search_page > div:last-child > div:last-child > div:last-child > div > div {
+	width: 15px;
+	height: 25px;
+	background-color: gold;
 }
 #image_change {
 	display: flex;
