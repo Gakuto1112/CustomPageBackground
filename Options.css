@@ -58,8 +58,6 @@ button:disabled {
 	width: max-content;
 	padding: 5px 10px;
 	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
 	border: solid 1px darkgray;
 	border-radius: 6px;
 	background-color: white;
