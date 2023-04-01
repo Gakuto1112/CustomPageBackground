@@ -15,3 +15,25 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+.background_image_injector_side_panel_area {
+	position: relative;
+}
+.background_image_injector_show_side_panel_button {
+	position: absolute;
+	top: -1.5em;
+	right: 0;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+.background_image_injector_show_side_panel_button:hover {
+	text-decoration: underline;
+}
+.background_image_injector_hidden_base {
+	transition: 0.3s;
+}
+.background_image_injector_hidden {
+	opacity: 0%;
+	user-select: none;
+	pointer-events: none;
+}
