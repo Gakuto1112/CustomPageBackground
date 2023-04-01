@@ -28,7 +28,7 @@ chrome.storage.local.get("site_config", (siteConfig) => {
 			});
 			sidePanelElement.classList.add("background_image_injector_hidden_base", "background_image_injector_hidden");
 			const showSidePanelButton = document.createElement("button");
-			showSidePanelButton.innerText = "サイドパネル再表示";
+			showSidePanelButton.innerText = chrome.i18n.getMessage("show_side_panel_label");
 			showSidePanelButton.classList.add("background_image_injector_show_side_panel_button");
 			showSidePanelButton.addEventListener("click", () => {
 				sidePanelElement.classList.remove("background_image_injector_hidden");

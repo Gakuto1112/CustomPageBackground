@@ -95,6 +95,38 @@
 		"message": "スタイルの設定",
 		"description": "設定画面の第2セクションのタイトル"
 	},
+	"sample_page_search_text": {
+		"message": "検索...",
+		"description": "サンプルページの検索バーに表示されるテキスト"
+	},
+	"sample_page_search_icon": {
+		"message": "🔍",
+		"description": "サンプルページの検索バーの検索アイコン"
+	},
+	"sample_page_site_title": {
+		"message": "検索結果",
+		"description": "サンプルページのサイトのタイトル（全て共通）"
+	},
+	"sample_page_site_description": {
+		"message": "サンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル",
+		"description": "サンプルページのサイトの説明文（全て共通）"
+	},
+	"sample_page_side_panel_title": {
+		"message": "サンプル",
+		"description": "サンプルページのサイドバーのタイトル"
+	},
+	"sample_page_side_panel_pronounce": {
+		"message": "さんぷる",
+		"description": "サンプルページのサイドバーのタイトルの読み"
+	},
+	"sample_page_side_panel_description": {
+		"message": "サンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル",
+		"description": "サンプルページのサイドバーの説明文"
+	},
+	"sample_page_side_panel_related_titles": {
+		"message": "関連",
+		"description": "サンプルページのサイドバーの関連アイテムのタイトル"
+	},
 	"image_size_title": {
 		"message": "画像の大きさ",
 		"description": "画像の大きさの設定のタイトル"
@@ -183,6 +215,42 @@
 		"message": "変更内容を保存するには、右側の「保存」を押して下さい。",
 		"description": "フッターの保存を促す説明"
 	},
+	"options_section_3_title": {
+		"message": "サイト設定",
+		"description": "設定画面の第3セクションのタイトル"
+	},
+	"options_section_3_subsection_1_title": {
+		"message": "全般",
+		"description": "設定画面の第3セクションの第1サブセクションのタイトル"
+	},
+	"hide_side_panel_label": {
+		"message": "サイドパネルを隠す",
+		"description": "サイドパネルを隠すチェックボックスのラベル"
+	},
+	"hide_side_panel_help_1": {
+		"message": "サイドパネルより背景の画像が大事な人向けの機能です。",
+		"description": "サイドパネルを隠す機能のヘルプ説明1"
+	},
+	"hide_side_panel_help_2": {
+		"message": "非表示にした場合、対象のページにサイドパネルを再表示するボタンが表示されます。",
+		"description": "サイドパネルを隠す機能のヘルプ説明2"
+	},
+	"options_section_3_subsection_2_title": {
+		"message": "Google",
+		"description": "設定画面の第3セクションの第2サブセクションのタイトル"
+	},
+	"hide_seasonal_illust_label": {
+		"message": "記念日の装飾を隠す（テスト）",
+		"description": "記念日のイラストを隠すチェックボックスのラベル"
+	},
+	"hide_seasonal_illust_help_1": {
+		"message": "記念日や季節の行事に上部の検索バーの背景に表示されるイラストを指します。",
+		"description": "記念日のイラストを隠す機能のヘルプ説明1"
+	},
+	"hide_seasonal_illust_help_2": {
+		"message": "この機能はテスト段階であり、上手く動作しない可能性があります。",
+		"description": "記念日のイラストを隠す機能のヘルプ説明2"
+	},
 	"save_button": {
 		"message": "保存",
 		"description": "フッターの保存ボタンのラベル"
@@ -218,5 +286,9 @@
 	"message_unsaved_changes": {
 		"message": "未保存の変更があります。続行するとこれらの変更は失われます。続けますか？",
 		"description": "未保存の変更があるのにページを離れようとする場合に表示するメッセージ（Chromeの場合、実際にはこのメッセージは表示されない）"
+	},
+	"show_side_panel_label": {
+		"message": "サイドパネル再表示",
+		"description": "サイドパネルを再表示するボタンのラベル"
 	}
 }
