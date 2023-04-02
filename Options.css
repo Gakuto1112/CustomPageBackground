@@ -37,11 +37,10 @@ button:disabled {
 .warning_button {
 	background-color: firebrick;
 }
-.question_icon {
+.tooltip_icon {
 	position: relative;
 }
-.question_icon::before {
-	content: "?";
+.tooltip_icon::before {
 	display: inline-block;
 	width: 1.2em;
 	height: 1.2em;
@@ -53,7 +52,13 @@ button:disabled {
 	user-select: none;
 	cursor: help;
 }
-.question_icon > * {
+.tooltip_information::before {
+	content: "i";
+}
+.tooltip_help::before {
+	content: "?";
+}
+.tooltip_icon > * {
 	position: absolute;
 	width: max-content;
 	padding: 5px 10px;
@@ -66,7 +71,12 @@ button:disabled {
 	transition: 0.3s;
 	pointer-events: none;
 }
-.question_icon:hover > * {
+.tooltip_icon.tooltip_below > * {
+	top: 20px;
+	bottom: initial;
+	z-index: 1;
+}
+.tooltip_icon:hover > * {
 	opacity: 100%;
 }
 .hidden {
