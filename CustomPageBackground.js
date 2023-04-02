@@ -20,8 +20,10 @@ chrome.storage.local.get("site_config", (siteConfig) => {
 		if(sidePanelElement) {
 			const sidePanelArea = document.createElement("div");
 			sidePanelArea.classList.add("background_image_injector_side_panel_area");
-			sidePanelArea.id = sidePanelElement.id;
-			sidePanelElement.id = null;
+			if(location.href.startsWith("https://www.bing.com/search")) {
+				sidePanelArea.id = sidePanelElement.id;
+				sidePanelElement.id = null;
+			}
 			sidePanelElement.classList.forEach((sidePanelClass) => {
 				sidePanelArea.classList.add(sidePanelClass);
 				sidePanelElement.classList.remove(sidePanelClass);
