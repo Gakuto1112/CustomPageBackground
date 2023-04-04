@@ -5,10 +5,10 @@
 #pTwnEc/* タブ */, #fbar/* フッター */, #appbar/* 約--件（0.--秒） */, #kO001e/* 画像検索 上部検索バー */ {
 	background-color: transparent;
 }
-.c93Gbe/* トップページ フッター */, .sfbg/* 上部検索バー */, .Ww4FFb/* 日本語の検査結果のみ表示します */, .wDYxhc/* Google翻訳 */, .XzTjhb/* 強調スニペット */, .zRQJhd/* 電卓 */, .g/* 検索結果 */, .zf84ud/* Twitter */, .FalWJb /* 書籍一覧 */, .vZFyxc/* サイズで絞り込む */, .KcXNxb/* ナレッジパネル 詳細 */, .rl_item/* 曲のプレイリスト */, .s8GCU/* 画像検索 ヘッダー背景 */, .ECgenc, .qcTKEe/* 画像検索 検索ツール */, .jZWadf/* 画像検索 タブ */, .zehhyb/* ショッピング 現在位置 */, .U3A9Ac/* ショッピング スポンサーラベル */, .dkw61e/* ショッピング 「この結果について」 */ {
+.c93Gbe/* トップページ フッター */, .sfbg/* 上部検索バー */, .Ww4FFb/* 日本語の検査結果のみ表示します */, .wDYxhc/* Google翻訳 */, .XzTjhb/* 強調スニペット */, .dG2XIf/* 辞書 */, .zRQJhd/* 電卓 */, .g/* 検索結果 */, .zf84ud/* Twitter */, .FalWJb /* 書籍一覧 */, .vZFyxc/* サイズで絞り込む */, .KcXNxb/* ナレッジパネル 詳細 */, .rl_item/* 曲のプレイリスト */, .s8GCU/* 画像検索 ヘッダー背景 */, .ECgenc, .qcTKEe/* 画像検索 検索ツール */, .jZWadf/* 画像検索 タブ */, .zehhyb/* ショッピング 現在位置 */, .U3A9Ac/* ショッピング スポンサーラベル */, .dkw61e/* ショッピング 「この結果について」 */ {
 	background-color: transparent !important;
 }
-.j1iyq/* Google翻訳 言語ボタン */, .TIGsTb/* 電卓 計算結果 */, .PCpHt/* ホテル予約人数 */, .Z2nCcc/* ホテルリスト */, .ZZ7G7b/* 画像検索 上部関連キーワード */, .iPukc/* 画像検索 中間関連キーワード */, .sh-dr__g/* ショッピング フィルター */ {
+.j1iyq/* Google翻訳 言語ボタン */, .g1baVc/* 辞書 発音アイコン */, .TIGsTb/* 電卓 計算結果 */, .PCpHt/* ホテル予約人数 */, .Z2nCcc/* ホテルリスト */, .ZZ7G7b/* 画像検索 上部関連キーワード */, .iPukc/* 画像検索 中間関連キーワード */, .sh-dr__g/* ショッピング フィルター */ {
 	background-color: var(--background-color);
 }
 .minidiv > .sfbg/* 上部検索バー（ヘッダー） */, .AUiS2/* 他の人はこちらも検索 */, .BwMo1/* サイト内検索 検索ボタン */, .DU1Mzb/* 画像検索 上部検索バー（ヘッダー） */ {
