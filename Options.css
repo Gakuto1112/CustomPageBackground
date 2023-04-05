@@ -220,7 +220,7 @@ ul > li {
 }
 #image_addition_tabs {
 	display: flex;
-	overflow: scroll;
+	overflow-x: scroll;
 }
 #image_addition_tabs::-webkit-scrollbar {
 	display: none;
@@ -234,6 +234,7 @@ ul > li {
 	border-bottom: solid 2px darkgray;
 	box-sizing: border-box;
 	cursor: pointer;
+	user-select: none;
 }
 #image_addition_tabs > p.warning_border {
 	border-bottom: solid 2px lightcoral !important;
@@ -265,7 +266,7 @@ ul > li {
 	padding: 50px 0;
 	border: solid 2px darkgray;
 	border-top: none !important;
-	overflow: scroll;
+	overflow-x: scroll;
 	white-space: nowrap;
 }
 #image_addition_tab_area > div {
