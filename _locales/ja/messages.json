@@ -251,10 +251,6 @@
 		"message": "記念日や季節の行事に上部の検索バーの背景に表示されるイラストを指します。",
 		"description": "記念日のイラストを隠す機能のヘルプ説明1"
 	},
-	"hide_seasonal_illust_help_2": {
-		"message": "この機能はテスト段階であり、上手く動作しない可能性があります。",
-		"description": "記念日のイラストを隠す機能のヘルプ説明2"
-	},
 	"save_button": {
 		"message": "保存",
 		"description": "フッターの保存ボタンのラベル"

@@ -61,7 +61,8 @@ button:disabled {
 .tooltip_icon > * {
 	position: absolute;
 	width: max-content;
-	padding: 5px 10px;
+	margin: 0;
+	padding: 10px;
 	bottom: 20px;
 	border: solid 1px darkgray;
 	border-radius: 6px;
@@ -71,10 +72,11 @@ button:disabled {
 	transition: 0.3s;
 	pointer-events: none;
 }
-.tooltip_icon.tooltip_below > * {
-	top: 20px;
-	bottom: initial;
-	z-index: 1;
+.tooltip_icon > * > :first-child {
+	margin-top: 0;
+}
+.tooltip_icon > * > :last-child {
+	margin-bottom: 0;
 }
 .tooltip_icon:hover > * {
 	opacity: 100%;

@@ -251,10 +251,6 @@
 		"message": "It means the illust which appears behind the top search bar during some anniversaries or seasonal events.",
 		"description": "The help description of the function to hide the anniversary illust (1)"
 	},
-	"hide_seasonal_illust_help_2": {
-		"message": "This feature is under the test and may not work correctly.",
-		"description": "The help description of the function to hide the anniversary illust (2)"
-	},
 	"save_button": {
 		"message": "Save",
 		"description": "The label fo the save button"
