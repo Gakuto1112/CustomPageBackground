@@ -187,9 +187,13 @@
 		"message": "不透明度",
 		"description": "画像の透明度の設定のタイトル"
 	},
+	"image_invisible_warning": {
+		"message": "何も...見えません...ね？",
+		"description": "画像の不透明度が0の場合の警告文"
+	},
 	"image_opacity_warning": {
 		"message": "画像によってはページの視認性が低下します。",
-		"description": "画像の透明度の設定の警告文"
+		"description": "画像の不透明度が高い場合の警告文"
 	},
 	"image_shadow": {
 		"message": "画像端の影",

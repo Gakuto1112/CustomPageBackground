@@ -187,9 +187,13 @@
 		"message": "Opacity",
 		"description": "The title of the image opacity option"
 	},
+	"image_invisible_warning": {
+		"message": "You can see... nothing... right?",
+		"description": "The warning text when the image opacity is 0"
+	},
 	"image_opacity_warning": {
 		"message": "Some images may reduce page visibility.",
-		"description": "The warning text of the image opacity option"
+		"description": "The warning text when the image opacity is high"
 	},
 	"image_shadow": {
 		"message": "Image edge shadows",

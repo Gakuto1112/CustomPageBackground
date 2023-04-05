@@ -108,6 +108,23 @@ function loadImages(imageArray) {
 	});
 }
 
+/**
+ * ページの視認性低下のメッセージを更新する。
+ */
+function refreshHardVisibilityMessage() {
+	const hardVisibilityMessage = document.querySelector("#background_opacity_area > p");
+	const hardVisibilityText = document.querySelector("#background_opacity_area > p > span:last-child");
+	if(backgroundOpacity.value == 0 || backgroundOpacity.value >= 0.5) {
+		if(backgroundOpacity.value == 0) hardVisibilityText.innerText = chrome.i18n.getMessage("image_invisible_warning");
+		else hardVisibilityText.innerText = chrome.i18n.getMessage("image_opacity_warning");
+		hardVisibilityMessage.classList.remove("hidden");
+	}
+	else {
+		hardVisibilityText.innerText = "";
+		hardVisibilityMessage.classList.add("hidden");
+	}
+}
+
 //ローカルから画像読み込み
 document.getElementById("load_from_local").addEventListener("click", () => {
 	const fileInputElement = document.createElement("input");
@@ -244,11 +261,9 @@ expandAlign.forEach((element) => element.addEventListener("change", () => {
 	}
 }));
 
-const hardVisibilityMessage = document.querySelector("#background_opacity_area > p");
 backgroundOpacity.addEventListener("change", () => {
 	background.setOpacity(backgroundOpacity.value);
-	if(backgroundOpacity.value >= 0.5) hardVisibilityMessage.classList.remove("hidden");
-	else hardVisibilityMessage.classList.add("hidden");
+	refreshHardVisibilityMessage();
 });
 
 const generalHideSidePanel = document.getElementById("general_hide_side_panel");
@@ -344,7 +359,7 @@ update().then(() => {
 		expandAlign.item(result.style.image_align).checked = true;
 		background.setImageAlign(result.style.image_align);
 		backgroundOpacity.value = result.style.opacity;
-		if(result.style.opacity >= 0.5) hardVisibilityMessage.classList.remove("hidden");
+		refreshHardVisibilityMessage();
 		background.setOpacity(result.style.opacity);
 		blurBorder.value = result.style.border_blur;
 		background.setBlur(result.style.border_blur);
