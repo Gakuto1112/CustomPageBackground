@@ -454,6 +454,14 @@ ul > li {
 	min-width: fit-content;
 	margin: -2em 0 0 40px;
 }
+#expand_align_grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: fit-content;
+}
+#expand_align_grid > div > label {
+	margin-right: 3em;
+}
 #background_opacity_area {
 	display: flex;
 }
@@ -469,10 +477,6 @@ ul > li {
 #background_opacity_area > p > span:first-child {
 	margin-right: 0.25em;
 	font-size: large;
-}
-#expand_align_grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
 }
 #footer {
 	position: fixed;
