@@ -176,11 +176,12 @@ ul > li {
 }
 #image_selector > p {
 	width: 100%;
-	margin: auto;
+	height: 100%;
+	margin: 0;
 	color: lightgray;
 	font-size: 64px;
 	text-align: center;
-	line-height: 64px;
+	line-height: 183px;
 	user-select: none;
 }
 #image_selector > div {

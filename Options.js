@@ -71,6 +71,14 @@ function addImage(imageSrc) {
 	allClearButton.disabled = allClearButton.classList.contains("hidden");
 }
 
+//「画像未選択」のテキスト
+document.querySelector("#image_selector > p").addEventListener("click", () => {
+	window.scrollTo({
+		top: window.scrollY + document.getElementById("image_addition_area").getBoundingClientRect().top - 70,
+		behavior: "smooth"
+	});
+});
+
 //画像追加のタブの操作
 document.querySelectorAll("#image_addition_tabs > p").forEach((element) => element.addEventListener("click", (event) => {
 	document.getElementsByClassName("active_tab").item(0).classList.remove("active_tab");
