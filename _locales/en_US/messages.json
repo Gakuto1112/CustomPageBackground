@@ -294,5 +294,17 @@
 	"show_side_panel_label": {
 		"message": "Show side panel",
 		"description": "The label of the button to show the side panel again"
+	},
+	"bing_popup_title": {
+		"message": "Notice from CPB",
+		"description": "The title of the popup shown on the bing top page"
+	},
+	"bing_popup_body": {
+		"message": "This extension also injects your background image into this page. Please disable \"Show homepage image\" in the \"Settings and quick link\" located at the top of this page (≡) to show your background image.",
+		"description": "The body of the popup shown on the bing top page"
+	},
+	"bing_popup_dismiss": {
+		"message": "OK",
+		"description": "The label of the button on the bing popup to remove the popup"
 	}
 }

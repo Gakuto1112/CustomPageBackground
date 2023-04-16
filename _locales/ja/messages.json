@@ -294,5 +294,17 @@
 	"show_side_panel_label": {
 		"message": "サイドパネル再表示",
 		"description": "サイドパネルを再表示するボタンのラベル"
+	},
+	"bing_popup_title": {
+		"message": "カスタム背景からのお知らせ",
+		"description": "bingのトップページに表示されるポップアップのタイトル"
+	},
+	"bing_popup_body": {
+		"message": "こちらのbingのトップページも背景挿入の対象のページとなっています。挿入された背景を表示するには、画面右上の「設定とクリックリンク」（≡）から、「ホームページの画像を表示」をオフにして下さい。",
+		"description": "bingのトップページに表示されるポップアップの本文"
+	},
+	"bing_popup_dismiss": {
+		"message": "OK",
+		"description": "bingのトップページに表示されるポップアップを削除するボタンのラべル"
 	}
 }

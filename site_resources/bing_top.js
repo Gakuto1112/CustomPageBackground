@@ -12,14 +12,14 @@ chrome.storage.local.get("bing_popup_count", (result) => {
                 titleIcon.src = chrome.runtime.getURL("icons/icon48.png");
                 popupTitle.appendChild(titleIcon);
                 const titleText = document.createElement("p");
-                titleText.innerText = "カスタム背景からのお知らせ";
+                titleText.innerText = chrome.i18n.getMessage("bing_popup_title");
                 popupTitle.appendChild(titleText);
                 popupRoot.appendChild(popupTitle);
                 const popupBody = document.createElement("p");
-                popupBody.innerText = "こちらのbingのトップページも背景挿入の対象のページとなっています。挿入された背景を表示するには、画面右上の「設定とクリックリンク」（≡）から、「ホームページの画像を表示」をオフにして下さい。";
+                popupBody.innerText = chrome.i18n.getMessage("bing_popup_body");
                 popupRoot.appendChild(popupBody);
                 const dismissButton = document.createElement("button");
-                dismissButton.innerText = "OK";
+                dismissButton.innerText = chrome.i18n.getMessage("bing_popup_dismiss");
                 dismissButton.addEventListener("click", () => {
                     chrome.storage.local.set({
                         bing_popup_count: 3
