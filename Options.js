@@ -71,6 +71,9 @@ function addImage(imageSrc) {
 	allClearButton.disabled = allClearButton.classList.contains("hidden");
 }
 
+//GitHubリンク
+document.querySelector("#header > a").addEventListener("click", () => window.open("https://github.com/Gakuto1112/CustomPageBackground", "__blank"));
+
 //「画像未選択」のテキスト
 document.querySelector("#image_selector > p").addEventListener("click", () => {
 	window.scrollTo({

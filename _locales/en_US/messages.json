@@ -15,6 +15,10 @@
 		"message": "CPB Options Page",
 		"description": "The title of the options page"
 	},
+	"github_link": {
+		"message": "GitHub",
+		"description": "The text of GitHub link"
+	},
 	"no_image": {
 		"message": "No image selected",
 		"description": "The text indicated in image selector when no image selected"

@@ -15,6 +15,10 @@
 		"message": "カスタム背景　設定画面",
 		"description": "設定画面のタイトル"
 	},
+	"github_link": {
+		"message": "GitHub",
+		"description": "GitHubのリンクのテキスト"
+	},
 	"no_image": {
 		"message": "画像未選択",
 		"description": "画像一覧で画像未選択に表示されるテキスト"
