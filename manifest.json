@@ -39,6 +39,21 @@
 		},
 		{
 			"js": [
+				"CustomPageBackground.js",
+				"site_resources/bing_top.js"
+			],
+    		"css": [
+				"BackgroundImageInjector.css",
+				"site_resources/bing.css",
+				"site_resources/bing_top.css"
+			],
+			"matches": [
+				"https://www.bing.com/",
+				"https://www.bing.com/?*"
+    		]
+		},
+		{
+			"js": [
 				"CustomPageBackground.js"
 			],
     		"css": [
@@ -46,8 +61,6 @@
 				"site_resources/bing.css"
 			],
 			"matches": [
-				"https://www.bing.com/",
-				"https://www.bing.com/?*",
         		"https://www.bing.com/search?*",
 				"https://www.bing.com/images/search?*",
 				"https://www.bing.com/videos/search?*",
@@ -95,7 +108,8 @@
 			],
     		"resources": [
 				"BackgroundImageInjector.js",
-				"DataStructureUpdater.js"
+				"DataStructureUpdater.js",
+				"icons/icon48.png"
 			]
 		}
 	]

@@ -1,0 +1,47 @@
+.custom_page_background_bing_popup {
+    position: fixed;
+    max-width: 500px;
+    padding: 10px;
+    bottom: 10px;
+    right: 10px;
+    border: solid 1px darkgray;
+    border-radius: 6px;
+    background-color: white;
+	box-shadow: 2px 2px 5px 2px #00000040;
+    z-index: 1;
+}
+.custom_page_background_bing_popup h1 {
+    font-size: revert;
+    font-weight: lighter;
+}
+.custom_page_background_bing_popup p {
+    margin: revert;
+}
+.custom_page_background_bing_popup button {
+    margin: 0 5px;
+    padding: 5px 10px;
+	color: darkblue;
+	font-weight: bold;
+	border: solid 1px dimgray;
+	border-radius: 4px;
+    background-color: white;
+	box-shadow: 0 0 2px 2px #00000020;
+	cursor: pointer;
+}
+.custom_page_background_bing_popup button.highlight {
+	color: white;
+    border-color: dodgerblue;
+	background-color: dodgerblue;
+}
+.custom_page_background_bing_popup > div:first-child {
+    display: flex;
+    align-items: center;
+}
+.custom_page_background_bing_popup > div:first-child > img {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+.custom_page_background_bing_popup > div:last-child {
+    display: flex;
+}
